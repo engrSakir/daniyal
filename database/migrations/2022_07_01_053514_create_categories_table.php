@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('banglish_name')->nullable();//amar nam sakir
             $table->string('image')->nullable();
             $table->timestamps();
-            $table->softDelete();
+            $table->softDeletes();
         });
     }
 

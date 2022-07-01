@@ -19,14 +19,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', Login::class)->name('login')->middleware('guest');
 
-Route::group(['middleware' => 'admin', 'as' => 'admin.', 'prefix' => 'admin/'], function (){
+Route::group(['middleware' => ['admin', 'auth'], 'as' => 'admin.', 'prefix' => 'admin/'], function (){
     Route::get('dashboard', Admin\Dashoard::class)->name('dashboard');
 
 });
 
-Route::group(['middleware' => 'manager', 'as' => 'manager.', 'prefix' => 'manager/'], function (){
+Route::group(['middleware' => ['manager','auth'], 'as' => 'manager.', 'prefix' => 'manager/'], function (){
     Route::get('dashboard', Manager\Dashoard::class)->name('dashboard');
     Route::get('pos', Manager\POS::class)->name('pos');
+    Route::get('category', Manager\Category::class)->name('category');
     Route::get('item', Manager\Item::class)->name('item');
     Route::get('set-menu', Manager\SetMenu::class)->name('set_menu');
     Route::get('offer', Manager\Offer::class)->name('offer');

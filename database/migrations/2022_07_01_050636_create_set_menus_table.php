@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('set_menus', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

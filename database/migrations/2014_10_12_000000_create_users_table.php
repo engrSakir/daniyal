@@ -24,6 +24,7 @@ return new class extends Migration
             $table->boolean('account_activation')->default(true);
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

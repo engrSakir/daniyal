@@ -2,11 +2,11 @@
     <!-- Breadcrumb-->
     <div class="row pt-2 pb-2">
         <div class="col-sm-9">
-            <h4 class="page-title">Item Page</h4>
+            <h4 class="page-title">Category Page</h4>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="javaScript:void();">{{ config('app.name') }}</a></li>
                 <li class="breadcrumb-item"><a href="javaScript:void();">Pages</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Item Page</li>
+                <li class="breadcrumb-item active" aria-current="page">Category Page</li>
             </ol>
         </div>
         <div class="col-sm-3">
@@ -26,30 +26,20 @@
                             <thead class="thead-primary shadow-primary">
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Item</th>
+                                    <th scope="col">Name</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($categories as $category)
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $category->name }}</td>
                                     <td>Otto</td>
                                     <td>@mdo</td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -62,7 +52,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-primary">
-                    <h5 class="modal-title"><i class="fa fa-star"></i> Modal title</h5>
+                    <h5 class="modal-title text-white"><i class="fa fa-star"></i> Form</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -70,17 +60,6 @@
                 <div class="modal-body">
                     <form wire:submit.prevent="store">
                         <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="category_id">category</label>
-                                <select class="form-control" wire:model="category_id" id="category_id">
-                                    <option>BUDGET</option>
-                                    <option>Less then 2000$</option>
-                                    <option>2000$ - 10000$</option>
-                                    <option>10000$ - 20000$</option>
-                                    <option>Above 20000$</option>
-                                </select>
-                                <x-error name="category_id" />
-                            </div>
                             <div class="form-group col-md-6">
                                 <label for="offline_active">offline active</label>
                                 <select class="form-control" wire:model="offline_active" id="offline_active">
@@ -114,17 +93,6 @@
                                 <input type="text" class="form-control" wire:model="banglish_name"
                                     id="banglish_name">
                                 <x-error name="banglish_name" />
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="product_number">product number</label>
-                                <input type="number" class="form-control" wire:model="product_number"
-                                    id="product_number">
-                                <x-error name="product_number" />
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="price">price</label>
-                                <input type="number" class="form-control" wire:model="price" id="price">
-                                <x-error name="price" />
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="image">image</label>

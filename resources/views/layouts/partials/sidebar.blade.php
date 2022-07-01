@@ -16,7 +16,8 @@
                 @if(auth()->user()->manager())
                 <li class="sidebar-header">Manager</li>
                 <li><a href="{{ route('manager.dashboard') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Dashboard</span></a></li>
-                <li><a href="{{ route('manager.pos') }}" class="waves-effect"target="_blank"><i class="fa fa-circle-o text-aqua"></i> <span>POS</span></a></li>
+                <li><a href="{{ route('manager.pos') }}" class="waves-effect" target="_blank"><i class="fa fa-circle-o text-aqua"></i> <span>POS</span></a></li>
+                <li><a href="{{ route('manager.category') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Category</span></a></li>
                 <li><a href="{{ route('manager.item') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Item</span></a></li>
                 <li><a href="{{ route('manager.set_menu') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Set Menu</span></a></li>
                 <li><a href="{{ route('manager.offer') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Offer</span></a></li>
