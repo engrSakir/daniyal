@@ -12,7 +12,7 @@
         <div class="col-sm-3">
             <div class="btn-group float-sm-right">
                 <button type="button" class="btn btn-outline-primary waves-effect waves-light" data-toggle="modal"
-                    data-target="#createmodal" wire:click="create"><i class="fa fa-plus mr-1"></i> Create </button>
+                    data-target="#modal" wire:click="create"><i class="fa fa-plus mr-1"></i> Create </button>
             </div>
         </div>
     </div>
@@ -28,28 +28,44 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Item</th>
                                     <th scope="col">Price</th>
+                                    <th scope="col">Online Status</th>
+                                    <th scope="col">Offline Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($items as $item)
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>
+                                        <img src="{{ asset($item->image ? $item->image : 'assets/images/no-image.png') }}"
+                                                width="50px">
+                                        {{ $item->name }}
+                                    </td>
+                                    <td>{{ $item->price }}</td>
+                                    <td>
+                                        @if ($item->online_active)
+                                            <span class="badge badge-pill badge-success m-1">Active</span>
+                                        @else
+                                            <span class="badge badge-pill badge-danger m-1">Inactive</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($item->offline_active)
+                                            <span class="badge badge-pill badge-success m-1">Active</span>
+                                        @else
+                                            <span class="badge badge-pill badge-danger m-1">Inactive</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="btn-group m-1">
+                                            <button type="button" class="btn btn-warning waves-effect waves-light" data-toggle="modal"
+                                            data-target="#modal" wire:click="select_model({{ $item }})"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger waves-effect waves-light"><i class="fa fa fa-trash-o"></i></button>
+                                        </div>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -58,7 +74,7 @@
         </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="createmodal" wire:ignore.self>
+    <div class="modal fade" id="modal" wire:ignore.self>
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-primary">
@@ -73,11 +89,10 @@
                             <div class="form-group col-md-6">
                                 <label for="category_id">category</label>
                                 <select class="form-control" wire:model="category_id" id="category_id">
-                                    <option>BUDGET</option>
-                                    <option>Less then 2000$</option>
-                                    <option>2000$ - 10000$</option>
-                                    <option>10000$ - 20000$</option>
-                                    <option>Above 20000$</option>
+                                    <option>Select</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
                                 </select>
                                 <x-error name="category_id" />
                             </div>
