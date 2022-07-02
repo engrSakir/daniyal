@@ -52,6 +52,12 @@ class Category extends Component
 
     public function select_model(ModelsCategory $model){
         $this->selected_model = $model;
+        $this->offline_active = $model->offline_active;
+        $this->online_active = $model->online_active;
+        $this->slug = $model->slug;
+        $this->name = $model->name;
+        $this->banglish_name = $model->banglish_name;
+        $this->image = $model->image;
     }
 
     public function update(){

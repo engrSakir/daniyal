@@ -12,7 +12,7 @@
         <div class="col-sm-3">
             <div class="btn-group float-sm-right">
                 <button type="button" class="btn btn-outline-primary waves-effect waves-light" data-toggle="modal"
-                    data-target="#createmodal" wire:click="create"><i class="fa fa-plus mr-1"></i> Create </button>
+                    data-target="#modal" wire:click="create"><i class="fa fa-plus mr-1"></i> Create </button>
             </div>
         </div>
     </div>
@@ -27,18 +27,42 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Price</th>
+                                    <th scope="col">Online Status</th>
+                                    <th scope="col">Offline Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($categories as $category)
-                                <tr>
-                                    <th scope="row">{{ $loop->iteration }}</th>
-                                    <td>{{ $category->name }}</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
+                                    <tr>
+                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td>
+                                            <img src="{{ asset($category->image ? $category->image : 'assets/images/no-image.png') }}"
+                                                width="50px">
+                                            {{ $category->name }}
+                                        </td>
+                                        <td>
+                                            @if ($category->online_active)
+                                                <span class="badge badge-pill badge-success m-1">Active</span>
+                                            @else
+                                                <span class="badge badge-pill badge-danger m-1">Inactive</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($category->offline_active)
+                                                <span class="badge badge-pill badge-success m-1">Active</span>
+                                            @else
+                                                <span class="badge badge-pill badge-danger m-1">Inactive</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <div class="btn-group m-1">
+                                                <button type="button" class="btn btn-warning waves-effect waves-light" data-toggle="modal"
+                                                data-target="#modal" wire:click="select_model({{ $category }})"><i class="fa fa-edit"></i></button>
+                                                <button type="button" class="btn btn-danger waves-effect waves-light"><i class="fa fa fa-trash-o"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -48,7 +72,7 @@
         </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="createmodal" wire:ignore.self>
+    <div class="modal fade" id="modal" wire:ignore.self>
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-primary">
@@ -96,7 +120,8 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="image">image</label>
-                                <input type="file" accept="image/*" class="form-control" wire:model="image" id="image">
+                                <input type="file" accept="image/*" class="form-control" wire:model="image"
+                                    id="image">
                                 <x-error name="image" />
                             </div>
                         </div>
