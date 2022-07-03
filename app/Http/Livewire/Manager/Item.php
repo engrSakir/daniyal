@@ -12,7 +12,7 @@ class Item extends Component
 {
     use LivewireAlert, WithFileUploads;
 
-    public $category_id, $offline_active, $online_active, $slug, $name, $banglish_name, $product_number, $price, $image;
+    public $category_id, $offline_active, $online_active, $slug, $name, $banglish_name, $shortcut_number, $price, $image,$description;
     public $selected_model;
 
     public function render()
@@ -30,13 +30,14 @@ class Item extends Component
         $this->slug = null;
         $this->name = null;
         $this->banglish_name = null;
-        $this->product_number = null;
+        $this->shortcut_number = null;
         $this->price = null;
         $this->image = null;
+        $this->description = null;
         $this->selected_model = null;
     }
 
-    public function store(){
+    public function submit(){
         $validate_data = $this->validate([
             'category_id' => 'required|exists:categories,id',
             'offline_active' => 'required|boolean',
@@ -44,9 +45,10 @@ class Item extends Component
             'slug' => 'required|string',
             'name' => 'required|string',
             'banglish_name' => 'required|string',
-            'product_number' => 'required|numeric',
+            'shortcut_number' => 'required|numeric',
             'price' => 'required|numeric',
             'image' => 'nullable|image',
+            'description' => 'nullable',
         ]);
         if($this->selected_model){
             $this->selected_model->update($validate_data);
@@ -66,13 +68,10 @@ class Item extends Component
         $this->slug = $model->slug;
         $this->name = $model->name;
         $this->banglish_name = $model->banglish_name;
-        $this->product_number = $model->product_number;
+        $this->shortcut_number = $model->shortcut_number;
         $this->price = $model->price;
         $this->image = $model->image;
-    }
-
-    public function update(){
-
+        $this->description = $model->description;
     }
 
     public function delete(ModelsItem $model){

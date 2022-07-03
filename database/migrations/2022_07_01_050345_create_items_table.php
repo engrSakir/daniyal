@@ -21,9 +21,10 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->string('name');
             $table->string('banglish_name')->nullable();//amar nam sakir
-            $table->integer('product_number')->nullable();
+            $table->integer('shortcut_number')->nullable();
             $table->double('price')->default(0);
             $table->string('image')->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

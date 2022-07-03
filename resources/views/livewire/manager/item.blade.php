@@ -84,7 +84,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form wire:submit.prevent="store">
+                    <form wire:submit.prevent="submit">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="category_id">category</label>
@@ -131,10 +131,10 @@
                                 <x-error name="banglish_name" />
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="product_number">product number</label>
-                                <input type="number" class="form-control" wire:model="product_number"
-                                    id="product_number">
-                                <x-error name="product_number" />
+                                <label for="shortcut_number">shortcut number</label>
+                                <input type="number" class="form-control" wire:model="shortcut_number"
+                                    id="shortcut_number">
+                                <x-error name="shortcut_number" />
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="price">price</label>

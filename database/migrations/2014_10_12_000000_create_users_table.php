@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('image')->nullable();
             $table->boolean('account_activation')->default(true);
+            $table->longText('note')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
