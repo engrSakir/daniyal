@@ -14,7 +14,7 @@ class SetMenu extends Component
     use LivewireAlert, WithFileUploads;
 
     public $offline_active, $online_active, $slug, $name, $banglish_name, $shortcut_number, $price, $image, $description;
-    public $selected_items = [];
+    public $items_array = [];
     public $selected_model;
 
     public function render()
@@ -36,7 +36,7 @@ class SetMenu extends Component
         $this->image = null;
         $this->description = null;
         $this->selected_model = null;
-        $this->selected_items = [];
+        $this->items_array = [];
     }
 
     public function submit(){
@@ -59,7 +59,7 @@ class SetMenu extends Component
             $model = ModelsSetMenu::create($validate_data);
             $this->alert('success', 'Created');
         }
-        foreach($this->selected_items as $item_id => $item){
+        foreach($this->items_array as $item_id => $item){
             if($item['item_id'] && $item['quantity'] > 0){
                 SetMenuWiseItem::create([
                     'set_menu_id' => $model->id,
@@ -82,19 +82,34 @@ class SetMenu extends Component
         $this->price = $model->price;
         $this->image = $model->image;
         $this->description = $model->description;
-        foreach ($model->set_menu_wisse_items as $item){
-            // array_push($this->selected_items, [$item->item_id], [
-            //     'item_id' => 1,
-            //     'quantity' => 1
-            // ]);
-            // dd( $this->selected_items);
-            $this->selected_items.$item->item_id->item_id = 1;
-            $this->selected_items.$item->item_id->quantity = 1;
-        }
-        $this->selected_items = $model->set_menu_wisse_items()->select('item_id', 'set_menu_id');
+        // foreach ($model->set_menu_wisse_items as $item){
+        //     array_push($this->items_array, [$item->item_id]);
+        //     array_push($this->items_array[$item->item_id], [
+        //         'item_id' => 1,
+        //         'quantity' => 1
+        //     ]);
+        //     dd( $this->items_array);
+        //     $this->items_array.$item->item_id->item_id = 1;
+        //     $this->items_array.$item->item_id->quantity = 1;
+        // }
+        $this->items_array = $model->set_menu_wisse_items()->select('item_id', 'set_menu_id');
     }
 
     public function delete(ModelsSetMenu $model){
         $this->selected_model = $model;
     }
+
+    public function add_or_remove_items($key = null){
+        // array_push($this->items_array, []);
+        if ($key === null) {
+            array_push($this->items_array, null);
+        } else {
+            unset($this->items_array[$key]);
+        }
+    }
+
+    public function remove_items_array(){
+        array_push($this->items_array, []);
+    }
+
 }

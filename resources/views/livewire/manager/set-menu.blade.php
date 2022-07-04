@@ -11,8 +11,7 @@
         </div>
         <div class="col-sm-3">
             <div class="btn-group float-sm-right">
-                <button type="button" class="btn btn-outline-primary waves-effect waves-light" data-toggle="modal"
-                    data-target="#modal" wire:click="create"><i class="fa fa-plus mr-1"></i> Create </button>
+                <button type="button" class="btn btn-outline-primary waves-effect waves-light" data-toggle="modal" data-target="#modal" wire:click="create"><i class="fa fa-plus mr-1"></i> Create </button>
             </div>
         </div>
     </div>
@@ -35,40 +34,34 @@
                             </thead>
                             <tbody>
                                 @foreach ($set_menues as $set_menu)
-                                    <tr>
-                                        <th scope="row">{{ $loop->iteration }}</th>
-                                        <td>
-                                            <img src="{{ asset($set_menu->image ? $set_menu->image : 'assets/images/no-image.png') }}"
-                                                width="50px">
-                                            {{ $set_menu->name }}
-                                        </td>
-                                        <td>{{ $set_menu->price }}</td>
-                                        <td>
-                                            @if ($set_menu->online_active)
-                                                <span class="badge badge-pill badge-success m-1">Active</span>
-                                            @else
-                                                <span class="badge badge-pill badge-danger m-1">Inactive</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if ($set_menu->offline_active)
-                                                <span class="badge badge-pill badge-success m-1">Active</span>
-                                            @else
-                                                <span class="badge badge-pill badge-danger m-1">Inactive</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <div class="btn-group m-1">
-                                                <button type="button" class="btn btn-warning waves-effect waves-light"
-                                                    data-toggle="modal" data-target="#modal"
-                                                    wire:click="select_model({{ $set_menu }})"><i
-                                                        class="fa fa-edit"></i></button>
-                                                <button type="button"
-                                                    class="btn btn-danger waves-effect waves-light"><i
-                                                        class="fa fa fa-trash-o"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>
+                                        <img src="{{ asset($set_menu->image ? $set_menu->image : 'assets/images/no-image.png') }}" width="50px">
+                                        {{ $set_menu->name }}
+                                    </td>
+                                    <td>{{ $set_menu->price }}</td>
+                                    <td>
+                                        @if ($set_menu->online_active)
+                                        <span class="badge badge-pill badge-success m-1">Active</span>
+                                        @else
+                                        <span class="badge badge-pill badge-danger m-1">Inactive</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($set_menu->offline_active)
+                                        <span class="badge badge-pill badge-success m-1">Active</span>
+                                        @else
+                                        <span class="badge badge-pill badge-danger m-1">Inactive</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="btn-group m-1">
+                                            <button type="button" class="btn btn-warning waves-effect waves-light" data-toggle="modal" data-target="#modal" wire:click="select_model({{ $set_menu }})"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger waves-effect waves-light"><i class="fa fa fa-trash-o"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -120,14 +113,12 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="banglish_name">banglish name</label>
-                                <input type="text" class="form-control" wire:model="banglish_name"
-                                    id="banglish_name" required>
+                                <input type="text" class="form-control" wire:model="banglish_name" id="banglish_name" required>
                                 <x-error name="banglish_name" />
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="shortcut_number">shortcut number</label>
-                                <input type="number" class="form-control" wire:model="shortcut_number"
-                                    id="shortcut_number" required>
+                                <input type="number" class="form-control" wire:model="shortcut_number" id="shortcut_number" required>
                                 <x-error name="shortcut_number" />
                             </div>
                             <div class="form-group col-md-6">
@@ -137,51 +128,36 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="image">image</label>
-                                <input type="file" accept="image/*" class="form-control" wire:model="image"
-                                    id="image">
+                                <input type="file" accept="image/*" class="form-control" wire:model="image" id="image">
                                 <x-error name="image" />
                             </div>
-                            <div class="form-group col-md-12" style="overflow:scroll; height:400px;">
-                                <table class="table">
-                                    <thead class="thead-primary shadow-primary">
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Item</th>
-                                            <th scope="col">QTY</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($items as $item)
-                                            <tr>
-                                                <th scope="row"> <br>
-
-                                                </th>
-                                                <td>
-                                                    <img src="{{ asset($item->image ? $item->image : 'assets/images/no-image.png') }}" width="50px">
-                                                        <input type="checkbox" id="item-{{ $loop->iteration }}" wire:model="selected_items.{{ $item->id }}.item_id"
-                                                        value="1">
-                                                    <label for="item-{{ $loop->iteration }}">
-                                                        {{ $loop->iteration }}. {{ $item->name }} </label>
-                                                </td>
-                                                <td>
-                                                    {{-- @isset($selected_items[$item->id]['item_id'])
-                                                        @if ($selected_items[$item->id]['item_id']) --}}
-                                                            <input type="number" class="form-control" placeholder="QTY" required min="1"
-                                                                wire:model="selected_items.{{ $item->id }}.quantity">
-                                                            <x-error name="selected_items.{{ $item->id }}.quantity" />
-                                                        {{-- @endif
-                                                    @endisset --}}
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                            @foreach ($items_array as $key => $item)
+                            <div class="form-group col-md-12 row">
+                                <div class="col-md-5">
+                                    <label for="items_array.{{ $key }}.item_id">online active</label>
+                                    <select class="form-control" wire:model="items_array.{{ $key }}.item_id" id="items_array.{{ $key }}.item_id" required>
+                                        <option>Select</option>
+                                        <option value="0">Inactive</option>
+                                        <option value="1">Active</option>
+                                    </select>
+                                    <x-error name="items_array.{{ $key }}.item_id" />
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="items_array.{{ $key }}.item_quantity">quantity</label>
+                                    <input type="number" class="form-control" wire:model="items_array.{{ $key }}.item_quantity" id="items_array.{{ $key }}.item_quantity" required>
+                                    <x-error name="items_array.{{ $key }}.item_quantity" />
+                                </div>
+                                <div class="col-md-2">
+                                        <button type="button" class="btn btn-danger waves-effect waves-light mt-4" wire:click="add_or_remove_items({{ $key }})"><i class="fa fa-minus"></i></button>
+                                </div>
                             </div>
+                            @endforeach
+                            <button type="button" class="btn btn-success waves-effect waves-light col-12" wire:click="add_or_remove_items"><i class="fa fa fa-plus"></i></button>
+
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
-                                    class="fa fa-times"></i> Cancel</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
                             <button type="reset" class="btn btn-secondary"><i class="fa fa-refresh"></i>
                                 Reset</button>
                             <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i>
