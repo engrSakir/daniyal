@@ -19,13 +19,14 @@ class SetMenu extends Component
 
     public function render()
     {
-        return view('livewire.manager.set-menu',[
+        return view('livewire.manager.set-menu', [
             'items' => Item::latest()->get(),
             'set_menues' => ModelsSetMenu::latest()->get(),
         ]);
     }
 
-    public function create(){
+    public function create()
+    {
         $this->offline_active = null;
         $this->online_active = null;
         $this->slug = null;
@@ -39,7 +40,8 @@ class SetMenu extends Component
         $this->items_array = [];
     }
 
-    public function submit(){
+    public function submit()
+    {
         $validate_data = $this->validate([
             'offline_active' => 'required|boolean',
             'online_active' => 'required|boolean',
@@ -50,28 +52,36 @@ class SetMenu extends Component
             'price' => 'required|numeric',
             'image' => 'nullable|image',
             'description' => 'nullable',
+            'items_array.*item_id' => 'required|exists:items,id',
+            'items_array.*.item_quantity' => 'required|numeric|min:0',
         ]);
-        if($this->selected_model){
+        unset($validate_data['items_array']);
+        if ($this->selected_model) {
             $model = $this->selected_model;
             $this->selected_model->update($validate_data);
+            // Delete all which are minus item
+            SetMenuWiseItem::whereNotIn('id', array_column($this->items_array, 'set_menu_wise_item_id'))->delete();
             $this->alert('success', 'Updated');
-        }else{
+        } else {
             $model = ModelsSetMenu::create($validate_data);
             $this->alert('success', 'Created');
         }
-        foreach($this->items_array as $item_id => $item){
-            if($item['item_id'] && $item['quantity'] > 0){
-                SetMenuWiseItem::create([
-                    'set_menu_id' => $model->id,
-                    'item_id' => $item_id,
-                    'quantity' => $item['quantity']
-                ]);
+        foreach ($this->items_array as $item_array) {
+            if (isset($item_array['set_menu_wise_item_id'])) {
+                $setMenuWiseItem = SetMenuWiseItem::find($item_array['set_menu_wise_item_id']);
+            } else {
+                $setMenuWiseItem = new SetMenuWiseItem();
             }
+            $setMenuWiseItem->set_menu_id = $model->id;
+            $setMenuWiseItem->item_id = $item_array['item_id'];
+            $setMenuWiseItem->quantity = $item_array['item_quantity'];
+            $setMenuWiseItem->save();
         }
         $this->create();
     }
 
-    public function select_model(ModelsSetMenu $model){
+    public function select_model(ModelsSetMenu $model)
+    {
         $this->selected_model = $model;
         $this->offline_active = $model->offline_active;
         $this->online_active = $model->online_active;
@@ -82,34 +92,32 @@ class SetMenu extends Component
         $this->price = $model->price;
         $this->image = $model->image;
         $this->description = $model->description;
-        // foreach ($model->set_menu_wisse_items as $item){
-        //     array_push($this->items_array, [$item->item_id]);
-        //     array_push($this->items_array[$item->item_id], [
-        //         'item_id' => 1,
-        //         'quantity' => 1
-        //     ]);
-        //     dd( $this->items_array);
-        //     $this->items_array.$item->item_id->item_id = 1;
-        //     $this->items_array.$item->item_id->quantity = 1;
-        // }
-        $this->items_array = $model->set_menu_wisse_items()->select('item_id', 'set_menu_id');
+        foreach ($model->set_menu_wisse_items as $item) {
+            array_push($this->items_array, [
+                'set_menu_wise_item_id' => $item->id,
+                'item_id' => $item->item_id,
+                'item_quantity' => $item->quantity
+            ]);
+        }
     }
 
-    public function delete(ModelsSetMenu $model){
+    public function delete(ModelsSetMenu $model)
+    {
         $this->selected_model = $model;
     }
 
-    public function add_or_remove_items($key = null){
+    public function add_or_remove_items($key = null)
+    {
         // array_push($this->items_array, []);
         if ($key === null) {
-            array_push($this->items_array, null);
+            array_push($this->items_array, []);
         } else {
             unset($this->items_array[$key]);
         }
     }
 
-    public function remove_items_array(){
+    public function remove_items_array()
+    {
         array_push($this->items_array, []);
     }
-
 }

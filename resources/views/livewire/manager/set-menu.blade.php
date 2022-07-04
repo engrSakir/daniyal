@@ -75,7 +75,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-primary">
-                    <h5 class="modal-title"><i class="fa fa-star"></i> Modal title</h5>
+                    <h5 class="modal-title text-white"><i class="fa fa-star"></i> Set Menu Form</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -86,7 +86,7 @@
                             <div class="form-group col-md-6">
                                 <label for="offline_active">offline active</label>
                                 <select class="form-control" wire:model="offline_active" id="offline_active" required>
-                                    <option>Select</option>
+                                    <option value="">Select</option>
                                     <option value="0">Inactive</option>
                                     <option value="1">Active</option>
                                 </select>
@@ -95,7 +95,7 @@
                             <div class="form-group col-md-6">
                                 <label for="online_active">online active</label>
                                 <select class="form-control" wire:model="online_active" id="online_active" required>
-                                    <option>Select</option>
+                                    <option value="">Select</option>
                                     <option value="0">Inactive</option>
                                     <option value="1">Active</option>
                                 </select>
@@ -131,14 +131,15 @@
                                 <input type="file" accept="image/*" class="form-control" wire:model="image" id="image">
                                 <x-error name="image" />
                             </div>
-                            @foreach ($items_array as $key => $item)
+                            @foreach ($items_array as $key => $item_array)
                             <div class="form-group col-md-12 row">
                                 <div class="col-md-5">
-                                    <label for="items_array.{{ $key }}.item_id">online active</label>
+                                    <label for="items_array.{{ $key }}.item_id">select item</label>
                                     <select class="form-control" wire:model="items_array.{{ $key }}.item_id" id="items_array.{{ $key }}.item_id" required>
-                                        <option>Select</option>
-                                        <option value="0">Inactive</option>
-                                        <option value="1">Active</option>
+                                        <option value="">Select</option>
+                                        @foreach ($items as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
                                     </select>
                                     <x-error name="items_array.{{ $key }}.item_id" />
                                 </div>
@@ -152,7 +153,7 @@
                                 </div>
                             </div>
                             @endforeach
-                            <button type="button" class="btn btn-success waves-effect waves-light col-12" wire:click="add_or_remove_items"><i class="fa fa fa-plus"></i></button>
+                            <button type="button" class="btn btn-success waves-effect waves-light col-6 m-5" wire:click="add_or_remove_items"><i class="fa fa fa-plus"></i> Add Item </button>
 
                         </div>
 
