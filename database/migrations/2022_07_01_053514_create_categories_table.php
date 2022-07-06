@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('banglish_name')->nullable();//amar nam sakir
             $table->string('image')->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
