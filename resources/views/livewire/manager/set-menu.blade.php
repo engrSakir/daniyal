@@ -84,6 +84,16 @@
                     <form wire:submit.prevent="submit">
                         <div class="form-row">
                             <div class="form-group col-md-6">
+                                <label for="category_id">category</label>
+                                <select class="form-control" wire:model="category_id" id="category_id">
+                                    <option>Select</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                                <x-error name="category_id" />
+                            </div>
+                            <div class="form-group col-md-6">
                                 <label for="offline_active">offline active</label>
                                 <select class="form-control" wire:model="offline_active" id="offline_active" required>
                                     <option value="">Select</option>

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->boolean('offline_active')->default(true);
             $table->boolean('online_active')->default(false);
+            $table->string('type')->default('Item'); // Item or Set Menu
             $table->string('slug')->nullable();
             $table->string('name');
             $table->string('banglish_name')->nullable();//amar nam sakir

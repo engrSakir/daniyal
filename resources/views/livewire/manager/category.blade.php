@@ -85,6 +85,15 @@
                     <form wire:submit.prevent="store">
                         <div class="form-row">
                             <div class="form-group col-md-6">
+                                <label for="type">Type</label>
+                                <select class="form-control" wire:model="type" id="type">
+                                    <option>Select</option>
+                                    <option value="Item">Item</option>
+                                    <option value="Set Menu">Set Menu</option>
+                                </select>
+                                <x-error name="type" />
+                            </div>
+                            <div class="form-group col-md-6">
                                 <label for="offline_active">offline active</label>
                                 <select class="form-control" wire:model="offline_active" id="offline_active">
                                     <option>Select</option>

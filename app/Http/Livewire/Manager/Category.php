@@ -11,7 +11,7 @@ class Category extends Component
 {
     use LivewireAlert, WithFileUploads;
 
-    public $offline_active, $online_active, $slug, $name, $banglish_name, $image;
+    public $type, $offline_active, $online_active, $slug, $name, $banglish_name, $image;
     public $selected_model;
 
     public function render()
@@ -22,6 +22,7 @@ class Category extends Component
     }
 
     public function create(){
+        $this->type = null;
         $this->offline_active = null;
         $this->online_active = null;
         $this->slug = null;
@@ -33,6 +34,7 @@ class Category extends Component
 
     public function store(){
         $validate_data = $this->validate([
+            'type' => 'required|string',
             'offline_active' => 'required|boolean',
             'online_active' => 'required|boolean',
             'slug' => 'required|string',
@@ -52,6 +54,7 @@ class Category extends Component
 
     public function select_model(ModelsCategory $model){
         $this->selected_model = $model;
+        $this->type = $model->type;
         $this->offline_active = $model->offline_active;
         $this->online_active = $model->online_active;
         $this->slug = $model->slug;
@@ -60,11 +63,8 @@ class Category extends Component
         $this->image = $model->image;
     }
 
-    public function update(){
-
-    }
-
     public function delete(ModelsCategory $model){
         $this->selected_model = $model;
+        $this->alert('success', 'Success');
     }
 }
