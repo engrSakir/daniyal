@@ -17,11 +17,18 @@
                 <li class="sidebar-header">Manager</li>
                 <li><a href="{{ route('manager.dashboard') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Dashboard</span></a></li>
                 <li><a href="{{ route('manager.pos') }}" class="waves-effect" target="_blank"><i class="fa fa-circle-o text-aqua"></i> <span>POS</span></a></li>
-                <li><a href="{{ route('manager.category') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Category</span></a></li>
-                <li><a href="{{ route('manager.item') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Item</span></a></li>
-                <li><a href="{{ route('manager.set_menu') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Set Menu</span></a></li>
-                <li><a href="{{ route('manager.offer') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Offer</span></a></li>
-
+                <li class="">
+                    <a href="javaScript:void();" class="waves-effect">
+                      <i class="fa fa-share"></i> <span>Setting</span>
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="sidebar-submenu">
+                      <li><a href="{{ route('manager.category') }}"><i class="fa fa-circle-o"></i> Category</a></li>
+                      <li><a href="{{ route('manager.item') }}"><i class="fa fa-circle-o"></i> Item</a></li>
+                      <li><a href="{{ route('manager.set_menu') }}"><i class="fa fa-circle-o"></i> Set Menu</a></li>
+                      <li><a href="{{ route('manager.offer') }}"><i class="fa fa-circle-o"></i> Offer</a></li>
+                    </ul>
+                  </li>
                 @endif
                 <li><a href="https://sakir-developer.github.io/color-version/" target="_blank" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>HTML</span></a></li>
 
