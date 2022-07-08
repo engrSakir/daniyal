@@ -27,13 +27,38 @@
     </div>
     <!-- End Breadcrumb-->
     <div class="row">
-        <div class="col-lg-12">
-            <div style="height:600px">
-                <!--Please remove the height before using this page-->
-                <h1>Blank</h1>
-                <p>This is an example of a blank page that you can use as a starting point for creating new ones.</p>
+        @foreach ($item_categories as $item_category)
+        <div class="col-12 col-sm-6 col-lg-6 col-xl-3">
+            <div class="card bg-primary shadow-primary">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="media-body text-left">
+                            <h4 class="text-white">0000</h4>
+                            <span class="text-white">{{ str_limit($item_category->name, 16, '...') }}</span>
+                        </div>
+                        <i class="icon-like text-white"></i>
+                    </div>
+                </div>
             </div>
         </div>
+        @endforeach
+    </div>
+    <div class="row">        
+        @foreach ($set_menu_categories as $set_menu_category)
+        <div class="col-12 col-sm-6 col-lg-6 col-xl-3">
+            <div class="card bg-secondary shadow-secondary">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="media-body text-left">
+                            <h4 class="text-white">0000</h4>
+                            <span class="text-white">{{ str_limit($set_menu_category->name, 16, '...') }}</span>
+                        </div>
+                        <i class="icon-like text-white"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
     </div>
 
 </div>
