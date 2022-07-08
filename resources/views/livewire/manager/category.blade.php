@@ -39,7 +39,7 @@
                                         <td>
                                             <img src="{{ asset($category->image ? $category->image : 'assets/images/no-image.png') }}"
                                                 width="50px">
-                                            {{ $category->name }}
+                                            {{ $category->name }} <span class="badge badge-pill badge-secondary m-1">{{ $category->type }} </span>
                                         </td>
                                         <td>
                                             @if ($category->online_active)
@@ -87,7 +87,7 @@
                             <div class="form-group col-md-6">
                                 <label for="type">Type</label>
                                 <select class="form-control" wire:model="type" id="type">
-                                    <option>Select</option>
+                                    <option value="">Select</option>
                                     <option value="Item">Item</option>
                                     <option value="Set Menu">Set Menu</option>
                                 </select>
@@ -96,7 +96,7 @@
                             <div class="form-group col-md-6">
                                 <label for="offline_active">offline active</label>
                                 <select class="form-control" wire:model="offline_active" id="offline_active">
-                                    <option>Select</option>
+                                    <option value="">Select</option>
                                     <option value="0">Inactive</option>
                                     <option value="1">Active</option>
                                 </select>
@@ -105,7 +105,7 @@
                             <div class="form-group col-md-6">
                                 <label for="online_active">online active</label>
                                 <select class="form-control" wire:model="online_active" id="online_active">
-                                    <option>Select</option>
+                                    <option value="">Select</option>
                                     <option value="0">Inactive</option>
                                     <option value="1">Active</option>
                                 </select>

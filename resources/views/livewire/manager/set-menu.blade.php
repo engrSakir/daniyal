@@ -86,7 +86,7 @@
                             <div class="form-group col-md-6">
                                 <label for="category_id">category</label>
                                 <select class="form-control" wire:model="category_id" id="category_id">
-                                    <option>Select</option>
+                                    <option value="">Select</option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach

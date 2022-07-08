@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('set_menus', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id')->nullable();
             $table->boolean('offline_active')->default(true);
             $table->boolean('online_active')->default(false);
             $table->string('slug')->nullable();

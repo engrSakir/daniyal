@@ -89,7 +89,7 @@
                             <div class="form-group col-md-6">
                                 <label for="category_id">category</label>
                                 <select class="form-control" wire:model="category_id" id="category_id">
-                                    <option>Select</option>
+                                    <option value="">Select</option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
@@ -99,7 +99,7 @@
                             <div class="form-group col-md-6">
                                 <label for="offline_active">offline active</label>
                                 <select class="form-control" wire:model="offline_active" id="offline_active">
-                                    <option>Select</option>
+                                    <option value="">Select</option>
                                     <option value="0">Inactive</option>
                                     <option value="1">Active</option>
                                 </select>
@@ -108,7 +108,7 @@
                             <div class="form-group col-md-6">
                                 <label for="online_active">online active</label>
                                 <select class="form-control" wire:model="online_active" id="online_active">
-                                    <option>Select</option>
+                                    <option value="">Select</option>
                                     <option value="0">Inactive</option>
                                     <option value="1">Active</option>
                                 </select>
