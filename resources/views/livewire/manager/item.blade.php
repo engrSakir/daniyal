@@ -78,7 +78,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-primary">
-                    <h5 class="modal-title"><i class="fa fa-star"></i> Modal title</h5>
+                    <h5 class="modal-title text-white"><i class="fa fa-star"></i> item Form</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -115,20 +115,9 @@
                                 <x-error name="online_active" />
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="slug">slug</label>
-                                <input type="text" class="form-control" wire:model="slug" id="slug">
-                                <x-error name="slug" />
-                            </div>
-                            <div class="form-group col-md-6">
                                 <label for="name">name</label>
                                 <input type="text" class="form-control" wire:model="name" id="name">
                                 <x-error name="name" />
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="banglish_name">banglish name</label>
-                                <input type="text" class="form-control" wire:model="banglish_name"
-                                    id="banglish_name">
-                                <x-error name="banglish_name" />
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="shortcut_number">shortcut number</label>

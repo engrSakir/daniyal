@@ -14,7 +14,7 @@ class SetMenu extends Component
 {
     use LivewireAlert, WithFileUploads;
 
-    public $category_id, $offline_active, $online_active, $slug, $name, $banglish_name, $shortcut_number, $price, $image, $description;
+    public $category_id, $offline_active, $online_active, $name, $shortcut_number, $price, $image, $description;
     public $items_array = [];
     public $selected_model;
 
@@ -32,9 +32,7 @@ class SetMenu extends Component
         $this->category_id = null;
         $this->offline_active = null;
         $this->online_active = null;
-        $this->slug = null;
         $this->name = null;
-        $this->banglish_name = null;
         $this->shortcut_number = null;
         $this->price = null;
         $this->image = null;
@@ -49,9 +47,7 @@ class SetMenu extends Component
             'category_id' => 'required|exists:categories,id',
             'offline_active' => 'required|boolean',
             'online_active' => 'required|boolean',
-            'slug' => 'required|string',
             'name' => 'required|string',
-            'banglish_name' => 'required|string',
             'shortcut_number' => 'required|numeric',
             'price' => 'required|numeric',
             'image' => 'nullable|image',
@@ -89,9 +85,7 @@ class SetMenu extends Component
         $this->selected_model = $model;
         $this->offline_active = $model->offline_active;
         $this->online_active = $model->online_active;
-        $this->slug = $model->slug;
         $this->name = $model->name;
-        $this->banglish_name = $model->banglish_name;
         $this->shortcut_number = $model->shortcut_number;
         $this->price = $model->price;
         $this->image = $model->image;

@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('type')->default('Item'); // Item or Set Menu
             $table->string('slug')->nullable();
             $table->string('name');
-            $table->string('banglish_name')->nullable();//amar nam sakir
             $table->string('image')->nullable();
             $table->longText('description')->nullable();
             $table->timestamps();

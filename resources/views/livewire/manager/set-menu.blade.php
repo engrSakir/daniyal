@@ -112,19 +112,9 @@
                                 <x-error name="online_active" />
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="slug">slug</label>
-                                <input type="text" class="form-control" wire:model="slug" id="slug" required>
-                                <x-error name="slug" />
-                            </div>
-                            <div class="form-group col-md-6">
                                 <label for="name">name</label>
                                 <input type="text" class="form-control" wire:model="name" id="name" required>
                                 <x-error name="name" />
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="banglish_name">banglish name</label>
-                                <input type="text" class="form-control" wire:model="banglish_name" id="banglish_name" required>
-                                <x-error name="banglish_name" />
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="shortcut_number">shortcut number</label>

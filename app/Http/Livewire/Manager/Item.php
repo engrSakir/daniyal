@@ -12,7 +12,7 @@ class Item extends Component
 {
     use LivewireAlert, WithFileUploads;
 
-    public $category_id, $offline_active, $online_active, $slug, $name, $banglish_name, $shortcut_number, $price, $image,$description;
+    public $category_id, $offline_active, $online_active, $slug, $name, $shortcut_number, $price, $image,$description;
     public $selected_model;
 
     public function render()
@@ -29,7 +29,6 @@ class Item extends Component
         $this->online_active = null;
         $this->slug = null;
         $this->name = null;
-        $this->banglish_name = null;
         $this->shortcut_number = null;
         $this->price = null;
         $this->image = null;
@@ -44,7 +43,6 @@ class Item extends Component
             'online_active' => 'required|boolean',
             'slug' => 'required|string',
             'name' => 'required|string',
-            'banglish_name' => 'required|string',
             'shortcut_number' => 'required|numeric',
             'price' => 'required|numeric',
             'image' => 'nullable|image',
@@ -67,7 +65,6 @@ class Item extends Component
         $this->online_active = $model->online_active;
         $this->slug = $model->slug;
         $this->name = $model->name;
-        $this->banglish_name = $model->banglish_name;
         $this->shortcut_number = $model->shortcut_number;
         $this->price = $model->price;
         $this->image = $model->image;

@@ -11,7 +11,7 @@ class Category extends Component
 {
     use LivewireAlert, WithFileUploads;
 
-    public $type, $offline_active, $online_active, $slug, $name, $banglish_name, $image;
+    public $type, $offline_active, $online_active, $slug, $name, $image;
     public $selected_model;
 
     public function render()
@@ -27,7 +27,6 @@ class Category extends Component
         $this->online_active = null;
         $this->slug = null;
         $this->name = null;
-        $this->banglish_name = null;
         $this->image = null;
         $this->selected_model = null;
     }
@@ -39,7 +38,6 @@ class Category extends Component
             'online_active' => 'required|boolean',
             'slug' => 'required|string',
             'name' => 'required|string',
-            'banglish_name' => 'required|string',
             'image' => 'nullable|image',
         ]);
         if($this->selected_model){
@@ -59,7 +57,6 @@ class Category extends Component
         $this->online_active = $model->online_active;
         $this->slug = $model->slug;
         $this->name = $model->name;
-        $this->banglish_name = $model->banglish_name;
         $this->image = $model->image;
     }
 

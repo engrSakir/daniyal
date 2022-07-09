@@ -21,7 +21,6 @@ return new class extends Migration
             $table->boolean('online_active')->default(false);
             $table->string('slug')->nullable();
             $table->string('name');
-            $table->string('banglish_name')->nullable();//amar nam sakir
             $table->string('image')->nullable();
             $table->longText('description')->nullable();
             $table->dateTime('issue_date')->nullable();
