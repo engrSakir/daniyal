@@ -69,7 +69,6 @@ class Offer extends Component
         $this->category_id = $model->category_id;
         $this->offline_active = $model->offline_active;
         $this->online_active = $model->online_active;
-        $this->slug = $model->slug;
         $this->name = $model->name;
         $this->shortcut_number = $model->shortcut_number;
         $this->price = $model->price;

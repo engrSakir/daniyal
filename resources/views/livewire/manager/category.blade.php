@@ -82,7 +82,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form wire:submit.prevent="store">
+                    <form wire:submit.prevent="submit">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="type">Type</label>
