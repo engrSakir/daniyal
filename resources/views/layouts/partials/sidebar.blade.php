@@ -17,6 +17,7 @@
                 <li class="sidebar-header">Manager</li>
                 <li><a href="{{ route('manager.dashboard') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Dashboard</span></a></li>
                 <li><a href="{{ route('manager.pos') }}" class="waves-effect" target="_blank"><i class="fa fa-circle-o text-aqua"></i> <span>POS</span></a></li>
+                <li><a href="{{ route('manager.menu') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Menu</span></a></li>
                 <li class="">
                     <a href="javaScript:void();" class="waves-effect">
                       <i class="fa fa-share"></i> <span>Setting</span>

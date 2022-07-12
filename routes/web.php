@@ -31,6 +31,7 @@ Route::group(['middleware' => ['manager','auth'], 'as' => 'manager.', 'prefix' =
     Route::get('item', Manager\Item::class)->name('item');
     Route::get('set-menu', Manager\SetMenu::class)->name('set_menu');
     Route::get('offer', Manager\Offer::class)->name('offer');
+    Route::get('menu', Manager\Menu::class)->name('menu');
 
 
 });
