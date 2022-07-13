@@ -15,21 +15,70 @@ class MenuSeeder extends Seeder
      */
     public function run()
     {
+        //1-7
         $category = Category::create([
             'type' => 'Item',
             'name' => 'SALAD 1:3',
         ]);
+
+        //8-16
         $category = Category::create([
             'type' => 'Item',
             'name' => 'SOUP 1:1',
         ]);
+
+        //8-16
         $category = Category::create([
             'type' => 'Item',
             'name' => 'SOUP 1:3',
         ]);
+
+        //17-30
         $category = Category::create([
             'type' => 'Item',
             'name' => 'APPETIZERS 1:3',
+        ]);
+
+        //31-36
+        $category = Category::create([
+            'type' => 'Item',
+            'name' => 'CONTINENTAL/FAST FOOD',
+        ]);
+
+        //37-40
+        $category = Category::create([
+            'type' => 'Item',
+            'name' => 'PASTA 1:1',
+        ]);
+
+        //37-40
+        $category = Category::create([
+            'type' => 'Item',
+            'name' => 'PASTA 1:3',
+        ]);
+
+        //41-46
+        $category = Category::create([
+            'type' => 'Item',
+            'name' => 'PIZZA 6"',
+        ]);
+
+        //41-46
+        $category = Category::create([
+            'type' => 'Item',
+            'name' => 'PIZZA 9"',
+        ]);
+
+        //41-46
+        $category = Category::create([
+            'type' => 'Item',
+            'name' => 'PIZZA 13"',
+        ]);
+
+        //47-57
+        $category = Category::create([
+            'type' => 'Item',
+            'name' => 'CHICKEN 1:3',
         ]);
     }
 }
