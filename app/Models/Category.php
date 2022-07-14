@@ -12,6 +12,14 @@ class Category extends Model
     use HasFactory, SoftDeletes;
     protected $guarded = [];
 
+    public function items(){
+        return $this->hasMany(Item::class, 'category_id', 'id');
+    }
+
+    public function set_menues(){
+        return $this->hasMany(SetMenu::class, 'category_id', 'id');
+    }
+
     public static function boot()
     {
         parent::boot();

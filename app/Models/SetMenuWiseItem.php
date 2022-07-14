@@ -10,4 +10,8 @@ class SetMenuWiseItem extends Model
 {
     use HasFactory, SoftDeletes;
     protected $guarded = [];
+
+    public function item(){
+        return $this->belongsTo(Item::class, 'item_id', 'id');
+    }
 }

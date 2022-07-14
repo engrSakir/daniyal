@@ -12,28 +12,38 @@
     </div>
     <!-- End Breadcrumb-->
     <div class="row">
+
+        @foreach ($item_categories as $category)
         <div class="col-lg-6">
-            <div class="card">
-                <div class="row">
-                    @foreach ($item_categories as $category)
-                    <div class="card-body col-lg-12">
-                        {{ $category->name }}
-                    </div>
-                    @endforeach
+            <div class="card border border-info">
+                <div class="card-header text-uppercase">{{ $category->name }}</div>
+                <div class="card-body">
+                    <ol>
+                        @foreach ($category->items as $item)
+                        <li>{{ $item->name }}</li>
+                        @endforeach
+                    </ol>
                 </div>
             </div>
         </div>
+        @endforeach
+        @foreach ($setmenu_categories as $category)
+        @foreach ($category->set_menues as $set_menu)
         <div class="col-lg-6">
-            <div class="card">
-                <div class="row">
-                    @foreach ($setmenu_categories as $category)
-                    <div class="card-body col-lg-12">
-                        {{ $category->name }}
-                    </div>
-                    @endforeach
+            <div class="card border border-danger">
+                <div class="card-header text-uppercase">{{ $set_menu->name }} <sup><small>{{ $category->name }}</small></sup></div>
+                <div class="card-body">
+                    <ol>
+                        @foreach ($set_menu->set_menu_wisse_items as $set_menu_wisse_item)
+                        <li>{{ $set_menu_wisse_item->item->name }}</li>
+                        @endforeach
+                    </ol>
                 </div>
             </div>
         </div>
+        @endforeach
+        @endforeach
+
     </div>
 </div>
 <!-- End container-fluid-->
