@@ -11,12 +11,31 @@
         </div>
         <div class="col-sm-3">
             <div class="btn-group float-sm-right">
-                <button type="button" class="btn btn-outline-primary waves-effect waves-light" data-toggle="modal"
-                    data-target="#modal" wire:click="create"><i class="fa fa-plus mr-1"></i> Create </button>
+                <button type="button" class="btn btn-outline-primary waves-effect waves-light" data-toggle="modal" data-target="#modal" wire:click="create"><i class="fa fa-plus mr-1"></i> Create </button>
             </div>
         </div>
     </div>
     <!-- End Breadcrumb-->
+    <div class="row">
+        @foreach ($categories as $category)
+        <div class="col-lg-3">
+            <div class="card card-primary text-center">
+                <div class="card-body">
+                    @if($category->image)
+                    <img src="assets/images/gallery/1.jpg" class="card-img-top" style="width:20px;">
+                    @elseif($category->sub_category_required)
+                    <img src="{{ asset('assets/images/category.png') }}" class="card-img-top" style="width:20px;">
+                    @else
+                    <img src="{{ asset('assets/images/items.jpg') }}" class="card-img-top" style="width:20px;">
+                    @endif
+                    <h6 class="card-title text-primary mt-2">
+                        <a href="{{ route('manager.category_details', $category) }}">{{ $category->name }}</a>
+                    </h6>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -34,35 +53,33 @@
                             </thead>
                             <tbody>
                                 @foreach ($categories as $category)
-                                    <tr>
-                                        <th scope="row">{{ $loop->iteration }}</th>
-                                        <td>
-                                            <img src="{{ asset($category->image ? $category->image : 'assets/images/no-image.png') }}"
-                                                width="50px">
-                                            {{ $category->name }}
-                                        </td>
-                                        <td>
-                                            @if ($category->online_active)
-                                                <span class="badge badge-pill badge-success m-1">Active</span>
-                                            @else
-                                                <span class="badge badge-pill badge-danger m-1">Inactive</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if ($category->offline_active)
-                                                <span class="badge badge-pill badge-success m-1">Active</span>
-                                            @else
-                                                <span class="badge badge-pill badge-danger m-1">Inactive</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <div class="btn-group m-1">
-                                                <button type="button" class="btn btn-warning waves-effect waves-light" data-toggle="modal"
-                                                data-target="#modal" wire:click="select_model({{ $category }})"><i class="fa fa-edit"></i></button>
-                                                <button type="button" class="btn btn-danger waves-effect waves-light"><i class="fa fa fa-trash-o"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>
+                                        <img src="{{ asset($category->image ? $category->image : 'assets/images/no-image.png') }}" width="50px">
+                                        {{ $category->name }}
+                                    </td>
+                                    <td>
+                                        @if ($category->online_active)
+                                        <span class="badge badge-pill badge-success m-1">Active</span>
+                                        @else
+                                        <span class="badge badge-pill badge-danger m-1">Inactive</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($category->offline_active)
+                                        <span class="badge badge-pill badge-success m-1">Active</span>
+                                        @else
+                                        <span class="badge badge-pill badge-danger m-1">Inactive</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="btn-group m-1">
+                                            <button type="button" class="btn btn-warning waves-effect waves-light" data-toggle="modal" data-target="#modal" wire:click="select_model({{ $category }})"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger waves-effect waves-light"><i class="fa fa fa-trash-o"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -109,14 +126,12 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="image">image</label>
-                                <input type="file" accept="image/*" class="form-control" wire:model="image"
-                                    id="image">
+                                <input type="file" accept="image/*" class="form-control" wire:model="image" id="image">
                                 <x-error name="image" />
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
-                                    class="fa fa-times"></i> Cancel</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
                             <button type="reset" class="btn btn-secondary"><i class="fa fa-refresh"></i>
                                 Reset</button>
                             <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i>

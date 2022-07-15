@@ -28,6 +28,7 @@ Route::group(['middleware' => ['manager','auth'], 'as' => 'manager.', 'prefix' =
     Route::get('dashboard', Manager\Dashoard::class)->name('dashboard');
     Route::get('pos', Manager\POS::class)->name('pos');
     Route::get('category', Manager\Category::class)->name('category');
+    Route::get('category-details/{category}', Manager\CategoryDetails::class)->name('category_details');
     Route::get('item', Manager\Item::class)->name('item');
     Route::get('set-menu', Manager\SetMenu::class)->name('set_menu');
     Route::get('platter-menu', Manager\PlatterMenu::class)->name('platter_menu');
