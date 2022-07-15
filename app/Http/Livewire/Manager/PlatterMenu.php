@@ -2,13 +2,13 @@
 
 namespace App\Http\Livewire\Manager;
 
-use App\Models\SetMenu as ModelsSetMenu;
-use App\Models\SetMenuWiseItem;
+use App\Models\PlatterMenu as ModelsPlatterMenu;
+use App\Models\PlatterMenuWiseItem;
 use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
 
-class SetMenu extends Component
+class PlatterMenu extends Component
 {
     use LivewireAlert, WithFileUploads;
 
@@ -18,8 +18,8 @@ class SetMenu extends Component
 
     public function render()
     {
-        return view('livewire.manager.set-menu', [
-            'set_menues' => ModelsSetMenu::latest()->get(),
+        return view('livewire.manager.platter-menu', [
+            'platter_menues' => ModelsPlatterMenu::latest()->get(),
         ]);
     }
 
@@ -53,26 +53,26 @@ class SetMenu extends Component
             $model = $this->selected_model;
             $this->selected_model->update($validate_data);
             // Delete all which are minus item
-            SetMenuWiseItem::where('set_menu_id', $model->id)->whereNotIn('id', array_column($this->items_array, 'id'))->delete();
+            PlatterMenuWiseItem::where('platter_menu_id', $model->id)->whereNotIn('id', array_column($this->items_array, 'id'))->delete();
             $this->alert('success', 'Updated');
         } else {
-            $model = ModelsSetMenu::create($validate_data);
+            $model = ModelsPlatterMenu::create($validate_data);
             $this->alert('success', 'Created');
         }
         foreach ($this->items_array as $item_array) {
             if (isset($item_array['id'])) {
-                $setMenuWiseItem = SetMenuWiseItem::find($item_array['id']);
+                $platterMenuWiseItem = PlatterMenuWiseItem::find($item_array['id']);
             } else {
-                $setMenuWiseItem = new SetMenuWiseItem();
+                $platterMenuWiseItem = new PlatterMenuWiseItem();
             }
-            $setMenuWiseItem->set_menu_id = $model->id;
-            $setMenuWiseItem->name = $item_array['name'];
-            $setMenuWiseItem->save();
+            $platterMenuWiseItem->platter_menu_id = $model->id;
+            $platterMenuWiseItem->name = $item_array['name'];
+            $platterMenuWiseItem->save();
         }
         $this->create();
     }
 
-    public function select_model(ModelsSetMenu $model)
+    public function select_model(ModelsPlatterMenu $model)
     {
         $this->selected_model = $model;
         $this->offline_active = $model->offline_active;
@@ -83,7 +83,7 @@ class SetMenu extends Component
         $this->image = $model->image;
         $this->description = $model->description;
         $this->items_array = [];
-        foreach ($model->set_menu_wisse_items as $item) {
+        foreach ($model->platter_menu_wisse_items as $item) {
             array_push($this->items_array, [
                 'id' => $item->id,
                 'name' => $item->name,
@@ -91,7 +91,7 @@ class SetMenu extends Component
         }
     }
 
-    public function delete(ModelsSetMenu $model)
+    public function delete(ModelsPlatterMenu $model)
     {
         $this->selected_model = $model;
         $this->alert('success', 'Deleted');

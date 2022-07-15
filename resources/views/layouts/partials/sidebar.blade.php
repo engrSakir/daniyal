@@ -27,6 +27,7 @@
                       <li><a href="{{ route('manager.category') }}"><i class="fa fa-circle-o"></i> Category</a></li>
                       <li><a href="{{ route('manager.item') }}"><i class="fa fa-circle-o"></i> Item</a></li>
                       <li><a href="{{ route('manager.set_menu') }}"><i class="fa fa-circle-o"></i> Set Menu</a></li>
+                      <li><a href="{{ route('manager.platter_menu') }}"><i class="fa fa-circle-o"></i> Platter Menu</a></li>
                       <li><a href="{{ route('manager.offer') }}"><i class="fa fa-circle-o"></i> Offer</a></li>
                     </ul>
                   </li>

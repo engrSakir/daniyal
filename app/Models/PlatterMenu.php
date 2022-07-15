@@ -12,7 +12,7 @@ class PlatterMenu extends Model
     use HasFactory, SoftDeletes;
     protected $guarded = [];
 
-    public function set_menu_wisse_items(){
+    public function platter_menu_wisse_items(){
         return $this->hasMany(PlatterMenuWiseItem::class, 'platter_menu_id', 'id');
     }
 
