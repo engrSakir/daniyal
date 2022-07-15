@@ -145,11 +145,115 @@ class MenuSeeder extends Seeder
             'type' => 'Item',
             'name' => 'APPETIZERS 1:3',
         ]);
+        Item::insert([
+            [
+                'category_id' => $category->id,
+                'name' => 'Daniyal Special Mixed Appetizer (Springroll-3, Wonton-3, Wings-3,Fish Finger-3)',
+                'price' => 550
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Fried Panko Prawn (6 Pcs)',
+                'price' => 350
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Shrimp Toast (8Pcs)',
+                'price' => 410
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Butter Deep Fried Prawn (6Pcs)',
+                'price' => 350
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Wonthon Normal (6 Pcs)',
+                'price' => 290
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Special Wonthon (6 Pcs)',
+                'price' => 350
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Vegetable Spring Roll (6 Pcs)',
+                'price' => 270
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'French Fry',
+                'price' => 150
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Bar-B-Q Chicken Wings (9 Pcs)',
+                'price' => 380
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Chicken Lollipop (6 Pcs)',
+                'price' => 260
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Fried Chicken Wings (6 Pcs)',
+                'price' => 270
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Fish Finger (6 pcs)',
+                'price' => 340
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Fish Cake (9 pcs)',
+                'price' => 410
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Fish Cutlet',
+                'price' => 330
+            ],
+        ]);
 
         //31-36
         $category = Category::create([
             'type' => 'Item',
             'name' => 'CONTINENTAL/FAST FOOD',
+        ]);
+        Item::insert([
+            [
+                'category_id' => $category->id,
+                'name' => 'Daniyal Special Burger',
+                'price' => 180
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Bar.B.Q Roasted Burger',
+                'price' => 240
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Beef Burger',
+                'price' => 150
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Chicken Burger',
+                'price' => 130
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Club Sandwich With French Fry',
+                'price' => 190
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Chicken Sandwich with French Fry',
+                'price' => 150
+            ],
         ]);
 
         //37-40
@@ -157,11 +261,55 @@ class MenuSeeder extends Seeder
             'type' => 'Item',
             'name' => 'PASTA 1:1',
         ]);
+        Item::insert([
+            [
+                'category_id' => $category->id,
+                'name' => 'Pasta Alfredo',
+                'price' => 210
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Oven Baked chicken Pasta',
+                'price' => 190
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Oven Baked Beef Pasta',
+                'price' => 220
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Oven Baked B-B-Q Pasta',
+                'price' => 240
+            ],
+        ]);
 
         //37-40
         $category = Category::create([
             'type' => 'Item',
             'name' => 'PASTA 1:3',
+        ]);
+        Item::insert([
+            [
+                'category_id' => $category->id,
+                'name' => 'Pasta Alfredo',
+                'price' => 330
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Oven Baked chicken Pasta',
+                'price' => 300
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Oven Baked Beef Pasta',
+                'price' => 350
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Oven Baked B-B-Q Pasta',
+                'price' => 400
+            ],
         ]);
 
         //41-46

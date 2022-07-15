@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <ol>
                         @foreach ($category->items as $item)
-                        <li>{{ $item->name }}</li>
+                        <li>{{ $item->name }} - <b>{{ $item->price }}</b></li>
                         @endforeach
                     </ol>
                 </div>
@@ -35,7 +35,7 @@
                 <div class="card-body">
                     <ol>
                         @foreach ($set_menu->set_menu_wisse_items as $set_menu_wisse_item)
-                        <li>{{ $set_menu_wisse_item->item->name }}</li>
+                        <li>{{ $set_menu_wisse_item->item->name ?? 'NA' }}</li>
                         @endforeach
                     </ol>
                 </div>
