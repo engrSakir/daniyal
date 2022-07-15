@@ -24,7 +24,7 @@ class Offer extends Component
         return view('livewire.manager.offer', [
             'categories' => Category::latest()->get(),
             'items' => Item::where('category_id', $this->category_id)->get(),
-            'set_menus' => SetMenu::where('category_id', $this->category_id)->get(),
+            'set_menus' => SetMenu::all(),
         ]);
     }
 
