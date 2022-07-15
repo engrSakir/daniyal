@@ -429,6 +429,63 @@ class MenuSeeder extends Seeder
             'type' => 'Item',
             'name' => 'CHICKEN 1:3',
         ]);
+        Item::insert([
+            [
+                'category_id' => $category->id,
+                'name' => 'Chinese Fried Chicken (Local 6P)',
+                'price' => 480
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Thai Fried Chicken (Boiler 6p)',
+                'price' => 440
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Chicken Sizzling',
+                'price' => 530
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Chicken Red curry',
+                'price' => 440
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Chicken Chili Onion',
+                'price' => 350
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Kung pao Chicken',
+                'price' => 450
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Szechuan Chicken (Greve)',
+                'price' => 390
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Lemon Chicken',
+                'price' => 440
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Chicken Hot Sauce',
+                'price' => 390
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Fried Chicken Chili',
+                'price' => 340
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Chicken Basil Leaf',
+                'price' => 390
+            ],
+        ]);
 
         //58-65
         $category = Category::create([
