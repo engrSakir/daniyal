@@ -492,23 +492,205 @@ class MenuSeeder extends Seeder
             'type' => 'Item',
             'name' => 'BEEF 1:3',
         ]);
+        Item::insert([
+            [
+                'category_id' => $category->id,
+                'name' => 'Mongolian Beef',
+                'price' => 740
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Beef Sizzling',
+                'price' => 550
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Beef Chili Onion',
+                'price' => 390
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Beef Oyster sauce',
+                'price' => 490
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Beef chili Dry',
+                'price' => 460
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Beef Hot Sauce',
+                'price' => 390
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Szechuan Beef',
+                'price' => 380
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Beef with Mushroom',
+                'price' => 450
+            ],
+        ]);
 
         //66-71
         $category = Category::create([
             'type' => 'Item',
             'name' => 'PRAWN 1:3',
         ]);
-
+        Item::insert([
+            [
+                'category_id' => $category->id,
+                'name' => 'Prawn Hot Sauce',
+                'price' => 420
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Prawn chili',
+                'price' => 380
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Hunan Prawn',
+                'price' => 390
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Prawn Mushroom',
+                'price' => 380
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Prawn Sizzling',
+                'price' => 560
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Sweet & Sour Prawn',
+                'price' => 410
+            ],
+        ]);
         //72-80
         $category = Category::create([
             'type' => 'Item',
             'name' => 'BAR-B-Q 1:3',
         ]);
-        
+        Item::insert([
+            [
+                'category_id' => $category->id,
+                'name' => 'Grilled Red Snapper Fish (per 100gm)',
+                'price' => 150
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Steam Red Snapper Fish (per 100gm)',
+                'price' => 180
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Grilled Lobster (per 100gm)',
+                'price' => 200
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Hot Sauce Lobster (per 100gm)',
+                'price' => 220
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Grilled Pomfret (1pcs)',
+                'price' => 400
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Fried Pomfret (1pcs)',
+                'price' => 380
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Fish Chili',
+                'price' => 400
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Fish Garlic waster Sauce (1:3)',
+                'price' => 430
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Fish Dry Red chili (1:3)',
+                'price' => 390
+            ],
+        ]);
+
         //81-92
         $category = Category::create([
             'type' => 'Item',
             'name' => 'FRIDE-RICE 1:3',
+        ]);
+        Item::insert([
+            [
+                'category_id' => $category->id,
+                'name' => 'Daniyal Special Fried Rice Chicken/Beef/Prawn',
+                'price' => 450
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Special Fried Rice Chicken & Prawn',
+                'price' => 400
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Yang Chow Fried Rice Chicken/Beef/Prawn ',
+                'price' => 420
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Vegetable Fried Rice only Vegetable',
+                'price' => 300
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Egg Fried Rice',
+                'price' => 310
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Basil Leaf Fried Rice',
+                'price' => 340
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Schezwan Fried Rice',
+                'price' => 380
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Mix Fried Rice',
+                'price' => 370
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Chicken Fried Rice',
+                'price' => 360
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Beef Fried Rice',
+                'price' => 370
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Prawn Fried Rice',
+                'price' => 390
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Garlic Mushroom Rice',
+                'price' => 450
+            ],
         ]);
 
         //93-97
@@ -516,11 +698,55 @@ class MenuSeeder extends Seeder
             'type' => 'Item',
             'name' => 'NOODLES & CHOWMEIN 1:3',
         ]);
+        Item::insert([
+            [
+                'category_id' => $category->id,
+                'name' => 'Daniyal Special Chowmein',
+                'price' => 480
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Pad Thai Noodles',
+                'price' => 450
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Hakka Noodles',
+                'price' => 410
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Vegetable Chowmein',
+                'price' => 340
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Chicken Chowmein',
+                'price' => 360
+            ]
+        ]);
 
         //98-100
         $category = Category::create([
             'type' => 'Item',
             'name' => 'CHAOP SUEY 1:3',
+        ]);
+        Item::insert([
+            [
+                'category_id' => $category->id,
+                'name' => 'Daniyal Special ChaopSuey',
+                'price' => 450
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'American ChaopSuey',
+                'price' => 390
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Chinese Chaop Suey',
+                'price' => 350
+            ]
         ]);
 
         //101-103
@@ -528,11 +754,55 @@ class MenuSeeder extends Seeder
             'type' => 'Item',
             'name' => 'VEGETABLE 1:3',
         ]);
+        Item::insert([
+            [
+                'category_id' => $category->id,
+                'name' => 'Daniyal Special Vegetable (with Chicken & Prawn)',
+                'price' => 400
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Thai mix Vegetable',
+                'price' => 340
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Chinese Vegetable',
+                'price' => 320
+            ]
+        ]);
 
         //104-108
         $category = Category::create([
             'type' => 'Item',
             'name' => 'DESSERT',
+        ]);
+        Item::insert([
+            [
+                'category_id' => $category->id,
+                'name' => 'Cup Cake (1 Pcs)',
+                'price' => 80
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Yogurt 1 Cup',
+                'price' => 50
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Pudding (1 Pcs)',
+                'price' => 80
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Ice Cream (per cup any flavor)',
+                'price' => 120
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Kulfi',
+                'price' => 120
+            ]
         ]);
 
         //109-125
@@ -540,10 +810,101 @@ class MenuSeeder extends Seeder
             'type' => 'Item',
             'name' => 'SEASONAL JUICE & DRINKS',
         ]);
+        Item::insert([
+            [
+                'category_id' => $category->id,
+                'name' => 'Coke, Sprite, Pepsi, 7up',
+                'price' => 20
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Hot Coffee',
+                'price' => 120
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Cold Coffee',
+                'price' => 150
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Ice Coffee',
+                'price' => 150
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Pineapple',
+                'price' => 120
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Orange',
+                'price' => 150
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Malta',
+                'price' => 150
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Watermelon',
+                'price' => 120
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Apple',
+                'price' => 150
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Mango',
+                'price' => 130
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Strawberry',
+                'price' => 150
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Green Mango',
+                'price' => 100
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Papaya',
+                'price' => 120
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Milk Shake (Strawberry)',
+                'price' => 150
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Milk Shake (Vanilla)',
+                'price' => 140
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Milk Shake (Chocolate)',
+                'price' => 160
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Water (500ml)',
+                'price' => 15
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Water (1Ltr)',
+                'price' => 25
+            ],
+        ]);
 
 
-
-// @@@@@@ Set Menu @@@@@@@@@@@    
+        // @@@@@@ Set Menu @@@@@@@@@@@    
 
         $category = Category::create([
             'type' => 'Set Menu',
