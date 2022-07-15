@@ -287,7 +287,7 @@ class MenuSeeder extends Seeder
         //37-40
         $category = Category::create([
             'type' => 'Item',
-            'name' => 'PASTA 1:3',
+            'name' => 'PASTA 1:2',
         ]);
         Item::insert([
             [
@@ -317,19 +317,113 @@ class MenuSeeder extends Seeder
             'type' => 'Item',
             'name' => 'PIZZA 6"',
         ]);
+        Item::insert([
+            [
+                'category_id' => $category->id,
+                'name' => 'Daniyal Special Pizza',
+                'price' => 420
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Beef Pizza',
+                'price' => 430
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Mexican Pizza Hot',
+                'price' => 480
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Chef Special Pizza',
+                'price' => 580
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Chicken Pizza',
+                'price' => 380
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Bar-B-Q Pizza',
+                'price' => 490
+            ],
+        ]);
 
         //41-46
         $category = Category::create([
             'type' => 'Item',
             'name' => 'PIZZA 9"',
         ]);
-
+        Item::insert([
+            [
+                'category_id' => $category->id,
+                'name' => 'Daniyal Special Pizza',
+                'price' => 530
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Beef Pizza',
+                'price' => 560
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Mexican Pizza Hot',
+                'price' => 580
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Chef Special Pizza',
+                'price' => 680
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Chicken Pizza',
+                'price' => 510
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Bar-B-Q Pizza',
+                'price' => 590
+            ],
+        ]);
         //41-46
         $category = Category::create([
             'type' => 'Item',
             'name' => 'PIZZA 13"',
         ]);
-
+        Item::insert([
+            [
+                'category_id' => $category->id,
+                'name' => 'Daniyal Special Pizza',
+                'price' => 680
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Beef Pizza',
+                'price' => 780
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Mexican Pizza Hot',
+                'price' => 720
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Chef Special Pizza',
+                'price' => 810
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Chicken Pizza',
+                'price' => 670
+            ],
+            [
+                'category_id' => $category->id,
+                'name' => 'Bar-B-Q Pizza',
+                'price' => 730
+            ],
+        ]);
         //47-57
         $category = Category::create([
             'type' => 'Item',
