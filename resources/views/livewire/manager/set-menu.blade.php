@@ -123,23 +123,13 @@
                             </div>
                             @foreach ($items_array as $key => $item_array)
                             <div class="form-group col-md-12 row">
-                                <div class="col-md-5">
-                                    <label for="items_array.{{ $key }}.item_id">select item</label>
-                                    <select class="form-control" wire:model="items_array.{{ $key }}.item_id" id="items_array.{{ $key }}.item_id" required>
-                                        <option value="">Select</option>
-                                        @foreach ($items as $item)
-                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    <x-error name="items_array.{{ $key }}.item_id" />
+                                <div class="col-md-9">
+                                    <label for="items_array.{{ $key }}.name">Item Name</label>
+                                    <input type="text" class="form-control" wire:model="items_array.{{ $key }}.name" id="items_array.{{ $key }}.name" required>
+                                    <x-error name="items_array.{{ $key }}.name" />
                                 </div>
-                                <div class="col-md-5">
-                                    <label for="items_array.{{ $key }}.item_quantity">quantity</label>
-                                    <input type="number" class="form-control" wire:model="items_array.{{ $key }}.item_quantity" id="items_array.{{ $key }}.item_quantity" required>
-                                    <x-error name="items_array.{{ $key }}.item_quantity" />
-                                </div>
-                                <div class="col-md-2">
-                                        <button type="button" class="btn btn-danger waves-effect waves-light mt-4" wire:click="add_or_remove_items({{ $key }})"><i class="fa fa-minus"></i></button>
+                                <div class="col-md-3">
+                                        <button type="button" class="w-100 btn btn-danger waves-effect waves-light mt-4" wire:click="add_or_remove_items({{ $key }})">({{ $loop->iteration }}) <i class="fa fa-minus"></i></button>
                                 </div>
                             </div>
                             @endforeach

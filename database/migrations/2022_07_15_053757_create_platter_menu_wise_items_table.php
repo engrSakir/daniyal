@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('platter_menu_wise_items', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('platter_menu_id');
+            $table->string('name');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

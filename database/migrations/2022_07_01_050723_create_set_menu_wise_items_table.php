@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('set_menu_wise_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('set_menu_id');
-            $table->foreignId('item_id');
-            $table->integer('quantity');
+            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
 

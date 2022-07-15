@@ -45,30 +45,28 @@ class SetMenu extends Component
             'shortcut_number' => 'required|numeric',
             'price' => 'required|numeric',
             'image' => 'nullable|image',
-            'description' => 'nullable',
-            'items_array.*item_id' => 'required|exists:items,id',
-            'items_array.*.item_quantity' => 'required|numeric|min:0',
+            'description' => 'nullable',            
+            'items_array.*name' => 'required|string',
         ]);
         unset($validate_data['items_array']);
         if ($this->selected_model) {
             $model = $this->selected_model;
             $this->selected_model->update($validate_data);
             // Delete all which are minus item
-            SetMenuWiseItem::whereNotIn('id', array_column($this->items_array, 'set_menu_wise_item_id'))->delete();
+            SetMenuWiseItem::whereNotIn('id', array_column($this->items_array, 'id'))->delete();
             $this->alert('success', 'Updated');
         } else {
             $model = ModelsSetMenu::create($validate_data);
             $this->alert('success', 'Created');
         }
         foreach ($this->items_array as $item_array) {
-            if (isset($item_array['set_menu_wise_item_id'])) {
-                $setMenuWiseItem = SetMenuWiseItem::find($item_array['set_menu_wise_item_id']);
+            if (isset($item_array['id'])) {
+                $setMenuWiseItem = SetMenuWiseItem::find($item_array['id']);
             } else {
                 $setMenuWiseItem = new SetMenuWiseItem();
             }
             $setMenuWiseItem->set_menu_id = $model->id;
-            $setMenuWiseItem->item_id = $item_array['item_id'];
-            $setMenuWiseItem->quantity = $item_array['item_quantity'];
+            $setMenuWiseItem->name = $item_array['name'];
             $setMenuWiseItem->save();
         }
         $this->create();
@@ -84,11 +82,11 @@ class SetMenu extends Component
         $this->price = $model->price;
         $this->image = $model->image;
         $this->description = $model->description;
+        $this->items_array = [];
         foreach ($model->set_menu_wisse_items as $item) {
             array_push($this->items_array, [
-                'set_menu_wise_item_id' => $item->id,
-                'item_id' => $item->item_id,
-                'item_quantity' => $item->quantity
+                'id' => $item->id,
+                'name' => $item->name,
             ]);
         }
     }
@@ -107,10 +105,5 @@ class SetMenu extends Component
         } else {
             unset($this->items_array[$key]);
         }
-    }
-
-    public function remove_items_array()
-    {
-        array_push($this->items_array, []);
     }
 }
