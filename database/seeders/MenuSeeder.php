@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Item;
+use App\Models\PlatterMenu;
 use App\Models\SetMenu;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,7 +20,6 @@ class MenuSeeder extends Seeder
     {
         //1-7
         $category = Category::create([
-            'type' => 'Item',
             'name' => 'SALAD 1:3',
         ]);
         Item::insert([
@@ -62,7 +62,6 @@ class MenuSeeder extends Seeder
 
         //8-16
         $category = Category::create([
-            'type' => 'Item',
             'name' => 'SOUP 1:1',
         ]);
         Item::insert([
@@ -89,7 +88,6 @@ class MenuSeeder extends Seeder
         ]);
         //8-16
         $category = Category::create([
-            'type' => 'Item',
             'name' => 'SOUP 1:3',
         ]);
         Item::insert([
@@ -142,7 +140,6 @@ class MenuSeeder extends Seeder
 
         //17-30
         $category = Category::create([
-            'type' => 'Item',
             'name' => 'APPETIZERS 1:3',
         ]);
         Item::insert([
@@ -220,7 +217,6 @@ class MenuSeeder extends Seeder
 
         //31-36
         $category = Category::create([
-            'type' => 'Item',
             'name' => 'CONTINENTAL/FAST FOOD',
         ]);
         Item::insert([
@@ -258,7 +254,6 @@ class MenuSeeder extends Seeder
 
         //37-40
         $category = Category::create([
-            'type' => 'Item',
             'name' => 'PASTA 1:1',
         ]);
         Item::insert([
@@ -286,7 +281,6 @@ class MenuSeeder extends Seeder
 
         //37-40
         $category = Category::create([
-            'type' => 'Item',
             'name' => 'PASTA 1:2',
         ]);
         Item::insert([
@@ -314,7 +308,6 @@ class MenuSeeder extends Seeder
 
         //41-46
         $category = Category::create([
-            'type' => 'Item',
             'name' => 'PIZZA 6"',
         ]);
         Item::insert([
@@ -352,7 +345,6 @@ class MenuSeeder extends Seeder
 
         //41-46
         $category = Category::create([
-            'type' => 'Item',
             'name' => 'PIZZA 9"',
         ]);
         Item::insert([
@@ -389,7 +381,6 @@ class MenuSeeder extends Seeder
         ]);
         //41-46
         $category = Category::create([
-            'type' => 'Item',
             'name' => 'PIZZA 13"',
         ]);
         Item::insert([
@@ -426,7 +417,6 @@ class MenuSeeder extends Seeder
         ]);
         //47-57
         $category = Category::create([
-            'type' => 'Item',
             'name' => 'CHICKEN 1:3',
         ]);
         Item::insert([
@@ -489,7 +479,6 @@ class MenuSeeder extends Seeder
 
         //58-65
         $category = Category::create([
-            'type' => 'Item',
             'name' => 'BEEF 1:3',
         ]);
         Item::insert([
@@ -537,7 +526,6 @@ class MenuSeeder extends Seeder
 
         //66-71
         $category = Category::create([
-            'type' => 'Item',
             'name' => 'PRAWN 1:3',
         ]);
         Item::insert([
@@ -574,7 +562,6 @@ class MenuSeeder extends Seeder
         ]);
         //72-80
         $category = Category::create([
-            'type' => 'Item',
             'name' => 'BAR-B-Q 1:3',
         ]);
         Item::insert([
@@ -627,7 +614,6 @@ class MenuSeeder extends Seeder
 
         //81-92
         $category = Category::create([
-            'type' => 'Item',
             'name' => 'FRIDE-RICE 1:3',
         ]);
         Item::insert([
@@ -695,7 +681,6 @@ class MenuSeeder extends Seeder
 
         //93-97
         $category = Category::create([
-            'type' => 'Item',
             'name' => 'NOODLES & CHOWMEIN 1:3',
         ]);
         Item::insert([
@@ -728,7 +713,6 @@ class MenuSeeder extends Seeder
 
         //98-100
         $category = Category::create([
-            'type' => 'Item',
             'name' => 'CHAOP SUEY 1:3',
         ]);
         Item::insert([
@@ -751,7 +735,6 @@ class MenuSeeder extends Seeder
 
         //101-103
         $category = Category::create([
-            'type' => 'Item',
             'name' => 'VEGETABLE 1:3',
         ]);
         Item::insert([
@@ -774,7 +757,6 @@ class MenuSeeder extends Seeder
 
         //104-108
         $category = Category::create([
-            'type' => 'Item',
             'name' => 'DESSERT',
         ]);
         Item::insert([
@@ -807,7 +789,6 @@ class MenuSeeder extends Seeder
 
         //109-125
         $category = Category::create([
-            'type' => 'Item',
             'name' => 'SEASONAL JUICE & DRINKS',
         ]);
         Item::insert([
@@ -905,68 +886,50 @@ class MenuSeeder extends Seeder
 
 
         // @@@@@@ Set Menu @@@@@@@@@@@    
-
-        $category = Category::create([
-            'type' => 'Set Menu',
-            'name' => 'Set Menu',
-        ]);
         $set_menu = SetMenu::create([
-            'category_id' => $category->id,
             'name' => '126',
             'price' => 420,
         ]);
         $set_menu = SetMenu::create([
-            'category_id' => $category->id,
             'name' => '127',
             'price' => 360,
         ]);
         $set_menu = SetMenu::create([
-            'category_id' => $category->id,
             'name' => '128',
             'price' => 380,
         ]);
         $set_menu = SetMenu::create([
-            'category_id' => $category->id,
             'name' => '129',
             'price' => 450,
         ]);
         $set_menu = SetMenu::create([
-            'category_id' => $category->id,
             'name' => '130',
             'price' => 290,
         ]);
         $set_menu = SetMenu::create([
-            'category_id' => $category->id,
             'name' => '131',
             'price' => 550,
         ]);
 
-        $category = Category::create([
-            'type' => 'Set Menu',
-            'name' => 'Platter Menu',
-        ]);
-        $platter_menu = SetMenu::create([
-            'category_id' => $category->id,
+
+         // @@@@@@ Platter Menu @@@@@@@@@@@  
+        $platter_menu = PlatterMenu::create([
             'name' => '132',
             'price' => 350,
         ]);
-        $platter_menu = SetMenu::create([
-            'category_id' => $category->id,
+        $platter_menu = PlatterMenu::create([
             'name' => '133',
             'price' => 320,
         ]);
-        $platter_menu = SetMenu::create([
-            'category_id' => $category->id,
+        $platter_menu = PlatterMenu::create([
             'name' => '134',
             'price' => 490,
         ]);
-        $platter_menu = SetMenu::create([
-            'category_id' => $category->id,
+        $platter_menu = PlatterMenu::create([
             'name' => '135',
             'price' => 540,
         ]);
-        $platter_menu = SetMenu::create([
-            'category_id' => $category->id,
+        $platter_menu = PlatterMenu::create([
             'name' => '136',
             'price' => 220,
         ]);

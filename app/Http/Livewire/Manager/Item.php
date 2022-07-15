@@ -18,7 +18,7 @@ class Item extends Component
     public function render()
     {
         return view('livewire.manager.item',[
-            'categories' => Category::where('type', 'Item')->latest()->get(),
+            'categories' => Category::latest()->get(),
             'items' => ModelsItem::latest()->get()
         ]);
     }

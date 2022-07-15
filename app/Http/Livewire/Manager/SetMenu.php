@@ -2,8 +2,6 @@
 
 namespace App\Http\Livewire\Manager;
 
-use App\Models\Category;
-use App\Models\Item;
 use App\Models\SetMenu as ModelsSetMenu;
 use App\Models\SetMenuWiseItem;
 use Livewire\Component;
@@ -14,22 +12,19 @@ class SetMenu extends Component
 {
     use LivewireAlert, WithFileUploads;
 
-    public $category_id, $offline_active, $online_active, $name, $shortcut_number, $price, $image, $description;
+    public $offline_active, $online_active, $name, $shortcut_number, $price, $image, $description;
     public $items_array = [];
     public $selected_model;
 
     public function render()
     {
         return view('livewire.manager.set-menu', [
-            'categories' => Category::where('type', 'Set Menu')->latest()->get(),
-            'items' => Item::latest()->get(),
             'set_menues' => ModelsSetMenu::latest()->get(),
         ]);
     }
 
     public function create()
     {
-        $this->category_id = null;
         $this->offline_active = null;
         $this->online_active = null;
         $this->name = null;
@@ -44,7 +39,6 @@ class SetMenu extends Component
     public function submit()
     {
         $validate_data = $this->validate([
-            'category_id' => 'required|exists:categories,id',
             'offline_active' => 'required|boolean',
             'online_active' => 'required|boolean',
             'name' => 'required|string',

@@ -13,16 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('platter_menu_wise_items', function (Blueprint $table) {
             $table->id();
-            $table->boolean('offline_active')->default(true);
-            $table->boolean('online_active')->default(false);
-            $table->string('slug')->nullable();
-            $table->string('name');
-            $table->string('image')->nullable();
-            $table->longText('description')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -33,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('platter_menu_wise_items');
     }
 };
