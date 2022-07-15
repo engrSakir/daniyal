@@ -33,7 +33,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($platter_menues as $platter_menu)
+                                @foreach ($platter_menus as $platter_menu)
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>

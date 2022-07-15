@@ -95,7 +95,7 @@
                                 <label for="set_menu_id">Set Menu</label>
                                 <select class="form-control" wire:model="set_menu_id" id="set_menu_id">
                                     <option value="">Select</option>
-                                    @foreach ($set_menues as $set_menue)
+                                    @foreach ($set_menus as $set_menue)
                                     <option value="{{ $set_menue->id }}">{{ $set_menue->name }}</option>
                                     @endforeach
                                 </select>

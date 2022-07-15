@@ -19,7 +19,7 @@ class SetMenu extends Component
     public function render()
     {
         return view('livewire.manager.set-menu', [
-            'set_menues' => ModelsSetMenu::latest()->get(),
+            'set_menus' => ModelsSetMenu::latest()->get(),
         ]);
     }
 

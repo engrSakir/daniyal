@@ -12,8 +12,7 @@
     </div>
     <!-- End Breadcrumb-->
     <div class="row">
-
-        @foreach ($item_categories as $category)
+        @foreach ($categories as $category)
         <div class="col-lg-6">
             <div class="card border border-info">
                 <div class="card-header text-uppercase">{{ $category->name }}</div>
@@ -27,23 +26,38 @@
             </div>
         </div>
         @endforeach
-        @foreach ($setmenu_categories as $category)
-        @foreach ($category->set_menues as $set_menu)
+    </div>
+    <div class="row">
+        @foreach ($set_menus as $set_menu)
         <div class="col-lg-6">
-            <div class="card border border-danger">
-                <div class="card-header text-uppercase">{{ $set_menu->name }} <sup><small>{{ $category->name }}</small></sup></div>
+            <div class="card border border-warning">
+                <div class="card-header text-uppercase">{{ $set_menu->name }} <sup><small>Set Menu</small></sup></div>
                 <div class="card-body">
                     <ol>
                         @foreach ($set_menu->set_menu_wisse_items as $set_menu_wisse_item)
-                        <li>{{ $set_menu_wisse_item->item->name ?? 'NA' }}</li>
+                        <li>{{ $set_menu_wisse_item->name }}</li>
                         @endforeach
                     </ol>
                 </div>
             </div>
         </div>
         @endforeach
+    </div>
+    <div class="row">
+        @foreach ($platter_menus as $platter_menu)
+        <div class="col-lg-6">
+            <div class="card border border-danger">
+                <div class="card-header text-uppercase">{{ $platter_menu->name }} <sup><small>Platter Menu</small></sup></div>
+                <div class="card-body">
+                    <ol>
+                        @foreach ($platter_menu->platter_menu_wisse_items as $platter_menu_wisse_item)
+                        <li>{{ $platter_menu_wisse_item->name }}</li>
+                        @endforeach
+                    </ol>
+                </div>
+            </div>
+        </div>
         @endforeach
-
     </div>
 </div>
 <!-- End container-fluid-->

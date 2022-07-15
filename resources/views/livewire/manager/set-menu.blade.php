@@ -33,7 +33,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($set_menues as $set_menu)
+                                @foreach ($set_menus as $set_menu)
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>

@@ -19,7 +19,7 @@ class PlatterMenu extends Component
     public function render()
     {
         return view('livewire.manager.platter-menu', [
-            'platter_menues' => ModelsPlatterMenu::latest()->get(),
+            'platter_menus' => ModelsPlatterMenu::latest()->get(),
         ]);
     }
 
