@@ -47,6 +47,7 @@ class PlatterMenu extends Model
 
         self::deleted(function ($model) {
             // ... code here
+            $model->platter_menu_wisse_items->delete();
 
         });
     }

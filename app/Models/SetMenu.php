@@ -47,6 +47,7 @@ class SetMenu extends Model
 
         self::deleted(function ($model) {
             // ... code here
+            $model->set_menu_wisse_items->delete();
 
         });
     }
