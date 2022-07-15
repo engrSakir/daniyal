@@ -40,7 +40,7 @@
                                     <td>
                                         <img src="{{ asset($item->image ? $item->image : 'assets/images/no-image.png') }}"
                                                 width="50px">
-                                        {{ $item->name }}
+                                        {{ $item->name }} <small>({{ $item->category->name ?? 'N/A' }})</small>
                                     </td>
                                     <td>{{ $item->price }}</td>
                                     <td>
