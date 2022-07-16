@@ -41,7 +41,7 @@
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>
                                         <img src="{{ asset($category_wise_item->item->image ? $category_wise_item->item->image : 'assets/images/no-image.png') }}" width="50px">
-                                        {{ $category_wise_item->item->name }} <small>({{ $category_wise_item->item->category->name ?? 'N/A' }})</small>
+                                        {{ $category_wise_item->item->name }}
                                     </td>
                                     @if($category->sub_category_required)
                                     @foreach ($sub_categories as $sub_category)

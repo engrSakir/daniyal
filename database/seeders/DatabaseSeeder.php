@@ -23,15 +23,20 @@ class DatabaseSeeder extends Seeder
 
         $this->call(UserSeeder::class);
         $this->call(MenuSeeder::class);
-        $this->call(ItemSeed2::class);
-        $this->call(ItemSeed1::class);
-        $this->call(ItemSeed3::class);
-        $this->call(ItemSeed4::class);
-        $this->call(ItemSeed5::class);
-        $this->call(ItemSeed6::class);
-        $this->call(ItemSeed7::class);
-        $this->call(ItemSeed8::class);
-        $this->call(ItemSeed9::class);
-        $this->call(ItemSeed10::class);
+        $this->call(ItemSeed1Salad::class);
+        $this->call(ItemSeed2Soup::class);
+        $this->call(ItemSeed3Appetizers::class);
+        $this->call(ItemSeed4Continental::class);
+        $this->call(ItemSeed5Pasta::class);
+        $this->call(ItemSeed6Pizza::class);
+        $this->call(ItemSeed7Chicken::class);
+        $this->call(ItemSeed8Beef::class);
+        $this->call(ItemSeed9Prawn::class);
+        $this->call(ItemSeed10Barbbq::class);
+        $this->call(ItemSeed11FrideRice::class);
+        $this->call(ItemSeed12Noodles::class);
+        $this->call(ItemSeed13Chaop::class);
+        $this->call(ItemSeed14Vegetable::class);
+        $this->call(ItemSeed15Dessert::class);
     }
 }

@@ -8,7 +8,7 @@ use App\Models\Item;
 use App\Models\SubCategory;
 use Illuminate\Database\Seeder;
 
-class ItemSeed6 extends Seeder
+class ItemSeed2Soup extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,126 +17,109 @@ class ItemSeed6 extends Seeder
      */
     public function run()
     {
-         //37-40
-         $c = Category::create([
-            'name' => 'PIZZA',
+        //8-16
+        $c = Category::create([
+            'name' => 'SOUP',
             'sub_category_required' => true,
             'child_required' => false,
         ]);
         $sc = SubCategory::create([
             'category_id' => $c->id,
-            'name' => '6"'
+            'name' => '1:1'
         ]);
         $sc2 = SubCategory::create([
             'category_id' => $c->id,
-            'name' => '9"'
-        ]);
-        $sc3 = SubCategory::create([
-            'category_id' => $c->id,
-            'name' => '13"'
+            'name' => '1:3'
         ]);
 
-        $i = Item::create(['name' => 'Daniyal Special Pizza']);
+        $i = Item::create(['name' => 'Daniyal Special Soup']);
+        CategoryWiseItem::insert([
+            'item_id' => $i->id,
+            'category_id' => $c->id,
+            'sub_category_id' => $sc2->id,
+            'price' => 550,
+        ]);
+
+        $i = Item::create(['name' => 'Thai Soup (Thick/Clear])']);
         CategoryWiseItem::insert([[
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => $sc->id,
-            'price' => 420,
+            'price' => 180,
         ], [
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => $sc2->id,
-            'price' => 530,
-        ], [
-            'item_id' => $i->id,
-            'category_id' => $c->id,
-            'sub_category_id' => $sc3->id,
-            'price' => 680,
+            'price' => 440,
         ]]);
-        $i = Item::create(['name' => 'Beef Pizza']);
+
+        $i = Item::create(['name' => 'Chicken Corn Soup']);
         CategoryWiseItem::insert([[
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => $sc->id,
-            'price' => 430,
+            'price' => 140,
         ], [
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => $sc2->id,
-            'price' => 560,
-        ], [
+            'price' => 320,
+        ]]);
+
+        $i = Item::create(['name' => 'Top yum Soup']);
+        CategoryWiseItem::insert([
             'item_id' => $i->id,
             'category_id' => $c->id,
-            'sub_category_id' => $sc3->id,
-            'price' => 780,
-        ]]);
-        $i = Item::create(['name' => 'Mexican Pizza Hot']);
+            'sub_category_id' => $sc2->id,
+            'price' => 500,
+        ]);
+
+        $i = Item::create(['name' => 'Clear vegetable Soup']);
         CategoryWiseItem::insert([[
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => $sc->id,
-            'price' => 480,
+            'price' => 120,
         ], [
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => $sc2->id,
-            'price' => 580,
-        ], [
-            'item_id' => $i->id,
-            'category_id' => $c->id,
-            'sub_category_id' => $sc3->id,
-            'price' => 720,
+            'price' => 300,
         ]]);
-        $i = Item::create(['name' => 'Chef Special Pizza']);
-        CategoryWiseItem::insert([[
-            'item_id' => $i->id,
-            'category_id' => $c->id,
-            'sub_category_id' => $sc->id,
-            'price' => 580,
-        ], [
+
+        $i = Item::create(['name' => 'Sea Food Soup']);
+        CategoryWiseItem::insert([
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => $sc2->id,
-            'price' => 680,
-        ], [
+            'price' => 460,
+        ]);
+        $i = Item::create(['name' => 'Crispy Rice Soup']);
+        CategoryWiseItem::insert([
             'item_id' => $i->id,
             'category_id' => $c->id,
-            'sub_category_id' => $sc3->id,
-            'price' => 810,
-        ]]);
-        $i = Item::create(['name' => 'Chicken Pizza']);
-        CategoryWiseItem::insert([[
+            'sub_category_id' => $sc2->id,
+            'price' => 550,
+        ]);
+        $i = Item::create(['name' => 'Coconut Milk Soup']);
+        CategoryWiseItem::insert([
             'item_id' => $i->id,
             'category_id' => $c->id,
-            'sub_category_id' => $sc->id,
+            'sub_category_id' => $sc2->id,
             'price' => 380,
-        ], [
-            'item_id' => $i->id,
-            'category_id' => $c->id,
-            'sub_category_id' => $sc2->id,
-            'price' => 510,
-        ], [
-            'item_id' => $i->id,
-            'category_id' => $c->id,
-            'sub_category_id' => $sc3->id,
-            'price' => 670,
-        ]]);
-        $i = Item::create(['name' => 'Bar-B-Q Pizza']);
+        ]);
+
+        $i = Item::create(['name' => 'Hot & Sour Soup']);
         CategoryWiseItem::insert([[
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => $sc->id,
-            'price' => 490,
+            'price' => 150,
         ], [
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => $sc2->id,
-            'price' => 590,
-        ], [
-            'item_id' => $i->id,
-            'category_id' => $c->id,
-            'sub_category_id' => $sc3->id,
-            'price' => 730,
+            'price' => 370,
         ]]);
     }
 }

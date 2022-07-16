@@ -8,7 +8,7 @@ use App\Models\Item;
 use App\Models\SubCategory;
 use Illuminate\Database\Seeder;
 
-class ItemSeed3 extends Seeder
+class ItemSeed11FrideRice extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,9 +17,8 @@ class ItemSeed3 extends Seeder
      */
     public function run()
     {
-        //17-30
-        $c = Category::create([
-            'name' => 'APPETIZERS',
+         $c = Category::create([
+            'name' => 'FRIDE-RICE',
             'sub_category_required' => true,
             'child_required' => false,
         ]);
@@ -27,103 +26,89 @@ class ItemSeed3 extends Seeder
             'category_id' => $c->id,
             'name' => '1:3'
         ]);
-        $i = Item::create(['name' => 'Daniyal Special Mixed Appetizer (Springroll-3, Wonton-3, Wings-3,Fish Finger-3)']);
+        $i = Item::create(['name' => 'Daniyal Special Fried Rice Chicken/Beef/Prawn']);
         CategoryWiseItem::create([
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => $sc->id,
-            'price' => 550,
+            'price' => 450,
         ]);
-        $i = Item::create(['name' => 'Fried Panko Prawn (6 Pcs)']);
+        $i = Item::create(['name' => 'Special Fried Rice Chicken & Prawn']);
         CategoryWiseItem::create([
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => $sc->id,
-            'price' => 350,
+            'price' => 400,
         ]);
-        $i = Item::create(['name' => 'Shrimp Toast (8Pcs)']);
+        $i = Item::create(['name' => 'Yang Chow Fried Rice Chicken/Beef/Prawn ']);
         CategoryWiseItem::create([
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => $sc->id,
-            'price' => 410,
+            'price' => 420,
         ]);
-        $i = Item::create(['name' => 'Butter Deep Fried Prawn (6Pcs)']);
+        $i = Item::create(['name' => 'Vegetable Fried Rice only Vegetable']);
         CategoryWiseItem::create([
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => $sc->id,
-            'price' => 350,
+            'price' => 300,
         ]);
-        $i = Item::create(['name' => 'Wonthon Normal (6 Pcs)']);
+        $i = Item::create(['name' => 'Egg Fried Rice']);
         CategoryWiseItem::create([
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => $sc->id,
-            'price' => 290,
+            'price' => 310,
         ]);
-        $i = Item::create(['name' => 'Special Wonthon (6 Pcs)']);
-        CategoryWiseItem::create([
-            'item_id' => $i->id,
-            'category_id' => $c->id,
-            'sub_category_id' => $sc->id,
-            'price' => 350,
-        ]);
-        $i = Item::create(['name' => 'Vegetable Spring Roll (6 Pcs)']);
-        CategoryWiseItem::create([
-            'item_id' => $i->id,
-            'category_id' => $c->id,
-            'sub_category_id' => $sc->id,
-            'price' => 270,
-        ]);
-        $i = Item::create(['name' => 'French Fry']);
-        CategoryWiseItem::create([
-            'item_id' => $i->id,
-            'category_id' => $c->id,
-            'sub_category_id' => $sc->id,
-            'price' => 150,
-        ]);
-        $i = Item::create(['name' => 'Bar-B-Q Chicken Wings (9 Pcs)']);
-        CategoryWiseItem::create([
-            'item_id' => $i->id,
-            'category_id' => $c->id,
-            'sub_category_id' => $sc->id,
-            'price' => 380,
-        ]);
-        $i = Item::create(['name' => 'Chicken Lollipop (6 Pcs)']);
-        CategoryWiseItem::create([
-            'item_id' => $i->id,
-            'category_id' => $c->id,
-            'sub_category_id' => $sc->id,
-            'price' => 260,
-        ]);
-        $i = Item::create(['name' => 'Fried Chicken Wings (6 Pcs)']);
-        CategoryWiseItem::create([
-            'item_id' => $i->id,
-            'category_id' => $c->id,
-            'sub_category_id' => $sc->id,
-            'price' => 270,
-        ]);
-        $i = Item::create(['name' => 'Fish Finger (6 pcs)']);
+        $i = Item::create(['name' => 'Basil Leaf Fried Rice']);
         CategoryWiseItem::create([
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => $sc->id,
             'price' => 340,
         ]);
-        $i = Item::create(['name' => 'Fish Cake (9 pcs)']);
+        $i = Item::create(['name' => 'Schezwan Fried Rice']);
         CategoryWiseItem::create([
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => $sc->id,
-            'price' => 410,
+            'price' => 380,
         ]);
-        $i = Item::create(['name' => 'Fish Cutlet']);
+        $i = Item::create(['name' => 'Mix Fried Rice']);
         CategoryWiseItem::create([
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => $sc->id,
-            'price' => 330,
+            'price' => 370,
+        ]);
+        $i = Item::create(['name' => 'Chicken Fried Rice']);
+        CategoryWiseItem::create([
+            'item_id' => $i->id,
+            'category_id' => $c->id,
+            'sub_category_id' => $sc->id,
+            'price' => 360,
+        ]);
+        $i = Item::create(['name' => 'Beef Fried Rice']);
+        CategoryWiseItem::create([
+            'item_id' => $i->id,
+            'category_id' => $c->id,
+            'sub_category_id' => $sc->id,
+            'price' => 370,
+        ]);
+        $i = Item::create(['name' => 'Prawn Fried Rice']);
+        CategoryWiseItem::create([
+            'item_id' => $i->id,
+            'category_id' => $c->id,
+            'sub_category_id' => $sc->id,
+            'price' => 390,
+        ]);
+        $i = Item::create(['name' => 'Garlic Mushroom Rice']);
+        CategoryWiseItem::create([
+            'item_id' => $i->id,
+            'category_id' => $c->id,
+            'sub_category_id' => $sc->id,
+            'price' => 450,
         ]);
     }
 }

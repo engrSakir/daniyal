@@ -7,7 +7,7 @@ use App\Models\CategoryWiseItem;
 use App\Models\Item;
 use App\Models\SubCategory;
 use Illuminate\Database\Seeder;
-class ItemSeed4 extends Seeder
+class ItemSeed4Continental extends Seeder
 {
     /**
      * Run the database seeds.

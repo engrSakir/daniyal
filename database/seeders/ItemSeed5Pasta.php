@@ -8,7 +8,7 @@ use App\Models\Item;
 use App\Models\SubCategory;
 use Illuminate\Database\Seeder;
 
-class ItemSeed5 extends Seeder
+class ItemSeed5Pasta extends Seeder
 {
     /**
      * Run the database seeds.

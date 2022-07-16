@@ -8,7 +8,7 @@ use App\Models\Item;
 use App\Models\SubCategory;
 use Illuminate\Database\Seeder;
 
-class ItemSeed1 extends Seeder
+class ItemSeed12Noodles extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,9 +17,8 @@ class ItemSeed1 extends Seeder
      */
     public function run()
     {
-         //1-7
         $c = Category::create([
-            'name' => 'SALAD',
+            'name' => 'NOODLES & CHOWMEIN',
             'sub_category_required' => true,
             'child_required' => false,
         ]);
@@ -27,57 +26,40 @@ class ItemSeed1 extends Seeder
             'category_id' => $c->id,
             'name' => '1:3'
         ]);
-        $i = Item::create(['name' => 'Daniyal Special Salad (Chicken, Prawn & Beef)']);
+        $i = Item::create(['name' => 'Daniyal Special Chowmein']);
+        CategoryWiseItem::create([
+            'item_id' => $i->id,
+            'category_id' => $c->id,
+            'sub_category_id' => $sc->id,
+            'price' => 480,
+        ]);
+        $i = Item::create(['name' => 'Pad Thai Noodles']);
         CategoryWiseItem::create([
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => $sc->id,
             'price' => 450,
         ]);
-        
-        $i = Item::create(['name' => 'Chicken Prawn Cashew Nut Salad']);
+        $i = Item::create(['name' => 'Hakka Noodles']);
         CategoryWiseItem::create([
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => $sc->id,
-            'price' => 420,
+            'price' => 410,
         ]);
-       
-        $i = Item::create(['name' => 'Grilled Chicken Salad']);
+        $i = Item::create(['name' => 'Vegetable Chowmein']);
         CategoryWiseItem::create([
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => $sc->id,
-            'price' => 350,
+            'price' => 340,
         ]);
-        $i = Item::create(['name' => 'Chicken Lub Gai Salad']);
+        $i = Item::create(['name' => 'Chicken Chowmein']);
         CategoryWiseItem::create([
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => $sc->id,
-            'price' => 370,
+            'price' => 360,
         ]);
-        $i = Item::create(['name' => 'Prawn Cashew Nut Salad']);
-        CategoryWiseItem::create([
-            'item_id' => $i->id,
-            'category_id' => $c->id,
-            'sub_category_id' => $sc->id,
-            'price' => 400,
-        ]);
-        $i = Item::create(['name' => 'Chicken Cashew Nut Salad']);
-        CategoryWiseItem::create([
-            'item_id' => $i->id,
-            'category_id' => $c->id,
-            'sub_category_id' => $sc->id,
-            'price' => 350,
-        ]);
-        $i = Item::create(['name' => 'Green Salad']);
-        CategoryWiseItem::create([
-            'item_id' => $i->id,
-            'category_id' => $c->id,
-            'sub_category_id' => $sc->id,
-            'price' => 180,
-        ]);
-
     }
 }
