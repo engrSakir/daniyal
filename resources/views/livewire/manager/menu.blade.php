@@ -14,47 +14,48 @@
     <div class="row">
         @foreach ($categories as $category)
         <div class="col-lg-6">
-            <div class="card border border-info">
-                <div class="card-header text-uppercase">{{ $category->name }}</div>
-                <div class="card-body">
-                    <ol>
-                        @foreach ($category->items as $item)
-                        <li>{{ $item->name }} - <b>{{ $item->price }}</b></li>
+            <div class="card border @if($category->has_sub_item) border-danger @else border-info @endif">
+                <table class="table table-bordered">
+                    <thead class="">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">{{ $category->name }}</th>
+                            @if($category->has_sub_category)
+                            @foreach ($category->sub_categories as $sub_category)
+                            <th scope="col">{{ $sub_category->name }}</th>
+                            @endforeach
+                            @else
+                            <th scope="col">Price</th>
+                            @endif
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($category->category_wise_items as $category_wise_item)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>
+                                {{ $category_wise_item->item->name }}
+                                @if($category->has_sub_item)
+                                <small>
+                                    <ol>
+                                        @foreach ($category_wise_item->item->sub_items as $sub_tem)
+                                        <li>{{ $sub_tem->name }}</li>
+                                        @endforeach
+                                    </ol>
+                                </small>
+                                @endif
+                            </td>
+                            @if($category->has_sub_category)
+                            @foreach ($category->sub_categories as $sub_category)
+                            <td> {{ price_helper($category_wise_item->item_id, $category_wise_item->category_id, $sub_category->id) }}</td>
+                            @endforeach
+                            @else
+                            <td>{{ $category_wise_item->price }}</td>
+                            @endif
+                        </tr>
                         @endforeach
-                    </ol>
-                </div>
-            </div>
-        </div>
-        @endforeach
-    </div>
-    <div class="row">
-        @foreach ($set_menus as $set_menu)
-        <div class="col-lg-6">
-            <div class="card border border-warning">
-                <div class="card-header text-uppercase">{{ $set_menu->name }} <sup><small>Set Menu</small></sup></div>
-                <div class="card-body">
-                    <ol>
-                        @foreach ($set_menu->set_menu_wisse_items as $set_menu_wisse_item)
-                        <li>{{ $set_menu_wisse_item->name }}</li>
-                        @endforeach
-                    </ol>
-                </div>
-            </div>
-        </div>
-        @endforeach
-    </div>
-    <div class="row">
-        @foreach ($platter_menus as $platter_menu)
-        <div class="col-lg-6">
-            <div class="card border border-danger">
-                <div class="card-header text-uppercase">{{ $platter_menu->name }} <sup><small>Platter Menu</small></sup></div>
-                <div class="card-body">
-                    <ol>
-                        @foreach ($platter_menu->platter_menu_wisse_items as $platter_menu_wisse_item)
-                        <li>{{ $platter_menu_wisse_item->name }}</li>
-                        @endforeach
-                    </ol>
-                </div>
+                    </tbody>
+                </table>
             </div>
         </div>
         @endforeach
