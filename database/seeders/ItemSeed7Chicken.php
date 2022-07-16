@@ -19,8 +19,8 @@ class ItemSeed7Chicken extends Seeder
          //47-57
          $c = Category::create([
             'name' => 'CHICKEN',
-            'sub_category_required' => true,
-            'child_required' => false,
+            'has_sub_category' => true,
+            'has_sub_item' => false,
         ]);
         $sc = SubCategory::create([
             'category_id' => $c->id,

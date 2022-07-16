@@ -12,7 +12,7 @@
     </div>
     <!-- End Breadcrumb-->
     <div class="row">
-        <div class="@if($category->sub_category_required) col-lg-8 @else col-lg-12 @endif">
+        <div class="@if($category->has_sub_category) col-lg-8 @else col-lg-12 @endif">
             <div class="card">
                 <div class="card-title">
                     Items
@@ -25,7 +25,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Item</th>
-                                    @if($category->sub_category_required)
+                                    @if($category->has_sub_category)
                                     @foreach ($sub_categories as $sub_category)
                                     <th scope="col">{{ $sub_category->name }}</th>
                                     @endforeach
@@ -43,7 +43,7 @@
                                         <img src="{{ asset($category_wise_item->item->image ? $category_wise_item->item->image : 'assets/images/no-image.png') }}" width="50px">
                                         {{ $category_wise_item->item->name }}
                                     </td>
-                                    @if($category->sub_category_required)
+                                    @if($category->has_sub_category)
                                     @foreach ($sub_categories as $sub_category)
                                     <td> {{ price_helper($category_wise_item->item_id, $category_wise_item->category_id, $sub_category->id) }}</td>
                                     @endforeach
@@ -64,7 +64,7 @@
                 </div>
             </div>
         </div>
-        @if($category->sub_category_required)
+        @if($category->has_sub_category)
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-title">
@@ -149,7 +149,7 @@
                                 <input type="file" accept="image/*" class="form-control" wire:model="image" id="image">
                                 <x-error name="image" />
                             </div>
-                            @if($category->sub_category_required)
+                            @if($category->has_sub_category)
                             @foreach ($sub_categories as $key => $sub_category)
                             <div class="form-group col-md-12">
                                 <label for="sub_category_wise_price_array.{{ $key }}">Price for {{ $sub_category->name }}</label>
@@ -164,7 +164,7 @@
                                 <x-error name="price" />
                             </div>
                             @endif
-                            @if($category->child_required)
+                            @if($category->has_sub_item)
                             @foreach ($childs as $key => $child)
                             <div class="form-group col-md-12 row">
                                 <div class="col-md-9">

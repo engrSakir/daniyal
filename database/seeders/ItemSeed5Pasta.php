@@ -20,8 +20,8 @@ class ItemSeed5Pasta extends Seeder
         //37-40
         $c = Category::create([
             'name' => 'PASTA',
-            'sub_category_required' => true,
-            'child_required' => false,
+            'has_sub_category' => true,
+            'has_sub_item' => false,
         ]);
         $sc = SubCategory::create([
             'category_id' => $c->id,

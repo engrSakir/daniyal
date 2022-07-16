@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('image')->nullable();
             $table->longText('description')->nullable();
-            $table->json('childs')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

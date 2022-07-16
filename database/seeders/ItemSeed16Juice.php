@@ -19,8 +19,8 @@ class ItemSeed16Juice extends Seeder
     {
         $c = Category::create([
             'name' => 'SEASONAL JUICE & DRINKS',
-            'sub_category_required' => false,
-            'child_required' => false,
+            'has_sub_category' => false,
+            'has_sub_item' => false,
         ]);
 
         $i = Item::create(['name' => 'Coke, Sprite, Pepsi, 7up']);

@@ -20,8 +20,8 @@ class ItemSeed3Appetizers extends Seeder
         //17-30
         $c = Category::create([
             'name' => 'APPETIZERS',
-            'sub_category_required' => true,
-            'child_required' => false,
+            'has_sub_category' => true,
+            'has_sub_item' => false,
         ]);
         $sc = SubCategory::create([
             'category_id' => $c->id,

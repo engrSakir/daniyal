@@ -19,8 +19,8 @@ class ItemSeed4Continental extends Seeder
          //31-36
          $c = Category::create([
             'name' => 'CONTINENTAL/FAST FOOD',
-            'sub_category_required' => false,
-            'child_required' => false,
+            'has_sub_category' => false,
+            'has_sub_item' => false,
         ]);
         $i = Item::create(['name' => 'Daniyal Special Burger']);
         CategoryWiseItem::create([

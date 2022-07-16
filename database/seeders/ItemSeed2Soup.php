@@ -20,8 +20,8 @@ class ItemSeed2Soup extends Seeder
         //8-16
         $c = Category::create([
             'name' => 'SOUP',
-            'sub_category_required' => true,
-            'child_required' => false,
+            'has_sub_category' => true,
+            'has_sub_item' => false,
         ]);
         $sc = SubCategory::create([
             'category_id' => $c->id,

@@ -19,8 +19,8 @@ class ItemSeed15Dessert extends Seeder
     {
         $c = Category::create([
             'name' => 'DESSERT',
-            'sub_category_required' => false,
-            'child_required' => false,
+            'has_sub_category' => false,
+            'has_sub_item' => false,
         ]);
 
         $i = Item::create(['name' => 'Cup Cake (1 Pcs)']);

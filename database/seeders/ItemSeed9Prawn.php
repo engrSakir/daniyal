@@ -19,8 +19,8 @@ class ItemSeed9Prawn extends Seeder
     {
         $c = Category::create([
             'name' => 'PRAWN',
-            'sub_category_required' => true,
-            'child_required' => false,
+            'has_sub_category' => true,
+            'has_sub_item' => false,
         ]);
         $sc = SubCategory::create([
             'category_id' => $c->id,

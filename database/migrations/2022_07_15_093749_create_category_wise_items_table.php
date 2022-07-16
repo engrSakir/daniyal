@@ -23,6 +23,7 @@ return new class extends Migration
             $table->boolean('online_active')->default(false);
             $table->integer('shortcut_number')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

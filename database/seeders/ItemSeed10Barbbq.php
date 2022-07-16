@@ -20,8 +20,8 @@ class ItemSeed10Barbbq extends Seeder
          //72-80
          $c = Category::create([
             'name' => 'BAR-B-Q',
-            'sub_category_required' => true,
-            'child_required' => false,
+            'has_sub_category' => true,
+            'has_sub_item' => false,
         ]);
         $sc = SubCategory::create([
             'category_id' => $c->id,

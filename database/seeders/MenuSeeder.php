@@ -38,31 +38,6 @@ class MenuSeeder extends Seeder
 
 
 
-//         // @@@@@@ Set Menu @@@@@@@@@@@    
-//         $set_menu = SetMenu::create([
-//             'name' => '126',
-//             'price' => 420,
-//         ]);
-//         $set_menu = SetMenu::create([
-//             'name' => '127',
-//             'price' => 360,
-//         ]);
-//         $set_menu = SetMenu::create([
-//             'name' => '128',
-//             'price' => 380,
-//         ]);
-//         $set_menu = SetMenu::create([
-//             'name' => '129',
-//             'price' => 450,
-//         ]);
-//         $set_menu = SetMenu::create([
-//             'name' => '130',
-//             'price' => 290,
-//         ]);
-//         $set_menu = SetMenu::create([
-//             'name' => '131',
-//             'price' => 550,
-//         ]);
 
 
 //          // @@@@@@ Platter Menu @@@@@@@@@@@  

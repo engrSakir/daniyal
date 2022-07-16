@@ -96,7 +96,7 @@ class CategoryDetails extends Component
             $validate_data
         );
         $category_wise_item = [];
-        if ($this->category->sub_category_required) {
+        if ($this->category->has_sub_category) {
             foreach ($this->sub_category_wise_price_array as $sub_category_wise_price) {
                 if ($sub_category_wise_price['price']) {
                     array_push($category_wise_item, [

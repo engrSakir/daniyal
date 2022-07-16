@@ -23,7 +23,7 @@
                 <div class="card-body">
                     @if($category->image)
                     <img src="assets/images/gallery/1.jpg" class="card-img-top" style="width:20px;">
-                    @elseif($category->sub_category_required)
+                    @elseif($category->has_sub_category)
                     <img src="{{ asset('assets/images/category.png') }}" class="card-img-top" style="width:20px;">
                     @else
                     <img src="{{ asset('assets/images/items.jpg') }}" class="card-img-top" style="width:20px;">
