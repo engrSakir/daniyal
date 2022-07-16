@@ -25,9 +25,13 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Item</th>
+                                    @if($category->sub_category_required)
                                     @foreach ($sub_categories as $sub_category)
                                     <th scope="col">{{ $sub_category->name }}</th>
                                     @endforeach
+                                    @else
+                                    <th scope="col">Price</th>
+                                    @endif
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -39,9 +43,13 @@
                                         <img src="{{ asset($category_wise_item->item->image ? $category_wise_item->item->image : 'assets/images/no-image.png') }}" width="50px">
                                         {{ $category_wise_item->item->name }} <small>({{ $category_wise_item->item->category->name ?? 'N/A' }})</small>
                                     </td>
+                                    @if($category->sub_category_required)
                                     @foreach ($sub_categories as $sub_category)
                                     <td> {{ price_helper($category_wise_item->item_id, $category_wise_item->category_id, $sub_category->id) }}</td>
                                     @endforeach
+                                    @else
+                                    <td>{{ $category_wise_item->price }}</td>
+                                    @endif
                                     <td>
                                         <div class="btn-group m-1">
                                             <button type="button" class="btn btn-warning waves-effect waves-light" data-toggle="modal" data-target="#modal" wire:click="select_model({{ $category_wise_item }})"><i class="fa fa-edit"></i></button>
