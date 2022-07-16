@@ -36,58 +36,6 @@
         </div>
         @endforeach
     </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead class="thead-primary shadow-primary">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Online Status</th>
-                                    <th scope="col">Offline Status</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($categories as $category)
-                                <tr>
-                                    <th scope="row">{{ $loop->iteration }}</th>
-                                    <td>
-                                        <img src="{{ asset($category->image ? $category->image : 'assets/images/no-image.png') }}" width="50px">
-                                        {{ $category->name }}
-                                    </td>
-                                    <td>
-                                        @if ($category->online_active)
-                                        <span class="badge badge-pill badge-success m-1">Active</span>
-                                        @else
-                                        <span class="badge badge-pill badge-danger m-1">Inactive</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if ($category->offline_active)
-                                        <span class="badge badge-pill badge-success m-1">Active</span>
-                                        @else
-                                        <span class="badge badge-pill badge-danger m-1">Inactive</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <div class="btn-group m-1">
-                                            <button type="button" class="btn btn-warning waves-effect waves-light" data-toggle="modal" data-target="#modal" wire:click="select_model({{ $category }})"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger waves-effect waves-light"><i class="fa fa fa-trash-o"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Modal -->
     <div class="modal fade" id="modal" wire:ignore.self>
         <div class="modal-dialog modal-lg modal-dialog-centered">
