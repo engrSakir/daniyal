@@ -28,5 +28,10 @@ class DatabaseSeeder extends Seeder
         $this->call(ItemSeed3::class);
         $this->call(ItemSeed4::class);
         $this->call(ItemSeed5::class);
+        $this->call(ItemSeed6::class);
+        $this->call(ItemSeed7::class);
+        $this->call(ItemSeed8::class);
+        $this->call(ItemSeed9::class);
+        $this->call(ItemSeed10::class);
     }
 }
