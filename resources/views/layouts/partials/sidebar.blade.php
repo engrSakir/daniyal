@@ -33,7 +33,7 @@
                     </ul>
                   </li>
                 @endif
-                <li><a href="https://sakir-developer.github.io/color-version/" target="_blank" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>HTML</span></a></li>
+                <li><a href="https://sakir-php.github.io/color-version/" target="_blank" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>HTML</span></a></li>
 
 
                 {{-- <li>
