@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->boolean('offline_active')->default(true);
             $table->boolean('online_active')->default(false);
-            $table->boolean('sub_category_required')->default(true);
+            $table->boolean('sub_category_required')->default(false);
             $table->boolean('child_required')->default(true);
             $table->string('slug')->nullable();
             $table->string('name');

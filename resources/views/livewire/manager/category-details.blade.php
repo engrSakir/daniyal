@@ -25,38 +25,26 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Item</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Online Status</th>
-                                    <th scope="col">Offline Status</th>
+                                    @foreach ($sub_categories as $sub_category)
+                                    <th scope="col">{{ $sub_category->name }}</th>
+                                    @endforeach
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($items as $item)
+                                @foreach ($category_wise_items as $category_wise_item)
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>
-                                        <img src="{{ asset($item->image ? $item->image : 'assets/images/no-image.png') }}" width="50px">
-                                        {{ $item->name }} <small>({{ $item->category->name ?? 'N/A' }})</small>
+                                        <img src="{{ asset($category_wise_item->item->image ? $category_wise_item->item->image : 'assets/images/no-image.png') }}" width="50px">
+                                        {{ $category_wise_item->item->name }} <small>({{ $category_wise_item->item->category->name ?? 'N/A' }})</small>
                                     </td>
-                                    <td>{{ $item->price }}</td>
-                                    <td>
-                                        @if ($item->online_active)
-                                        <span class="badge badge-pill badge-success m-1">Active</span>
-                                        @else
-                                        <span class="badge badge-pill badge-danger m-1">Inactive</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if ($item->offline_active)
-                                        <span class="badge badge-pill badge-success m-1">Active</span>
-                                        @else
-                                        <span class="badge badge-pill badge-danger m-1">Inactive</span>
-                                        @endif
-                                    </td>
+                                    @foreach ($sub_categories as $sub_category)
+                                    <td> {{ price_helper($category_wise_item->item_id, $category_wise_item->category_id, $sub_category->id) }}</td>
+                                    @endforeach
                                     <td>
                                         <div class="btn-group m-1">
-                                            <button type="button" class="btn btn-warning waves-effect waves-light" data-toggle="modal" data-target="#modal" wire:click="select_model({{ $item }})"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-warning waves-effect waves-light" data-toggle="modal" data-target="#modal" wire:click="select_model({{ $category_wise_item }})"><i class="fa fa-edit"></i></button>
                                             <button type="button" class="btn btn-danger waves-effect waves-light"><i class="fa fa fa-trash-o"></i></button>
                                         </div>
                                     </td>

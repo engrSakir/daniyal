@@ -21,7 +21,6 @@ class Item extends Model
 
         self::creating(function ($model) {
             // ... code here
-            $model->slug = Str::slug($model->name, '-');
         });
 
         self::created(function ($model) {
@@ -31,7 +30,6 @@ class Item extends Model
 
         self::updating(function ($model) {
             // ... code here
-            $model->slug = Str::slug($model->name, '-');
         });
 
         self::updated(function ($model) {

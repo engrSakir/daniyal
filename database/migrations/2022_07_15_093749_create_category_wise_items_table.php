@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('category_wise_items', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('item_id');
+            $table->foreignId('category_id');
+            $table->foreignId('sub_category_id')->nullable();
+            $table->double('price')->default(0);
+            $table->boolean('offline_active')->default(true);
+            $table->boolean('online_active')->default(false);
+            $table->integer('shortcut_number')->nullable();
             $table->timestamps();
         });
     }

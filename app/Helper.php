@@ -1,7 +1,6 @@
 <?php
 
-
-
+use App\Models\CategoryWiseItem;
 use App\Models\StaticOption;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
@@ -103,5 +102,13 @@ if (!function_exists('random_code')) {
             $thecash = $num;
         }
         return $thecash; // writes the final format where $currency is the currency symbol.
+    }
+
+    function price_helper($item_id, $category_id, $sub_category_id){
+        return CategoryWiseItem::where([
+            'item_id' => $item_id,
+            'category_id' => $category_id,
+            'sub_category_id' => $sub_category_id,
+        ])->first()->price ?? null;
     }
 }

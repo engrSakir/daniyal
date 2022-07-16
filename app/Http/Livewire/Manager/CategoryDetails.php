@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Manager;
 
 use App\Models\Category;
+use App\Models\CategoryWiseItem;
 use App\Models\Item;
 use App\Models\SubCategory;
 use Livewire\Component;
@@ -25,7 +26,7 @@ class CategoryDetails extends Component
     public function render()
     {
         return view('livewire.manager.category-details', [
-            'items' => Item::where('category_id', $this->category->id)->get(),
+            'category_wise_items' => CategoryWiseItem::where('category_id', $this->category->id)->get()->unique('item_id'),
             'sub_categories' => SubCategory::where('category_id', $this->category->id)->get(),
         ]);
     }
@@ -112,7 +113,8 @@ class CategoryDetails extends Component
                 'price' => $this->price,
             ];
         }
-        dd($category_wise_item);
+        CategoryWiseItem::insert($category_wise_item);
+        $this->alert('success', 'Item Created');
     }
 
     public function add_or_remove_child($key = null)

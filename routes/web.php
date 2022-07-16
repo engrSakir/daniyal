@@ -21,7 +21,6 @@ Route::get('/', Login::class)->name('login')->middleware('guest');
 
 Route::group(['middleware' => ['admin', 'auth'], 'as' => 'admin.', 'prefix' => 'admin/'], function (){
     Route::get('dashboard', Admin\Dashoard::class)->name('dashboard');
-
 });
 
 Route::group(['middleware' => ['manager','auth'], 'as' => 'manager.', 'prefix' => 'manager/'], function (){
@@ -30,10 +29,6 @@ Route::group(['middleware' => ['manager','auth'], 'as' => 'manager.', 'prefix' =
     Route::get('category', Manager\Category::class)->name('category');
     Route::get('category-details/{category}', Manager\CategoryDetails::class)->name('category_details');
     Route::get('item', Manager\Item::class)->name('item');
-    Route::get('set-menu', Manager\SetMenu::class)->name('set_menu');
-    Route::get('platter-menu', Manager\PlatterMenu::class)->name('platter_menu');
     Route::get('offer', Manager\Offer::class)->name('offer');
     Route::get('menu', Manager\Menu::class)->name('menu');
-
-
 });

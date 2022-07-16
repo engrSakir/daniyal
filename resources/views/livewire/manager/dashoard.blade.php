@@ -43,40 +43,5 @@
         </div>
         @endforeach
     </div>
-    <div class="row">        
-        @foreach ($set_menus as $set_menu)
-        <div class="col-12 col-sm-6 col-lg-6 col-xl-3">
-            <div class="card bg-secondary shadow-secondary">
-                <div class="card-body">
-                    <div class="media">
-                        <div class="media-body text-left">
-                            <h4 class="text-white">0000</h4>
-                            <span class="text-white">{{ str_limit($set_menu->name, 16, '...') }}</span>
-                        </div>
-                        <i class="icon-like text-white"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endforeach
-    </div>
-    <div class="row">        
-        @foreach ($platter_menus as $platter_menu)
-        <div class="col-12 col-sm-6 col-lg-6 col-xl-3">
-            <div class="card bg-info shadow-info">
-                <div class="card-body">
-                    <div class="media">
-                        <div class="media-body text-left">
-                            <h4 class="text-white">0000</h4>
-                            <span class="text-white">{{ str_limit($platter_menu->name, 16, '...') }}</span>
-                        </div>
-                        <i class="icon-like text-white"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endforeach
-    </div>
-
 </div>
 <!-- End container-fluid-->

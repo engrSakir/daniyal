@@ -15,14 +15,7 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->nullable();
-            $table->foreignId('sub_category_id')->nullable();
-            $table->boolean('offline_active')->default(true);
-            $table->boolean('online_active')->default(false);
-            $table->string('slug')->nullable();
             $table->string('name');
-            $table->integer('shortcut_number')->nullable();
-            $table->double('price')->default(0);
             $table->string('image')->nullable();
             $table->longText('description')->nullable();
             $table->json('childs')->nullable();
