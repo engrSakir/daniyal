@@ -24,52 +24,7 @@ class MenuSeeder extends Seeder
 
 
 
-//         //58-65
-//         $category = Category::create([
-//             'name' => 'BEEF 1:3',
-//         ]);
-//         Item::insert([
-//             [
-//                 'category_id' => $category->id,
-//                 'name' => 'Mongolian Beef',
-//                 'price' => 740
-//             ],
-//             [
-//                 'category_id' => $category->id,
-//                 'name' => 'Beef Sizzling',
-//                 'price' => 550
-//             ],
-//             [
-//                 'category_id' => $category->id,
-//                 'name' => 'Beef Chili Onion',
-//                 'price' => 390
-//             ],
-//             [
-//                 'category_id' => $category->id,
-//                 'name' => 'Beef Oyster sauce',
-//                 'price' => 490
-//             ],
-//             [
-//                 'category_id' => $category->id,
-//                 'name' => 'Beef chili Dry',
-//                 'price' => 460
-//             ],
-//             [
-//                 'category_id' => $category->id,
-//                 'name' => 'Beef Hot Sauce',
-//                 'price' => 390
-//             ],
-//             [
-//                 'category_id' => $category->id,
-//                 'name' => 'Szechuan Beef',
-//                 'price' => 380
-//             ],
-//             [
-//                 'category_id' => $category->id,
-//                 'name' => 'Beef with Mushroom',
-//                 'price' => 450
-//             ],
-//         ]);
+
 
 //         //66-71
 //         $category = Category::create([
