@@ -19,7 +19,7 @@
                     <button type="button" class="btn btn-outline-primary waves-effect waves-light" data-toggle="modal" data-target="#item_modal" wire:click="create_item"><i class="fa fa-plus mr-1"></i></button>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
+                    <div class="">
                         <table class="table">
                             <thead class="thead-primary shadow-primary">
                                 <tr>
@@ -40,7 +40,7 @@
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>
-                                        <img src="{{ asset($category_wise_item->item->image ? $category_wise_item->item->image : 'assets/images/no-image.png') }}" width="50px">
+                                        <img src="{{ asset($category_wise_item->item->image ? $category_wise_item->item->image : 'assets/images/no-image.png') }}" width="30px">
                                         {{ $category_wise_item->item->name }}
                                         @if($category->has_sub_item)
                                         <small>
@@ -61,8 +61,8 @@
                                     @endif
                                     <td>
                                         <div class="btn-group m-1">
-                                            <button type="button" class="btn btn-warning waves-effect waves-light" data-toggle="modal" data-target="#modal" wire:click="select_model({{ $category_wise_item }})"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger waves-effect waves-light"><i class="fa fa fa-trash-o"></i></button>
+                                            <button type="button" class="btn btn-warning waves-effect waves-light btn-sm" data-toggle="modal" data-target="#modal" wire:click="select_model({{ $category_wise_item }})"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger waves-effect waves-light btn-sm"><i class="fa fa fa-trash-o"></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -81,7 +81,7 @@
                     <button type="button" class="btn btn-outline-primary waves-effect waves-light" data-toggle="modal" data-target="#sub_category_modal" wire:click="create_sub_category"><i class="fa fa-plus mr-1"></i></button>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
+                    <div class="">
                         <table class="table">
                             <thead class="thead-primary shadow-primary">
                                 <tr>
@@ -97,8 +97,8 @@
                                     <td>{{ $sub_category->name }}</td>
                                     <td>
                                         <div class="btn-group m-1">
-                                            <button type="button" class="btn btn-warning waves-effect waves-light" data-toggle="modal" data-target="#sub_category_modal" wire:click="select_sub_category({{ $sub_category }})"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger waves-effect waves-light" wire:click="delete_sub_category({{ $sub_category }})"><i class="fa fa fa-trash-o"></i></button>
+                                            <button type="button" class="btn btn-warning waves-effect waves-light btn-sm" data-toggle="modal" data-target="#sub_category_modal" wire:click="select_sub_category({{ $sub_category }})"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger waves-effect waves-light btn-sm" wire:click="delete_sub_category({{ $sub_category }})"><i class="fa fa fa-trash-o"></i></button>
                                         </div>
                                     </td>
                                 </tr>

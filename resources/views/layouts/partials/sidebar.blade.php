@@ -16,17 +16,20 @@
                 @if(auth()->user()->manager())
                 <li class="sidebar-header">Manager</li>
                 <li><a href="{{ route('manager.dashboard') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Dashboard</span></a></li>
+                <li><a href="{{ route('manager.order') }}" class="waves-effect" target="_blank"><i class="fa fa-circle-o text-aqua"></i> <span>order</span></a></li>
                 <li><a href="{{ route('manager.pos') }}" class="waves-effect" target="_blank"><i class="fa fa-circle-o text-aqua"></i> <span>POS</span></a></li>
                 <li><a href="{{ route('manager.menu') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Menu</span></a></li>
-                <li><a href="{{ route('manager.category') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>category</span></a></li>
                 <li class="">
                     <a href="javaScript:void();" class="waves-effect">
                       <i class="fa fa-share"></i> <span>Setting</span>
                       <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="sidebar-submenu">
-                      <li><a href="{{ route('manager.item') }}"><i class="fa fa-circle-o"></i> Item</a></li>
-                      <li><a href="{{ route('manager.offer') }}"><i class="fa fa-circle-o"></i> Offer</a></li>
+                      <li><a href="{{ route('manager.category') }}"><i class="fa fa-circle-o"></i> Menu Setting </a></li>
+                      <li><a href="{{ route('manager.item') }}"><i class="fa fa-circle-o"></i> Item Shortcut</a></li>
+                      <li><a href="{{ route('manager.table') }}"><i class="fa fa-circle-o"></i> Table Setting</a></li>
+                      <li><a href="{{ route('manager.waiter') }}"><i class="fa fa-circle-o"></i> Waiter List</a></li>
+                      <li><a href="{{ route('manager.offer') }}"><i class="fa fa-circle-o"></i> Offer setting</a></li>
                     </ul>
                   </li>
                 @endif

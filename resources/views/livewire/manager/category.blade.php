@@ -17,24 +17,62 @@
     </div>
     <!-- End Breadcrumb-->
     <div class="row">
-        @foreach ($categories as $category)
-        <div class="col-lg-3">
-            <div class="card card-primary text-center">
+        <div class="col-lg-12">
+            <div class="card">
                 <div class="card-body">
-                    @if($category->image)
-                    <img src="assets/images/gallery/1.jpg" class="card-img-top" style="width:20px;">
-                    @elseif($category->has_sub_category)
-                    <img src="{{ asset('assets/images/category.png') }}" class="card-img-top" style="width:20px;">
-                    @else
-                    <img src="{{ asset('assets/images/items.jpg') }}" class="card-img-top" style="width:20px;">
-                    @endif
-                    <h6 class="card-title text-primary mt-2">
-                        <a href="{{ route('manager.category_details', $category) }}">{{ $category->name }}</a>
-                    </h6>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="thead-primary shadow-primary">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Online Status</th>
+                                    <th scope="col">Offline Status</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($categories as $category)
+                                <tr>
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>
+                                        @if($category->image)
+                                        <img src="assets/images/gallery/1.jpg" class="card-img-top" style="width:20px;">
+                                        @elseif($category->has_sub_category)
+                                        <img src="{{ asset('assets/images/category.png') }}" class="card-img-top" style="width:20px;">
+                                        @else
+                                        <img src="{{ asset('assets/images/items.jpg') }}" class="card-img-top" style="width:20px;">
+                                        @endif                                        
+                                        <a href="{{ route('manager.category_details', $category) }}">{{ $category->name }}</a>
+                                    </td>
+                                    <td>
+                                        @if ($category->online_active)
+                                        <span class="badge badge-pill badge-success m-1">Active</span>
+                                        @else
+                                        <span class="badge badge-pill badge-danger m-1">Inactive</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($category->offline_active)
+                                        <span class="badge badge-pill badge-success m-1">Active</span>
+                                        @else
+                                        <span class="badge badge-pill badge-danger m-1">Inactive</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="btn-group m-1">
+                                            <button type="button" class="btn btn-warning waves-effect waves-light btn-sm" data-toggle="modal" data-target="#modal" wire:click="select_model({{ $category }})"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger waves-effect waves-light btn-sm"><i class="fa fa fa-trash-o"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-        @endforeach
     </div>
     <!-- Modal -->
     <div class="modal fade" id="modal" wire:ignore.self>
