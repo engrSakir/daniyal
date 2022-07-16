@@ -38,35 +38,79 @@ class ItemSeed17SetMenu extends Seeder
             'sub_category_id' => null,
             'price' => 420,
         ]);
-        
+
+        $i = Item::create(['name' => 'Set Menu 127']);
+        SubItem::insert([
+            ['item_id' => $i->id, 'name' => 'Egg Fried Rice'],
+            ['item_id' => $i->id, 'name' => 'Chicken Chili Onion'],
+            ['item_id' => $i->id, 'name' => 'Mix Vegetable'],
+            ['item_id' => $i->id, 'name' => 'Fried Chicken(2pcs)'],
+            ['item_id' => $i->id, 'name' => 'Drink/Water'],
+        ]);
+        CategoryWiseItem::create([
+            'item_id' => $i->id,
+            'category_id' => $c->id,
+            'sub_category_id' => null,
+            'price' => 360,
+        ]);
+
+        $i = Item::create(['name' => 'Set Menu 128']);
+        SubItem::insert([
+            ['item_id' => $i->id, 'name' => 'Garlic Mushroom Rice'],
+            ['item_id' => $i->id, 'name' => 'Prawn Masala'],
+            ['item_id' => $i->id, 'name' => 'Fried Chicken(2pcs)'],
+            ['item_id' => $i->id, 'name' => 'Mix Vegetable'],
+            ['item_id' => $i->id, 'name' => 'Drink/Water'],
+        ]);
+        CategoryWiseItem::create([
+            'item_id' => $i->id,
+            'category_id' => $c->id,
+            'sub_category_id' => null,
+            'price' => 380,
+        ]);
+
+        $i = Item::create(['name' => 'Set Menu 129']);
+        SubItem::insert([
+            ['item_id' => $i->id, 'name' => 'Schezwan Fried Rice'],
+            ['item_id' => $i->id, 'name' => 'Red Chili Fish Fry'],
+            ['item_id' => $i->id, 'name' => 'Beef with Mushroom Oyster'],
+            ['item_id' => $i->id, 'name' => 'Fried Chicken(2pcs)'],
+            ['item_id' => $i->id, 'name' => 'Mix Vegetable'],
+            ['item_id' => $i->id, 'name' => 'Drink/Water'],
+        ]);
+        CategoryWiseItem::create([
+            'item_id' => $i->id,
+            'category_id' => $c->id,
+            'sub_category_id' => null,
+            'price' => 450,
+        ]);
+        $i = Item::create(['name' => 'Set Menu 130']);
+        SubItem::insert([
+            ['item_id' => $i->id, 'name' => 'Egg Fried Rice'],
+            ['item_id' => $i->id, 'name' => 'Fried Chicken(1 pcs)'],
+            ['item_id' => $i->id, 'name' => 'Chinese Vegetable'],
+            ['item_id' => $i->id, 'name' => 'Chicken Chili'],
+            ['item_id' => $i->id, 'name' => 'Drink/Water'],
+        ]);
+        CategoryWiseItem::create([
+            'item_id' => $i->id,
+            'category_id' => $c->id,
+            'sub_category_id' => null,
+            'price' => 290,
+        ]);
+        $i = Item::create(['name' => 'Set Menu 131']);
+        SubItem::insert([
+            ['item_id' => $i->id, 'name' => 'Vegetable Fried Rice'],
+            ['item_id' => $i->id, 'name' => 'Red Chili Panner Carry'],
+            ['item_id' => $i->id, 'name' => 'Mix Vegetable'],
+            ['item_id' => $i->id, 'name' => 'Dry Chili Mushroom'],
+            ['item_id' => $i->id, 'name' => 'Drink/Water'],
+        ]);
+        CategoryWiseItem::create([
+            'item_id' => $i->id,
+            'category_id' => $c->id,
+            'sub_category_id' => null,
+            'price' => 550,
+        ]);
     }
 }
-
-
-
-//         // @@@@@@ Set Menu @@@@@@@@@@@    
-//         $set_menu = SetMenu::create([
-//             'name' => '126',
-//             'price' => 420,
-//         ]);
-//         $set_menu = SetMenu::create([
-//             'name' => '127',
-//             'price' => 360,
-//         ]);
-//         $set_menu = SetMenu::create([
-//             'name' => '128',
-//             'price' => 380,
-//         ]);
-//         $set_menu = SetMenu::create([
-//             'name' => '129',
-//             'price' => 450,
-//         ]);
-//         $set_menu = SetMenu::create([
-//             'name' => '130',
-//             'price' => 290,
-//         ]);
-//         $set_menu = SetMenu::create([
-//             'name' => '131',
-//             'price' => 550,
-//         ]);
-

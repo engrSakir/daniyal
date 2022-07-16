@@ -42,6 +42,15 @@
                                     <td>
                                         <img src="{{ asset($category_wise_item->item->image ? $category_wise_item->item->image : 'assets/images/no-image.png') }}" width="50px">
                                         {{ $category_wise_item->item->name }}
+                                        @if($category->has_sub_item)
+                                        <small>
+                                            <ol>
+                                                @foreach ($category_wise_item->item->sub_items as $sub_tem)
+                                                <li>{{ $sub_tem->name }}</li>
+                                                @endforeach
+                                            </ol>
+                                        </small>
+                                        @endif
                                     </td>
                                     @if($category->has_sub_category)
                                     @foreach ($sub_categories as $sub_category)
@@ -140,8 +149,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="shortcut_number">shortcut number</label>
-                                <input type="number" class="form-control" wire:model="shortcut_number"
-                                    id="shortcut_number">
+                                <input type="number" class="form-control" wire:model="shortcut_number" id="shortcut_number">
                                 <x-error name="shortcut_number" />
                             </div>
                             <div class="form-group col-md-6">
@@ -173,7 +181,7 @@
                                     <x-error name="childs.{{ $key }}.name" />
                                 </div>
                                 <div class="col-md-3">
-                                        <button type="button" class="w-100 btn btn-danger waves-effect waves-light mt-4" wire:click="add_or_remove_child({{ $key }})">({{ $loop->iteration }}) <i class="fa fa-minus"></i></button>
+                                    <button type="button" class="w-100 btn btn-danger waves-effect waves-light mt-4" wire:click="add_or_remove_child({{ $key }})">({{ $loop->iteration }}) <i class="fa fa-minus"></i></button>
                                 </div>
                             </div>
                             @endforeach
@@ -181,8 +189,7 @@
                             @endif
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
-                                    class="fa fa-times"></i> Cancel</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
                             <button type="reset" class="btn btn-secondary"><i class="fa fa-refresh"></i>
                                 Reset</button>
                             <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i>

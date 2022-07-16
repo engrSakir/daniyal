@@ -12,9 +12,10 @@ class Item extends Model
     use HasFactory, SoftDeletes;
     protected $guarded = [];
 
-    public function category(){
-        return $this->belongsTo(Category::class, 'category_id', 'id');
+    public function sub_items(){
+        return $this->hasMany(SubItem::class, 'item_id', 'id');
     }
+
     public static function boot()
     {
         parent::boot();
