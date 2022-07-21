@@ -46,14 +46,14 @@
                                 @if($category->has_sub_category)
                                 @foreach ($category->sub_categories as $sub_category)
                                 <td style="text-align: center;">
-                                    <button type="button" class="btn btn-inverse-secondary btn-round waves-effect waves-light m-1">
+                                    <button  wire:click="item_add_or_remove({{ $category_wise_item, $sub_category->id }})" type="button" class="btn btn-inverse-secondary btn-round waves-effect waves-light m-1">
                                         {{ price_helper($category_wise_item->item_id, $category_wise_item->category_id, $sub_category->id) }}
                                     </button>
                                 </td>
                                 @endforeach
                                 @else
                                 <td style="text-align: center;">
-                                    <button type="button" class="btn btn-inverse-secondary btn-round waves-effect waves-light m-1">
+                                    <button wire:click="item_add_or_remove({{ $category_wise_item,null }})" type="button" class="btn btn-inverse-secondary btn-round waves-effect waves-light m-1">
                                         {{ $category_wise_item->price }}
                                     </button>
                                 </td>
@@ -79,7 +79,9 @@
             <div class="card border border-primary">
                 <div class="card-body">
                     <h5 class="card-title text-primary">Card Sample Title</h5>
-                    <p class="card-text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                    <p class="card-text">
+                        {{ collect($items_array) }}
+                    </p>
                     <hr>
                     <a href="javascript:void();" class="btn btn-inverse-primary waves-effect waves-light m-1"><i class="fa fa-globe mr-1"></i> Button</a>
                     <a href="javascript:void();" class="btn btn-primary waves-effect waves-light m-1"><i class="fa fa-star mr-1"></i> Button</a>

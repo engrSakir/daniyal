@@ -16,4 +16,8 @@ class CategoryWiseItem extends Model
         return $this->belongsTo(Item::class, 'item_id', 'id');
     }
 
+    public function category(){
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
 }
