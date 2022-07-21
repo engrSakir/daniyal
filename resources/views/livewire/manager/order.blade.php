@@ -79,11 +79,30 @@
         </div>
         <div class="col-lg-4">
             <div class="card border border-primary">
-                <div class="card-body">
-                    <h5 class="card-title text-primary">Card Sample Title</h5>
-                    <p class="card-text">
-                        {{ collect($items_array) }}
-                    </p>
+                <div class="">
+                    <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">Item</th>
+                            <th scope="col">Price</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($items_array as $item)
+                            <tr>
+                                <td>
+                                    {{ $item['item_name'] }} <sub>({{ $item['sub_category_name'] }})</sub>
+                                    <hr>
+                                    <div class="btn-group m-1">
+                                        <button type="button" class="btn btn-outline-danger waves-effect waves-light btn-sm"> <i class="fa fa fa-trash-o"></i> </button>
+                                        <button type="button" class="btn btn-outline-success waves-effect waves-light btn-sm"> <i class="fa fa-music"></i> </button>
+                                     </div>
+                                </td>
+                                <td>@mdo</td>
+                              </tr>
+                            @endforeach
+                        </tbody>
+                      </table>
                     <hr>
                     <a href="javascript:void();" class="btn btn-inverse-primary waves-effect waves-light m-1"><i class="fa fa-globe mr-1"></i> Button</a>
                     <a href="javascript:void();" class="btn btn-primary waves-effect waves-light m-1"><i class="fa fa-star mr-1"></i> Button</a>
