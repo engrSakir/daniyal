@@ -46,14 +46,16 @@
                                 @if($category->has_sub_category)
                                 @foreach ($category->sub_categories as $sub_category)
                                 <td style="text-align: center;">
-                                    <button  wire:click="item_add_or_remove({{ $category_wise_item->item_id }}, {{ $category_wise_item->category_id }}, {{ $sub_category->id }})" type="button" class="btn btn-inverse-secondary btn-round waves-effect waves-light m-1">
+                                    <button  wire:click="item_add_or_remove({{ $category_wise_item->item_id }}, {{ $category_wise_item->category_id }}, {{ $sub_category->id }})" type="button"
+                                    class="btn @if(collect($items_array)->where('item_id', $category_wise_item->item_id)->where('category_id', $category_wise_item->category_id)->where('sub_category_id', $sub_category->id)->count()>0) bg-success text-white @else btn-inverse-secondary @endif btn-round waves-effect waves-light m-1">
                                         {{ price_helper($category_wise_item->item_id, $category_wise_item->category_id, $sub_category->id) }}
                                     </button>
                                 </td>
                                 @endforeach
                                 @else
                                 <td style="text-align: center;">
-                                    <button wire:click="item_add_or_remove({{ $category_wise_item->item_id }}, {{ $category_wise_item->category_id }}, {{ null }})" type="button" class="btn btn-inverse-secondary btn-round waves-effect waves-light m-1">
+                                    <button wire:click="item_add_or_remove({{ $category_wise_item->item_id }}, {{ $category_wise_item->category_id }}, {{ null }})" type="button"
+                                        class="btn @if(collect($items_array)->where('item_id', $category_wise_item->item_id)->where('category_id', $category_wise_item->category_id)->where('sub_category_id', $sub_category->id)->count()>0) bg-success text-white @else btn-inverse-secondary @endif btn-round waves-effect waves-light m-1">
                                         {{ $category_wise_item->price }}
                                     </button>
                                 </td>

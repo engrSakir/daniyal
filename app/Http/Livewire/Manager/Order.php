@@ -38,16 +38,19 @@ class Order extends Component
         if ($category_wise_item) {
             if (in_array($category_wise_item->id, array_column($this->items_array, 'category_wise_item_id'), true)) {
                 unset($this->items_array[array_search($category_wise_item->id, array_column($this->items_array, 'category_wise_item_id'))]);
-                $this->alert('success', 'Remove 1');
+                $this->alert('success', 'Remove');
             } else {
                 array_push($this->items_array, [
                     'item_name' => $category_wise_item->item->name,
                     'sub_category_name' => SubCategory::find($sub_category_id)->name ?? null,
                     'item_price' => $category_wise_item->price,
                     'item_qty' => 1,
-                    'category_wise_item_id' => $category_wise_item->id,
+                    'category_wise_item_id' => $category_wise_item->id, //main identify key
+                    'item_id' => $item_id, //need for btn identify
+                    'category_id' =>  $category_id, //need for btn identify
+                    'sub_category_id' =>  $sub_category_id, //need for btn identify
                 ]);
-                $this->alert('success', 'Select 1');
+                $this->alert('success', 'Select');
             }
             $this->items_array = array_values($this->items_array);
         } else {
