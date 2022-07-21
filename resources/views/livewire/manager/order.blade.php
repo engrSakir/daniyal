@@ -55,7 +55,7 @@
                                 @else
                                 <td style="text-align: center;">
                                     <button wire:click="item_add_or_remove({{ $category_wise_item->item_id }}, {{ $category_wise_item->category_id }}, {{ null }})" type="button"
-                                        class="btn @if(collect($items_array)->where('item_id', $category_wise_item->item_id)->where('category_id', $category_wise_item->category_id)->where('sub_category_id', $sub_category->id)->count()>0) bg-success text-white @else btn-inverse-secondary @endif btn-round waves-effect waves-light m-1">
+                                        class="btn @if(collect($items_array)->where('item_id', $category_wise_item->item_id)->where('category_id', $category_wise_item->category_id)->where('sub_category_id', null)->count()>0) bg-success text-white @else btn-inverse-secondary @endif btn-round waves-effect waves-light m-1">
                                         {{ $category_wise_item->price }}
                                     </button>
                                 </td>
@@ -91,7 +91,7 @@
                             @foreach ($items_array as $item)
                             <tr>
                                 <td>
-                                    {{ $item['item_name'] }} <sub>({{ $item['sub_category_name'] }})</sub>
+                                    {{ $item['item_name'] }} @if($item['sub_category_name']) <sub>({{ $item['sub_category_name'] }})</sub> @endif
                                     <hr>
                                     <div class="btn-group m-1">
                                         <button type="button" class="btn btn-outline-danger waves-effect waves-light btn-sm"> <i class="fa fa fa-trash-o"></i> </button>
