@@ -28,7 +28,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($category->category_wise_items as $category_wise_item)
+                            @foreach ($category->category_wise_items()->get()->unique('item_id') as $category_wise_item)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>
