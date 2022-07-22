@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\CategoryWiseItem;
 use App\Models\Item;
 use App\Models\Order as ModelsOrder;
+use App\Models\OrderItem;
 use App\Models\SubCategory;
 use App\Models\Table;
 use App\Models\Waiter;
@@ -66,9 +67,10 @@ class Order extends Component
                     'item_sub_total_price' => $category_wise_item->price,
                     'item_qty' => 1,
                     'category_wise_item_id' => $category_wise_item->id, //main identify key
-                    'item_id' => $item_id, //need for btn identify
-                    'category_id' =>  $category_id, //need for btn identify
-                    'sub_category_id' =>  $sub_category_id, //need for btn identify
+                    'item_id' => $item_id, //need for btn identify (selected color)
+                    'category_id' =>  $category_id, //need for btn identify (selected color)
+                    'sub_category_id' =>  $sub_category_id, //need for btn identify (selected color)
+                    'offer_id' =>  null,
                 ]);
                 $this->alert('success', 'Select');
             }
@@ -109,7 +111,7 @@ class Order extends Component
             $this->alert('error', 'Item not found');
         }else{
             $total_order_count_of_this_month = ModelsOrder::select('id')->whereYear('created_at', date('Y'))->whereMonth('created_at', date('m'))->count();
-            ModelsOrder::create([
+            $order =  ModelsOrder::create([
                 'creator_id' => Auth::user()->id,
                 'waiter_id' => $this->waiter,
                 'table_id' => $this->parcel ? null : $this->table,
@@ -121,6 +123,21 @@ class Order extends Component
                 'customer_address' => $this->parcel ? $this->address : null,
                 'paid_amount' => $this->paid_amount,
             ]);
+
+            //Items
+            foreach($this->items_array as $item){
+                $category_wise_item = CategoryWiseItem::find($item['category_wise_item_id']);
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'category_wise_item_id' => $category_wise_item->id,
+                    'original_price' => $category_wise_item->price,
+                    'offer_id' => $item['offer_id'],
+                    'selling_price' => $item['offer_id'] ? $item['item_single_price'] : $category_wise_item->price,
+                    'quantity' => $item['item_qty'],
+                ]);
+            }
+
+            //Make clear
             $this->phone = $this->address = $this->parcel = $this->waiter = $this->table = null;
             $this->receive_amount = $this->total_bill = $this->return_amount = 0;
             $this->items_array = [];
@@ -136,5 +153,9 @@ class Order extends Component
 
     public function print(ModelsOrder $order){
         dd($order->status);
+    }
+
+    public function edit(ModelsOrder $order){
+
     }
 }

@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('order_id');
+            $table->foreignId('category_wise_item_id');
+            $table->foreignId('offer_id')->nullable();
+            $table->integer('quantity')->default(1);
+            $table->double('original_price')->default(0);
+            $table->double('selling_price')->nullable();
             $table->timestamps();
         });
     }
