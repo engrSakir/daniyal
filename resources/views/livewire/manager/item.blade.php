@@ -61,7 +61,7 @@
                                         <div class="btn-group m-1">
                                             <button type="button" class="btn btn-warning waves-effect waves-light" data-toggle="modal"
                                             data-target="#modal" wire:click="select_model({{ $item }})"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger waves-effect waves-light"><i class="fa fa fa-trash-o"></i></button>
+                                            <button type="button" class="btn btn-danger waves-effect waves-light" onclick="confirm('Are you sure you want to remove ?') || event.stopImmediatePropagation()"><i class="fa fa fa-trash-o"></i></button>
                                         </div>
                                     </td>
                                 </tr>
