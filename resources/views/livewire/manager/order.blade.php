@@ -115,7 +115,7 @@
                         </tbody>
                     </table>
                     <hr>
-                    <button type="button" class="btn btn-primary waves-effect waves-light m-1" wire:click="clear_items_array"><i class="fa fa-star"></i> Save </button>
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-1" wire:click="save_order"><i class="fa fa-star"></i> Save </button>
                     <button type="button" class="btn btn-inverse-danger waves-effect waves-light m-1" wire:click="clear_items_array"><i class="fa fa-times"></i> Clear </button>
                 </div>
             </div>

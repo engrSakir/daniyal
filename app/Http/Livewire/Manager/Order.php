@@ -5,7 +5,9 @@ namespace App\Http\Livewire\Manager;
 use App\Models\Category;
 use App\Models\CategoryWiseItem;
 use App\Models\Item;
+use App\Models\Order as ModelsOrder;
 use App\Models\SubCategory;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
@@ -16,6 +18,7 @@ class Order extends Component
 
     public $category, $category_id;
     public $items_array = [];
+    public $parcel, $phone, $address, $paid_amount;
 
     public function render()
     {
@@ -80,5 +83,24 @@ class Order extends Component
     public function clear_items_array(){
         $this->items_array = [];
         $this->alert('success', 'Clear');
+    }
+
+    public function save_order(){
+        if(empty($this->items_array)){
+            $this->alert('error', 'Item not found');
+        }else{
+            $total_order_count_of_this_month = ModelsOrder::select('id')->whereYear('created_at', date('Y'))->whereMonth('created_at', date('m'))->count();
+            ModelsOrder::create([
+                'creator_id' => Auth::user()->id,
+                'serial_number' => date('ym').sprintf("%'.05d\n", $total_order_count_of_this_month+1), //220700001
+                'status' => 'Cook', //Penging, Reject, Cook, Serve, Complete
+                'is_online' => false,
+                'is_parcel' => $this->parcel,
+                'customer_phone' =>  $this->phone,
+                'customer_address' => $this->address,
+                'paid_amount' => $this->paid_amount,
+            ]);
+
+        }
     }
 }

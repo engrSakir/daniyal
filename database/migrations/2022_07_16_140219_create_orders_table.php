@@ -15,7 +15,17 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('creator_id');
+            $table->foreignId('waiter_id')->nullable();
+            $table->string('serial_number');
+            $table->string('status')->default('Pending'); //Pending, Reject, Cook, Serve, Complete
+            $table->boolean('is_online')->default(false);
+            $table->boolean('is_parcel')->default(false);
+            $table->string('customer_phone')->nullable();
+            $table->string('customer_address')->nullable();
+            $table->double('paid_amount');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
