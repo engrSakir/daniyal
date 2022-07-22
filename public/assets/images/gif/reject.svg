@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1350 1350" height="1350" width="1350" version="1.1">
+  <g transform="matrix(1.25,0,0,-1.25,0,1350)" >
+    <g transform="translate(1072.6345,538.6682)" >
+      <path style="fill:#ed3c49;fill-opacity:1;fill-rule:nonzero;stroke:none" d="m 0,0 c 0,-294.194 -238.491,-532.685 -532.685,-532.685 -294.193,0 -532.684,238.491 -532.684,532.685 0,294.194 238.491,532.685 532.684,532.685 C -238.491,532.685 0,294.194 0,0" />
+    </g>
+    <g transform="translate(882.2203,315.368)">
+      <path style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none" d="M 0,0 -130.774,-131.253 -667.975,403.986 -537.201,535.239 0,0 Z" />
+    </g>
+    <g transform="translate(214.2452,315.368)">
+      <path style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none" d="M 0,0 130.774,-131.253 667.975,403.986 537.201,535.239 0,0 Z" />
+    </g>
+    <g transform="translate(214.2452,315.368)">
+      <path style="fill:none;stroke:#ffffff;stroke-width:4.84399986;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" d="M 0,0 130.774,-131.253 667.975,403.986 537.201,535.239 0,0 Z" />
+    </g>
+  </g>          
+</svg>

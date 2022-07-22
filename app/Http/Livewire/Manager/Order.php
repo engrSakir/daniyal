@@ -42,6 +42,7 @@ class Order extends Component
             'caregories' => Category::all(),
             'waiters' => Waiter::all(),
             'tables' => Table::all(),
+            'orders' => ModelsOrder::latest()->get(),
         ]);
     }
 

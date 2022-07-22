@@ -11,4 +11,16 @@ class Order extends Model
 {
     use HasFactory, SoftDeletes;
     protected $guarded = [];
+
+    public function table(){
+        return $this->belongsTo(Table::class, 'table_id', 'id');
+    }
+
+    public function waiter(){
+        return $this->belongsTo(Waiter::class, 'waiter_id', 'id');
+    }
+
+    public function price(){
+        return 0;
+    }
 }
