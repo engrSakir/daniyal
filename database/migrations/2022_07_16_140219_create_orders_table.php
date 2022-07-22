@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('creator_id');
             $table->foreignId('waiter_id')->nullable();
+            $table->foreignId('table_id')->nullable();
             $table->string('serial_number');
             $table->string('status')->default('Pending'); //Pending, Reject, Cook, Serve, Complete
             $table->boolean('is_online')->default(false);

@@ -4,6 +4,7 @@
             height: 4in;
             overflow: auto;
         }
+
     </style>
     <div class="row">
         <div class="col-lg-7">
@@ -83,12 +84,62 @@
         </div>
         <div class="col-lg-5">
             <div class="card border border-primary">
+                <div class="card-header">
+                    <form>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                <input type="text" class="form-control form-control-square" placeholder="Phone" wire:model="phone">
+                            </div>
+                            <div class="form-group col-md-6">
+                                @if($parcel)
+                                <input type="text" class="form-control form-control-square" placeholder="Address" wire:model="address">
+                                @endif
+                            </div>
+                            <div class="form-group col-md-1">
+                                <div class="demo-checkbox">
+                                    <input type="checkbox" id="parcel" class="filled-in chk-col-success" wire:model="parcel" value="1">
+                                    <label for="parcel"></label>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="waiter" class="sr-only">Waiter</label>
+                                <select class="form-control form-control-square" id="waiter" wire:model="waiter">
+                                    <option value="">Select Waiter</option>
+                                    @foreach ($waiters as $waiter)
+                                        <option value="{{ $waiter->id }}">{{ $waiter->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                @if(!$parcel)
+                                <label for="table" class="sr-only">Table</label>
+                                <select class="form-control form-control-square" id="table" wire:model="table">
+                                    <option value="">Select Tale</option>
+                                    @foreach ($tables as $table)
+                                        <option value="{{ $table->id }}">{{ $table->name }}</option>
+                                    @endforeach
+                                </select>
+                                @endif
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="number" class="form-control form-control-square text-right" wire:model="receive_amount" placeholder="Receive">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="number" class="form-control form-control-square bg-success text-white text-right" readonly wire:model="total_bill" placeholder="Bill">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="number" class="form-control form-control-square text-right" wire:model="return_amount" readonly placeholder="Return">
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <div class="order_selection">
                     <table class="table table-bordered table-sm">
                         <thead>
                             <tr>
                                 <th scope="col">Item</th>
-                                <th scope="col"></th>
+                                <th scope="col">Action</th>
                                 <th scope="col">QTY</th>
                                 <th scope="col">Price</th>
                             </tr>
@@ -100,15 +151,17 @@
                                     {{ $item['item_name'] }} @if($item['sub_category_name']) <sub>({{ $item['sub_category_name'] }})</sub> @endif
                                 </td>
                                 <td style="text-align:center;">
+                                    <div class="d-inline">
                                     <span class="btn waves-effect waves badge badge-success" wire:click="increase_qty({{ $array_key }})">+</span>
                                     <span class="btn waves-effect waves badge badge-warning" wire:click="decrease_qty({{ $array_key }})">-</span>
                                     <span class="btn waves-effect waves badge badge-danger" wire:click="remove_item({{ $array_key }})">~</span>
+                                </div>
                                 </td>
                                 <td style="text-align:right;">
                                     {{ $item['item_qty'] }}
                                 </td>
                                 <td style="text-align:right;">
-                                    {{ $item['item_price'] }}
+                                    {{ $item['item_single_price'] }}
                                 </td>
                             </tr>
                             @endforeach
