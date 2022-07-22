@@ -128,4 +128,9 @@ class Order extends Component
 
         }
     }
+
+    public function change_status(ModelsOrder $order, $status){
+        $order->update(['status' => $status]);
+        $this->alert('success', 'Status Update');
+    }
 }

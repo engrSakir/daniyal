@@ -219,11 +219,12 @@
                             <img src="{{ asset('assets/images/complete.png') }}" alt="" width="60px;">
                             @endif
                             @if($order->status != 'Complete')
-                            <select class="form-control form-control-sm" id="small-input-select">
-                                <option>Option 1</option>
-                                <option>Option 2</option>
-                                <option>Option 3</option>
-                                <option>Option 4</option>
+                            <select class="form-control form-control-sm" wire:change="change_status({{ $order->id }}, $event.target.value)">
+                                <option value="Penging" @if($order->status == 'Penging') selected @endif> Penging </option>
+                                <option value="Reject" @if($order->status == 'Reject') selected @endif> Reject </option>
+                                <option value="Cook" @if($order->status == 'Cook') selected @endif> Cook </option>
+                                <option value="Serve" @if($order->status == 'Serve') selected @endif> Serve </option>
+                                <option value="Complete" @if($order->status == 'Complete') selected @endif> Complete </option>
                             </select>
                             @endif
                         </td>
