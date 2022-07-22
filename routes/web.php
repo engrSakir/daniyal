@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PrintCOntroller;
 use App\Http\Livewire\Login;
 use App\Http\Livewire\SuperAdmin;
 use App\Http\Livewire\Admin;
@@ -34,4 +35,6 @@ Route::group(['middleware' => ['manager','auth'], 'as' => 'manager.', 'prefix' =
     Route::get('table', Manager\Table::class)->name('table');
     Route::get('waiter', Manager\Waiter::class)->name('waiter');
     Route::get('menu', Manager\Menu::class)->name('menu');
+
+    Route::get('invoice/{order}', [PrintCOntroller::class, 'invoice'])->name('invoice');
 });

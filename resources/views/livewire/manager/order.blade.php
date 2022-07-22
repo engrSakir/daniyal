@@ -230,7 +230,8 @@
                         </td>
                         <th class="text-right">
                             <div class="btn-group m-1">
-                                <button type="button" class="btn btn-outline-warning waves-effect waves-light"> <i class="zmdi zmdi-print"></i> </button>
+                                <a href="{{ route('manager.invoice', $order) }}" class="btn btn-outline-primary waves-effect waves-light" target="_blank"> <i class="zmdi zmdi-print"></i> </a>
+                                <button type="button" class="btn btn-outline-warning waves-effect waves-light" wire:click="print({{ $order->id }})"> <i class="zmdi zmdi-print"></i> </button>
                                 <button type="button" class="btn btn-outline-primary waves-effect waves-light"> <i class="zmdi zmdi-edit"></i> </button>
                                 <button type="button" class="btn btn-outline-danger waves-effect waves-light"> <i class="fa fa fa-trash-o"></i> </button>
                              </div>
@@ -244,37 +245,9 @@
           </div>
         </div>
       </div>
-    <!-- Modal -->
-    <div class="modal fade" id="modal" wire:ignore.self>
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header bg-primary">
-                    <h5 class="modal-title text-white"><i class="fa fa-star"></i>Waiter Form</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form wire:submit.prevent="submit">
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="name">name</label>
-                                <input type="text" class="form-control" wire:model="name" id="name">
-                                <x-error name="name" />
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-                            <button type="reset" class="btn btn-secondary"><i class="fa fa-refresh"></i>
-                                Reset</button>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i>
-                                Save</button>
-                        </div>
-                    </form>
-                </div>
 
-            </div>
-        </div>
-    </div>
+      <script src="{{ asset('assets/printjs/print.min.js') }}"></script>
+      <link rel="stylesheet" type="text/css" href="{{ asset('assets/printjs/print.min.css') }}">
+
 </div>
 <!-- End container-fluid-->

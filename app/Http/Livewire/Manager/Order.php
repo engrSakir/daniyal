@@ -113,7 +113,7 @@ class Order extends Component
                 'creator_id' => Auth::user()->id,
                 'waiter_id' => $this->waiter,
                 'table_id' => $this->parcel ? null : $this->table,
-                'serial_number' => date('ym').sprintf("%'.05d\n", $total_order_count_of_this_month+1), //220700001
+                'serial_number' => date('ym').sprintf("%'.05d", $total_order_count_of_this_month+1), //220700001
                 'status' => 'Cook', //Penging, Reject, Cook, Serve, Complete
                 'is_online' => false,
                 'is_parcel' => $this->parcel ?? false,
@@ -132,5 +132,9 @@ class Order extends Component
     public function change_status(ModelsOrder $order, $status){
         $order->update(['status' => $status]);
         $this->alert('success', 'Status Update');
+    }
+
+    public function print(ModelsOrder $order){
+        dd($order->status);
     }
 }
