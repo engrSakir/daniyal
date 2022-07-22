@@ -58,6 +58,25 @@ class Order extends Component
         }
     }
 
+    public function increase_qty($array_key){
+        $this->items_array[$array_key]['item_qty']++;
+        $this->alert('success', 'Increase QTY');
+    }
+
+    public function decrease_qty($array_key){
+        if($this->items_array[$array_key]['item_qty'] > 1){
+            $this->items_array[$array_key]['item_qty']--;
+            $this->alert('success', 'Decrease QTY');
+        }else{
+            $this->alert('error', 'Minimum 1 required');
+        }
+    }
+
+    public function remove_item($array_key){
+        unset($this->items_array[$array_key]);
+        $this->alert('success', 'Remove item');
+    }
+
     public function clear_items_array(){
         $this->items_array = [];
         $this->alert('success', 'Clear');

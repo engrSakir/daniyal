@@ -94,25 +94,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($items_array as $item)
+                            @foreach ($items_array as $array_key => $item)
                             <tr>
                                 <td>
                                     {{ $item['item_name'] }} @if($item['sub_category_name']) <sub>({{ $item['sub_category_name'] }})</sub> @endif
-                                    {{-- <hr>
-                                    <span class="badge badge-success shadow-success m-1">+</span>
-                                    <span class="badge badge-success shadow-danger m-1">-</span> --}}
-                                    {{-- <div class="btn-group m-1">
-                                        <button type="button" class="btn btn-outline-danger waves-effect waves-light btn-sm"> <i class="fa fa fa-trash-o"></i> </button>
-                                        <button type="button" class="btn btn-outline-success waves-effect waves-light btn-sm"> <i class="fa fa-music"></i> </button>
-                                     </div> --}}
                                 </td>
                                 <td style="text-align:center;">
-                                    <span class="btn waves-effect waves badge badge-success">+</span>
-                                    <span class="btn waves-effect waves badge badge-warning">-</span>
-                                    <span class="btn waves-effect waves badge badge-danger">~</span>
+                                    <span class="btn waves-effect waves badge badge-success" wire:click="increase_qty({{ $array_key }})">+</span>
+                                    <span class="btn waves-effect waves badge badge-warning" wire:click="decrease_qty({{ $array_key }})">-</span>
+                                    <span class="btn waves-effect waves badge badge-danger" wire:click="remove_item({{ $array_key }})">~</span>
                                 </td>
                                 <td style="text-align:right;">
-                                    {{ $item['item_price'] }}
+                                    {{ $item['item_qty'] }}
                                 </td>
                                 <td style="text-align:right;">
                                     {{ $item['item_price'] }}
