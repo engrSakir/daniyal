@@ -1,8 +1,14 @@
 <div class="container-fluid">
+    <style>
+        .order_selection {
+            height: 4in;
+            overflow: auto;
+        }
+    </style>
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-7">
             <div class="card border border-primary">
-                <div class="card-body">
+                <div class="order_selection">
                     <select class="form-control" wire:model="category_id">
                         <option value="-1">Select Category</option>
                         @foreach ($caregories as $category_option)
@@ -13,7 +19,7 @@
                         Updating Items -----
                     </p>
                     @if($category)
-                    <table class="table table-bordered">
+                    <table class="table table-bordered table-sm">
                         <thead class="">
                             <tr>
                                 <th scope="col">#</th>
@@ -46,16 +52,14 @@
                                 @if($category->has_sub_category)
                                 @foreach ($category->sub_categories as $sub_category)
                                 <td style="text-align: center;">
-                                    <button  wire:click="item_add_or_remove({{ $category_wise_item->item_id }}, {{ $category_wise_item->category_id }}, {{ $sub_category->id }})" type="button"
-                                    class="btn @if(collect($items_array)->where('item_id', $category_wise_item->item_id)->where('category_id', $category_wise_item->category_id)->where('sub_category_id', $sub_category->id)->count()>0) bg-success text-white @else btn-inverse-secondary @endif btn-round waves-effect waves-light m-1">
+                                    <button wire:click="item_add_or_remove({{ $category_wise_item->item_id }}, {{ $category_wise_item->category_id }}, {{ $sub_category->id }})" type="button" class="btn @if(collect($items_array)->where('item_id', $category_wise_item->item_id)->where('category_id', $category_wise_item->category_id)->where('sub_category_id', $sub_category->id)->count()>0) bg-success text-white @else btn-inverse-secondary @endif btn-round waves-effect waves-light">
                                         {{ price_helper($category_wise_item->item_id, $category_wise_item->category_id, $sub_category->id) }}
                                     </button>
                                 </td>
                                 @endforeach
                                 @else
                                 <td style="text-align: center;">
-                                    <button wire:click="item_add_or_remove({{ $category_wise_item->item_id }}, {{ $category_wise_item->category_id }}, {{ null }})" type="button"
-                                        class="btn @if(collect($items_array)->where('item_id', $category_wise_item->item_id)->where('category_id', $category_wise_item->category_id)->where('sub_category_id', null)->count()>0) bg-success text-white @else btn-inverse-secondary @endif btn-round waves-effect waves-light m-1">
+                                    <button wire:click="item_add_or_remove({{ $category_wise_item->item_id }}, {{ $category_wise_item->category_id }}, {{ null }})" type="button" class="btn @if(collect($items_array)->where('item_id', $category_wise_item->item_id)->where('category_id', $category_wise_item->category_id)->where('sub_category_id', null)->count()>0) bg-success text-white @else btn-inverse-secondary @endif btn-round waves-effect waves-light">
                                         {{ $category_wise_item->price }}
                                     </button>
                                 </td>
@@ -77,35 +81,49 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-5">
             <div class="card border border-primary">
-                <div class="">
-                    <table class="table table-bordered">
+                <div class="order_selection">
+                    <table class="table table-bordered table-sm">
                         <thead>
-                          <tr>
-                            <th scope="col">Item</th>
-                            <th scope="col">Price</th>
-                          </tr>
+                            <tr>
+                                <th scope="col">Item</th>
+                                <th scope="col"></th>
+                                <th scope="col">QTY</th>
+                                <th scope="col">Price</th>
+                            </tr>
                         </thead>
                         <tbody>
                             @foreach ($items_array as $item)
                             <tr>
                                 <td>
                                     {{ $item['item_name'] }} @if($item['sub_category_name']) <sub>({{ $item['sub_category_name'] }})</sub> @endif
-                                    <hr>
-                                    <div class="btn-group m-1">
+                                    {{-- <hr>
+                                    <span class="badge badge-success shadow-success m-1">+</span>
+                                    <span class="badge badge-success shadow-danger m-1">-</span> --}}
+                                    {{-- <div class="btn-group m-1">
                                         <button type="button" class="btn btn-outline-danger waves-effect waves-light btn-sm"> <i class="fa fa fa-trash-o"></i> </button>
                                         <button type="button" class="btn btn-outline-success waves-effect waves-light btn-sm"> <i class="fa fa-music"></i> </button>
-                                     </div>
+                                     </div> --}}
                                 </td>
-                                <td>@mdo</td>
-                              </tr>
+                                <td style="text-align:center;">
+                                    <span class="btn waves-effect waves badge badge-success">+</span>
+                                    <span class="btn waves-effect waves badge badge-warning">-</span>
+                                    <span class="btn waves-effect waves badge badge-danger">~</span>
+                                </td>
+                                <td style="text-align:right;">
+                                    {{ $item['item_price'] }}
+                                </td>
+                                <td style="text-align:right;">
+                                    {{ $item['item_price'] }}
+                                </td>
+                            </tr>
                             @endforeach
                         </tbody>
-                      </table>
+                    </table>
                     <hr>
-                    <a href="javascript:void();" class="btn btn-inverse-primary waves-effect waves-light m-1"><i class="fa fa-globe mr-1"></i> Button</a>
-                    <a href="javascript:void();" class="btn btn-primary waves-effect waves-light m-1"><i class="fa fa-star mr-1"></i> Button</a>
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-1" wire:click="clear_items_array"><i class="fa fa-star"></i> Save </button>
+                    <button type="button" class="btn btn-inverse-danger waves-effect waves-light m-1" wire:click="clear_items_array"><i class="fa fa-times"></i> Clear </button>
                 </div>
             </div>
         </div>

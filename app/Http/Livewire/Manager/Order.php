@@ -57,4 +57,9 @@ class Order extends Component
             $this->alert('error', 'Not Found');
         }
     }
+
+    public function clear_items_array(){
+        $this->items_array = [];
+        $this->alert('success', 'Clear');
+    }
 }
