@@ -14,17 +14,17 @@
     <div class="row">
         <div class="col-lg-4">
             <div class="card card-primary">
-             <img src="{{ asset('assets/images/report-card-cover.png') }}" class="card-img-top">
-             <div class="card-body text-center">
-               <h5 class="card-title text-primary">Daily Report</h5>
-               <input type="date" class="form-control form-control-lg @error('date_for_daily_report') border-danger @enderror" wire:model="date_for_daily_report">
-               <hr>
-               <a href="{{ route('manager.daily_report', $date_for_daily_report ?? date('d-m-Y')) }}" class="btn btn-inverse-primary waves-effect waves-light m-1 w-100" target="_blank">
-                <i class="fa fa-globe mr-1"></i>Renerate for {{ $date_for_daily_report ?? date('Y-m-d') }}
-                </a>
-             </div>
-           </div>
-           </div>
+                <img src="{{ asset('assets/images/report-card-cover.png') }}" class="card-img-top">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-primary">Daily Report</h5>
+                    <input type="date" class="form-control form-control-lg @error('date_for_daily_report') border-danger @enderror" wire:model="date_for_daily_report">
+                    <hr>
+                    <a href="{{ route('manager.daily_report', $date_for_daily_report ?? date('d-m-Y')) }}" class="btn btn-inverse-primary waves-effect waves-light m-1 w-100" target="_blank">
+                        <i class="fa fa-globe mr-1"></i>Generate for {{ $date_for_daily_report ?? date('Y-m-d') }}
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!-- End container-fluid-->

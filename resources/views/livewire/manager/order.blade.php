@@ -209,7 +209,7 @@
                         </th>
                         <td>
                             {{ $order->waiter->name ?? 'N/A' }} / @if($order->is_parcel) Parcel @else {{ $order->table->name ?? 'N/A' }} @endif 
-                            <br> <span class="badge badge-success mt-2" style="font-size:20px;">{{ money_format_india($order->price()) }}</span>
+                            <br> <span class="badge @if($order->price() - $order->paid_amount > 0) badge-danger @else badge-success @endif mt-2" style="font-size:20px;">{{ money_format_india($order->price()) }}</span>
                         </td>
                         <td class="text-center">
                             @if($order->is_online && $order->status == 'Pending')
@@ -225,7 +225,7 @@
                             @endif
                             @if($order->status != 'Complete')
                             <select class="form-control form-control-sm" wire:change="change_status({{ $order->id }}, $event.target.value)">
-                                <option value="Penging" @if($order->status == 'Penging') selected @endif> Penging </option>
+                                <option value="Pending" @if($order->status == 'Pending') selected @endif> Pending </option>
                                 <option value="Reject" @if($order->status == 'Reject') selected @endif> Reject </option>
                                 <option value="Cook" @if($order->status == 'Cook') selected @endif> Cook </option>
                                 <option value="Serve" @if($order->status == 'Serve') selected @endif> Serve </option>
