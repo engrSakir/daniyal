@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 
-class PrintCOntroller extends Controller
+class PrintController extends Controller
 {
     public function invoice(Order $order)
     {
@@ -25,8 +25,7 @@ class PrintCOntroller extends Controller
         $blade_file = 'print.daily-report';
         $pdf = PDF::loadView($blade_file, [
             'orders' => Order::whereDate('created_at', Carbon::parse($date))->get(),
-                'file_name' => 'Daily Report',
-                'date' => Carbon::parse($date)->format('d M Y'),
+                'file_name' => 'Daily Report of '.Carbon::parse($date)->format('d M Y'),
         ])->setPaper('A4');
         return $pdf->stream('Daily report download at ' . date('d-m-Y- h-i-s') . '.pdf');
     }

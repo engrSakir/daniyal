@@ -84,8 +84,6 @@
         @foreach ($order->order_items as $order_item)
         @php
         $item = $order_item->category_wise_item->item
-        // $category = $order_item->category_wise_item->category ?? null;
-
         @endphp
         <tr class="item @if ($loop->last) last @endif">
             <td style="text-align:left;">{{ $loop->iteration }}</td>
