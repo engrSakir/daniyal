@@ -13,7 +13,9 @@
         "laravel/helpers": "^1.5",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
-        "livewire/livewire": "^2.10"
+        "livewire/livewire": "^2.10",
+        "pavel-mironchik/laravel-backup-panel": "^2.2",
+        "spatie/laravel-backup": "^8.1"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.12",
