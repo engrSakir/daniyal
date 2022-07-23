@@ -54,6 +54,16 @@
             </td>
         </tr>
     </table>
+    <table style="margin-top: 4px; width:100%;">
+        <tr>
+            <td style="text-align: left; margin-top:10px; color:black; font-size:10px;">
+                <b>#{{ $order->serial_number }}</b>
+            </td>
+            <td style="text-align: right; margin-top:10px; color:black; font-size:10px;">
+                <b>Waiter:</b> {{ $order->waiter->name ?? 'N/A' }}, &nbsp; <b>Table:</b> {{ $order->table->name ?? 'N/A' }}
+            </td>
+        </tr>
+    </table>
     <table id="item-table" style="width: 100%; font-size: 10px; margin-bottom:5px;">
         <tr class="tabletitle">
             <td class="item" style="width: 5%">
@@ -77,16 +87,7 @@
         </tr>
         @endforeach
     </table>
-    <table style="margin-top: 4px; width:100%;">
-        <tr>
-            <td style="text-align: left; margin-top:10px; color:black; font-size:10px;">
-                <b>#{{ $order->serial_number }}</b>
-            </td>
-            <td style="text-align: right; margin-top:10px; color:black; font-size:10px;">
-                <b>Waiter:</b> {{ $order->waiter->name ?? 'N/A' }}, &nbsp; <b>Table:</b> {{ $order->table->name ?? 'N/A' }}
-            </td>
-        </tr>
-    </table>
+   
     @if ($order->is_parcel == true)
     <div class="parcel">
         <p style="font-size: 10px;">
