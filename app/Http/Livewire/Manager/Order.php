@@ -24,6 +24,7 @@ class Order extends Component
     public $items_array = [];
     public $parcel, $phone, $address, $paid_amount, $waiter, $table;
     public $receive_amount, $total_bill, $return_amount;
+    public $selected_order_model_for_edit;
 
     public function render()
     {
@@ -33,12 +34,12 @@ class Order extends Component
 
         $this->total_bill = collect($this->items_array)->sum('item_sub_total_price') ?? 0;
         $this->return_amount = ((int)$this->receive_amount) - $this->total_bill;
-        if($this->return_amount < 0){
+        if ($this->return_amount < 0) {
             $this->paid_amount =  $this->total_bill + $this->return_amount;
-        }else{
+        } else {
             $this->paid_amount =  $this->total_bill;
         }
-        
+
 
         return view('livewire.manager.order', [
             'caregories' => Category::all(),
@@ -48,7 +49,7 @@ class Order extends Component
         ]);
     }
 
-    public function item_add_or_remove($item_id, $category_id, $sub_category_id = null)
+    public function item_add_or_remove($item_id, $category_id, $sub_category_id = null, $qty = 1, $editable_order_item_id = null)
     {
         $category_wise_item = CategoryWiseItem::where([
             'item_id' => $item_id,
@@ -68,12 +69,13 @@ class Order extends Component
                     'sub_category_name' => SubCategory::find($sub_category_id)->name ?? null,
                     'item_single_price' => $category_wise_item->price,
                     'item_sub_total_price' => $category_wise_item->price,
-                    'item_qty' => 1,
+                    'item_qty' => $qty,
                     'category_wise_item_id' => $category_wise_item->id, //main identify key
                     'item_id' => $item_id, //need for btn identify (selected color)
                     'category_id' =>  $category_id, //need for btn identify (selected color)
                     'sub_category_id' =>  $sub_category_id, //need for btn identify (selected color)
                     'offer_id' =>  null,
+                    'editable_order_item_id' =>  $editable_order_item_id,
                 ]);
                 $this->alert('success', 'Select', [
                     'position' => 'bottom-start'
@@ -82,107 +84,154 @@ class Order extends Component
             $this->items_array = array_values($this->items_array);
         } else {
             $this->alert('error', 'Not Found', [
-                'position' => 'bottom-start'
+                'position' => 'center'
             ]);
         }
     }
 
-    public function increase_qty($array_key){
+    public function increase_qty($array_key)
+    {
         $this->items_array[$array_key]['item_qty']++;
-        $this->items_array[$array_key]['item_sub_total_price'] = $this->items_array[$array_key]['item_qty']*$this->items_array[$array_key]['item_single_price'];
+        $this->items_array[$array_key]['item_sub_total_price'] = $this->items_array[$array_key]['item_qty'] * $this->items_array[$array_key]['item_single_price'];
         $this->alert('success', 'Increase QTY', [
             'position' => 'bottom-start'
         ]);
     }
 
-    public function decrease_qty($array_key){
-        if($this->items_array[$array_key]['item_qty'] > 1){
+    public function decrease_qty($array_key)
+    {
+        if ($this->items_array[$array_key]['item_qty'] > 1) {
             $this->items_array[$array_key]['item_qty']--;
-            $this->items_array[$array_key]['item_sub_total_price'] = $this->items_array[$array_key]['item_qty']*$this->items_array[$array_key]['item_single_price'];
+            $this->items_array[$array_key]['item_sub_total_price'] = $this->items_array[$array_key]['item_qty'] * $this->items_array[$array_key]['item_single_price'];
             $this->alert('success', 'Decrease QTY', [
                 'position' => 'bottom-start'
             ]);
-        }else{
+        } else {
             $this->alert('error', 'Minimum 1 required', [
-                'position' => 'bottom-start'
+                'position' => 'center'
             ]);
         }
     }
 
-    public function remove_item($array_key){
+    public function remove_item($array_key)
+    {
         unset($this->items_array[$array_key]);
         $this->alert('success', 'Remove item', [
             'position' => 'bottom-start'
         ]);
     }
 
-    public function clear_items_array(){
+    public function clear_items_array()
+    {
         $this->items_array = [];
+        $this->selected_order_model_for_edit = null;
         $this->alert('success', 'Clear', [
             'position' => 'bottom-start'
         ]);
     }
 
-    public function save_order(){
-        if(empty($this->items_array)){
+    public function save_order()
+    {
+        if (empty($this->items_array)) {
             $this->alert('error', 'Item not found', [
-                'position' => 'bottom-start'
+                'position' => 'center'
             ]);
-        }else{
+        } else {
             $total_order_count_of_this_month = ModelsOrder::select('id')->whereYear('created_at', date('Y'))->whereMonth('created_at', date('m'))->count();
-            $order =  ModelsOrder::create([
-                'creator_id' => Auth::user()->id,
-                'waiter_id' => $this->waiter,
-                'table_id' => $this->parcel ? null : $this->table,
-                'serial_number' => date('ym').sprintf("%'.05d", $total_order_count_of_this_month+1), //220700001
-                'status' => 'Cook', //Penging, Reject, Cook, Serve, Complete
-                'is_online' => false,
-                'is_parcel' => $this->parcel ?? false,
-                'customer_phone' =>  $this->phone,
-                'customer_address' => $this->parcel ? $this->address : null,
-                'paid_amount' => $this->paid_amount,
-            ]);
+            if ($this->selected_order_model_for_edit) {
+                $order = $this->selected_order_model_for_edit;
+                // Delete all removed order_items from db
+                OrderItem::whereIn('id', $this->selected_order_model_for_edit->order_items()->whereNotIn('id', array_column($this->items_array, 'editable_order_item_id'))->pluck('id'))->delete();
+            } else {
+                $order = new ModelsOrder();
+                $order->creator_id = Auth::user()->id;
+                $order->serial_number = date('ym') . sprintf("%'.05d", $total_order_count_of_this_month + 1); //220700001
+                $order->status = 'Cook'; //Penging, Reject, Cook, Serve, Complete
+            }
+            $order->waiter_id = $this->waiter;
+            $order->table_id = $this->parcel ? null : $this->table;
+            $order->is_online = false;
+            $order->is_parcel = $this->parcel ?? false;
+            $order->customer_phone =  $this->phone;
+            $order->customer_address = $this->parcel ? $this->address : null;
+            $order->paid_amount = $this->paid_amount;
+            $order->save();
 
             //Items
-            foreach($this->items_array as $item){
+            foreach ($this->items_array as $item) {
                 $category_wise_item = CategoryWiseItem::find($item['category_wise_item_id']);
-                OrderItem::create([
-                    'order_id' => $order->id,
-                    'category_wise_item_id' => $category_wise_item->id,
-                    'original_price' => $category_wise_item->price,
-                    'offer_id' => $item['offer_id'],
-                    'selling_price' => $item['offer_id'] ? $item['item_single_price'] : $category_wise_item->price,
-                    'quantity' => $item['item_qty'],
-                ]);
+
+                if ($item['editable_order_item_id']) {
+                    $order_item = OrderItem::find($item['editable_order_item_id']);
+                } else {
+                    $order_item = new OrderItem();
+                }
+                $order_item->order_id = $order->id;
+                $order_item->category_wise_item_id = $category_wise_item->id;
+                $order_item->original_price = $category_wise_item->price;
+                $order_item->offer_id = $item['offer_id'];
+                $order_item->selling_price = $item['offer_id'] ? $item['item_single_price'] : $category_wise_item->price;
+                $order_item->quantity = $item['item_qty'];
+                $order_item->save();
             }
 
             //Make clear
             $this->phone = $this->address = $this->parcel = $this->waiter = $this->table = null;
             $this->receive_amount = $this->total_bill = $this->return_amount = 0;
             $this->items_array = [];
+            $this->selected_order_model_for_edit = null;
             $this->alert('success', 'Saved', [
                 'position' => 'bottom-start'
             ]);
-
         }
     }
 
-    public function change_status(ModelsOrder $order, $status){
+    public function change_status(ModelsOrder $order, $status)
+    {
         $order->update(['status' => $status]);
         $this->alert('success', 'Status Update', [
             'position' => 'bottom-start'
         ]);
     }
 
-    public function print(ModelsOrder $order){
+    public function print(ModelsOrder $order)
+    {
         dd($order->status);
     }
 
-    public function edit(ModelsOrder $order){
+    public function edit(ModelsOrder $order)
+    {
+        if ($order->status == 'Complete') {
+            $this->alert('error', 'Order is not editable', [
+                'position' => 'center'
+            ]);
+        } else {
+            $this->selected_order_model_for_edit = $order;
+            $this->waiter = $order->waiter_id;
+            $this->table = $order->table_id;
+            $this->parcel = $order->is_parcel;
+            $this->phone = $order->phone;
+            $this->address = $order->address;
+            $this->paid_amount = $order->paid_amount;
 
+            $this->items_array = [];
+            
+            foreach ($order->order_items as $order_item) {
+                $this->item_add_or_remove(
+                    $order_item->category_wise_item->item_id, 
+                    $order_item->category_wise_item->category_id, 
+                    $order_item->category_wise_item->sub_category_id, 
+                    $order_item->quantity, 
+                    $order_item->id);
+            }
+            $this->alert('success', 'Select for edit', [
+                'position' => 'bottom-start'
+            ]);
+        }
     }
 
-    public function delete(ModelsOrder $order){
+    public function delete(ModelsOrder $order)
+    {
         $order->delete();
         $this->alert('success', 'Successfully deleted', [
             'position' => 'bottom-start'

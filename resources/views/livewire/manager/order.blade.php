@@ -209,7 +209,7 @@
                         </th>
                         <td>
                             {{ $order->waiter->name ?? 'N/A' }} / @if($order->is_parcel) Parcel @else {{ $order->table->name ?? 'N/A' }} @endif 
-                            <br> <span class="badge badge-success mt-2" style="font-size:20px;">{{ money_format_india($order->price()) }}2800</span>
+                            <br> <span class="badge badge-success mt-2" style="font-size:20px;">{{ money_format_india($order->price()) }}</span>
                         </td>
                         <td class="text-center">
                             @if($order->is_online && $order->status == 'Pending')
@@ -237,9 +237,9 @@
                             <div class="btn-group m-1">
                                 <a href="{{ route('manager.invoice', $order) }}" class="btn btn-outline-primary waves-effect waves-light" target="_blank"> <i class="zmdi zmdi-print"></i> </a>
                                 {{-- <button type="button" class="btn btn-outline-warning waves-effect waves-light" wire:click="print({{ $order->id }})"> <i class="zmdi zmdi-print"></i> </button> --}}
-                                @if($order->status != 'Complete')
-                                <button type="button" class="btn btn-outline-danger waves-effect waves-light"> <i class="zmdi zmdi-edit"></i> </button>
-                                @endif
+                               
+                                <button type="button"  @if($order->status == 'Complete') disabled @endif class="btn btn-outline-danger waves-effect waves-light" wire:click="edit({{ $order->id }})"> <i class="zmdi zmdi-edit"></i> </button>
+                                
                                 <button type="button" class="btn btn-outline-danger waves-effect waves-light" wire:click="delete({{ $order->id }})" onclick="confirm('Are you sure you want to remove ?') || event.stopImmediatePropagation()"> <i class="fa fa fa-trash-o"></i> </button>
                              </div>
                         </th>
