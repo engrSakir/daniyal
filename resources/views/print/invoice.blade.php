@@ -56,7 +56,7 @@
     <table style="font-size: 10px; width:100%;">
         <tr>
             <td>
-                Date: {{ $order->created_at->format('d.m.Y') }} 
+                Date: {{ $order->created_at->format('d.m.Y') }}
             </td>
             <td style="text-align: right;">
                 Time: {{ $order->created_at->format('h:i:s A') }}
@@ -84,10 +84,12 @@
         @foreach ($order->order_items as $order_item)
         @php
         $item = $order_item->category_wise_item->item
+        // $category = $order_item->category_wise_item->category ?? null;
+
         @endphp
         <tr class="item @if ($loop->last) last @endif">
             <td style="text-align:left;">{{ $loop->iteration }}</td>
-            <td style="text-align:left;">{{ $item->name ?? '#' }}</td>
+            <td style="text-align:left;">{{ $item->name }} <sub>{{ $order_item->category_wise_item->sub_category_name() }}</sub> </td>
             <td style="text-align:right;"> {{ $order_item->selling_price }} </td>
             <td style="text-align:right;"> {{ $order_item->quantity }} </td>
             <td style="text-align:right;"> {{ round($order_item->selling_price * $order_item->quantity, 2) }} </td>

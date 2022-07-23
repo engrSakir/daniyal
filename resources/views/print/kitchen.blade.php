@@ -72,7 +72,7 @@
         @endphp
         <tr class="item @if ($loop->last) last @endif">
             <td style="text-align:left;">{{ $loop->iteration }}</td>
-            <td style="text-align:left;">{{ $item->name ?? '#' }}</td>
+            <td style="text-align:left;">{{ $item->name }} <sub>{{ $order_item->category_wise_item->sub_category_name() }}</td>
             <td style="text-align:right;"> {{ $order_item->quantity }} </td>
         </tr>
         @endforeach

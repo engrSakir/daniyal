@@ -20,4 +20,8 @@ class CategoryWiseItem extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
+    public function sub_category_name(){
+        return SubCategory::find($this->sub_category_id)->name ?? null;
+    }
+
 }
