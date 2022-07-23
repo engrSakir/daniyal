@@ -27,13 +27,28 @@
     </div>
     <!-- End Breadcrumb-->
     <div class="row">
+        <div class="col-12 col-sm-6 col-lg-6 col-xl-3">
+            <div class="card bg-danger shadow-danger">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="media-body text-left">
+                            <h4 class="text-white">{{ money_format_india($today_delete_orders) }}</h4>
+                            <span class="text-white">Today Delete Orders</span>
+                        </div>
+                        <i class="icon-like text-white"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         @foreach ($categories as $category)
         <div class="col-12 col-sm-6 col-lg-6 col-xl-3">
             <div class="card bg-primary shadow-primary">
                 <div class="card-body">
                     <div class="media">
                         <div class="media-body text-left">
-                            <h4 class="text-white">0000</h4>
+                            <h4 class="text-white">{{ money_format_india($category->total_sell_of_today()) }}</h4>
                             <span class="text-white">{{ str_limit($category->name, 16, '...') }}</span>
                         </div>
                         <i class="icon-like text-white"></i>

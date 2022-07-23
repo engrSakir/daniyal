@@ -236,9 +236,11 @@
                         <th class="text-right">
                             <div class="btn-group m-1">
                                 <a href="{{ route('manager.invoice', $order) }}" class="btn btn-outline-primary waves-effect waves-light" target="_blank"> <i class="zmdi zmdi-print"></i> </a>
-                                <button type="button" class="btn btn-outline-warning waves-effect waves-light" wire:click="print({{ $order->id }})"> <i class="zmdi zmdi-print"></i> </button>
-                                <button type="button" class="btn btn-outline-primary waves-effect waves-light"> <i class="zmdi zmdi-edit"></i> </button>
-                                <button type="button" class="btn btn-outline-danger waves-effect waves-light" onclick="confirm('Are you sure you want to remove ?') || event.stopImmediatePropagation()"> <i class="fa fa fa-trash-o"></i> </button>
+                                {{-- <button type="button" class="btn btn-outline-warning waves-effect waves-light" wire:click="print({{ $order->id }})"> <i class="zmdi zmdi-print"></i> </button> --}}
+                                @if($order->status != 'Complete')
+                                <button type="button" class="btn btn-outline-danger waves-effect waves-light"> <i class="zmdi zmdi-edit"></i> </button>
+                                @endif
+                                <button type="button" class="btn btn-outline-danger waves-effect waves-light" wire:click="delete({{ $order->id }})" onclick="confirm('Are you sure you want to remove ?') || event.stopImmediatePropagation()"> <i class="fa fa fa-trash-o"></i> </button>
                              </div>
                         </th>
                       </tr>

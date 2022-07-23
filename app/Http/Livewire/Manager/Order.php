@@ -10,6 +10,7 @@ use App\Models\OrderItem;
 use App\Models\SubCategory;
 use App\Models\Table;
 use App\Models\Waiter;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -43,7 +44,7 @@ class Order extends Component
             'caregories' => Category::all(),
             'waiters' => Waiter::all(),
             'tables' => Table::all(),
-            'orders' => ModelsOrder::latest()->get(),
+            'orders' => ModelsOrder::whereDate('created_at', Carbon::today())->latest()->get(),
         ]);
     }
 
@@ -58,7 +59,9 @@ class Order extends Component
         if ($category_wise_item) {
             if (in_array($category_wise_item->id, array_column($this->items_array, 'category_wise_item_id'), true)) {
                 unset($this->items_array[array_search($category_wise_item->id, array_column($this->items_array, 'category_wise_item_id'))]);
-                $this->alert('success', 'Remove');
+                $this->alert('success', 'Remove', [
+                    'position' => 'bottom-start'
+                ]);
             } else {
                 array_push($this->items_array, [
                     'item_name' => $category_wise_item->item->name,
@@ -72,43 +75,59 @@ class Order extends Component
                     'sub_category_id' =>  $sub_category_id, //need for btn identify (selected color)
                     'offer_id' =>  null,
                 ]);
-                $this->alert('success', 'Select');
+                $this->alert('success', 'Select', [
+                    'position' => 'bottom-start'
+                ]);
             }
             $this->items_array = array_values($this->items_array);
         } else {
-            $this->alert('error', 'Not Found');
+            $this->alert('error', 'Not Found', [
+                'position' => 'bottom-start'
+            ]);
         }
     }
 
     public function increase_qty($array_key){
         $this->items_array[$array_key]['item_qty']++;
         $this->items_array[$array_key]['item_sub_total_price'] = $this->items_array[$array_key]['item_qty']*$this->items_array[$array_key]['item_single_price'];
-        $this->alert('success', 'Increase QTY');
+        $this->alert('success', 'Increase QTY', [
+            'position' => 'bottom-start'
+        ]);
     }
 
     public function decrease_qty($array_key){
         if($this->items_array[$array_key]['item_qty'] > 1){
             $this->items_array[$array_key]['item_qty']--;
             $this->items_array[$array_key]['item_sub_total_price'] = $this->items_array[$array_key]['item_qty']*$this->items_array[$array_key]['item_single_price'];
-            $this->alert('success', 'Decrease QTY');
+            $this->alert('success', 'Decrease QTY', [
+                'position' => 'bottom-start'
+            ]);
         }else{
-            $this->alert('error', 'Minimum 1 required');
+            $this->alert('error', 'Minimum 1 required', [
+                'position' => 'bottom-start'
+            ]);
         }
     }
 
     public function remove_item($array_key){
         unset($this->items_array[$array_key]);
-        $this->alert('success', 'Remove item');
+        $this->alert('success', 'Remove item', [
+            'position' => 'bottom-start'
+        ]);
     }
 
     public function clear_items_array(){
         $this->items_array = [];
-        $this->alert('success', 'Clear');
+        $this->alert('success', 'Clear', [
+            'position' => 'bottom-start'
+        ]);
     }
 
     public function save_order(){
         if(empty($this->items_array)){
-            $this->alert('error', 'Item not found');
+            $this->alert('error', 'Item not found', [
+                'position' => 'bottom-start'
+            ]);
         }else{
             $total_order_count_of_this_month = ModelsOrder::select('id')->whereYear('created_at', date('Y'))->whereMonth('created_at', date('m'))->count();
             $order =  ModelsOrder::create([
@@ -141,14 +160,18 @@ class Order extends Component
             $this->phone = $this->address = $this->parcel = $this->waiter = $this->table = null;
             $this->receive_amount = $this->total_bill = $this->return_amount = 0;
             $this->items_array = [];
-            $this->alert('success', 'Saved');
+            $this->alert('success', 'Saved', [
+                'position' => 'bottom-start'
+            ]);
 
         }
     }
 
     public function change_status(ModelsOrder $order, $status){
         $order->update(['status' => $status]);
-        $this->alert('success', 'Status Update');
+        $this->alert('success', 'Status Update', [
+            'position' => 'bottom-start'
+        ]);
     }
 
     public function print(ModelsOrder $order){
@@ -157,5 +180,12 @@ class Order extends Component
 
     public function edit(ModelsOrder $order){
 
+    }
+
+    public function delete(ModelsOrder $order){
+        $order->delete();
+        $this->alert('success', 'Successfully deleted', [
+            'position' => 'bottom-start'
+        ]);
     }
 }

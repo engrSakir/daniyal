@@ -24,4 +24,8 @@ class CategoryWiseItem extends Model
         return SubCategory::find($this->sub_category_id)->name ?? null;
     }
 
+    public function order_items(){
+        return $this->hasMany(OrderItem::class, 'category_wise_item_id', 'id');
+    }
+
 }
