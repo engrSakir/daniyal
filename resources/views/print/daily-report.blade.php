@@ -34,8 +34,8 @@
                     @endforeach
                 </ol>
             </td>
-            <td style="text-align: right;">{{ number_format($order->paid_amount) }}</td>
-            <td style="text-align: right;">{{ number_format( $order->price() - $order->paid_amount) }}</td>
+            <td style="text-align: right;">{{ number_format($order->paid_amount) }} &nbsp;</td>
+            <td style="text-align: right;">{{ number_format( $order->price() - $order->paid_amount) }} &nbsp;</td>
         </tr>
         @endforeach
     </tbody>

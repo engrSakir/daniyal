@@ -8,49 +8,48 @@
         }
 
         @media print {
-            .table{
+            .table {
                 border-collapse: collapse;
             }
-    
-            .table tr td{
+
+            .table tr td {
                 border: 1px solid #ccc;
                 padding: 5px;
-               
+
             }
-    
-            .table tr:last-child td{
+
+            .table tr:last-child td {
                 border: 1px solid white;
-            } 
+            }
         }
 
         header {
-                position: fixed;
-                top: -60px;
-                left: 0px;
-                right: 0px;
-                height: 50px;
+            position: fixed;
+            top: -60px;
+            left: 0px;
+            right: 0px;
+            height: 50px;
 
-                /** Extra personal styles **/
-                background-color: #AE292F;
-                color: white;
-                text-align: center;
-                line-height: 35px;
-            }
+            /** Extra personal styles **/
+            background-color: #AE292F;
+            color: white;
+            text-align: center;
+            line-height: 35px;
+        }
 
-            footer {
-                position: fixed; 
-                bottom: -60px; 
-                left: 0px; 
-                right: 0px;
-                height: 50px; 
+        footer {
+            position: fixed;
+            bottom: -60px;
+            left: 0px;
+            right: 0px;
+            height: 50px;
 
-                /** Extra personal styles **/
-                background-color: #AE292F;
-                color: white;
-                text-align: center;
-                line-height: 35px;
-            }
-
+            /** Extra personal styles **/
+            background-color: #AE292F;
+            color: white;
+            text-align: center;
+            line-height: 35px;
+        }
     </style>
 </head>
 <body>
@@ -80,4 +79,3 @@
     @yield('content')
 </body>
 </html>
-
