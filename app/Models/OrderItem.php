@@ -12,6 +12,10 @@ class OrderItem extends Model
     use HasFactory, SoftDeletes;
     protected $guarded = [];
 
+    public function category_wise_item(){
+        return $this->belongsTo(CategoryWiseItem::class, 'category_wise_item_id', 'id');
+    }
+
     public static function boot()
     {
         parent::boot();

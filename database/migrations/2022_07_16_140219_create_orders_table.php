@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('customer_phone')->nullable();
             $table->string('customer_address')->nullable();
             $table->double('paid_amount');
+            $table->double('discount_fixed_amount')->default(0);
+            $table->double('discount_percentage')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

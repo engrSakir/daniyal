@@ -20,6 +20,10 @@ class Order extends Model
         return $this->belongsTo(Waiter::class, 'waiter_id', 'id');
     }
 
+    public function order_items(){
+        return $this->hasMany(OrderItem::class, 'order_id', 'id');
+    }
+
     public function price(){
         return 0;
     }

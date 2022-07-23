@@ -22,6 +22,7 @@ return new class extends Migration
             $table->double('original_price')->default(0);
             $table->double('selling_price')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
