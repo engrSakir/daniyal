@@ -35,6 +35,10 @@ Route::group(['middleware' => ['manager','auth'], 'as' => 'manager.', 'prefix' =
     Route::get('table', Manager\Table::class)->name('table');
     Route::get('waiter', Manager\Waiter::class)->name('waiter');
     Route::get('menu', Manager\Menu::class)->name('menu');
+    Route::get('report', Manager\Report::class)->name('report');
+
 
     Route::get('invoice/{order}', [PrintCOntroller::class, 'invoice'])->name('invoice');
+    Route::get('report/daily/{date}', [PrintCOntroller::class, 'daily_report'])->name('daily_report');
+
 });
