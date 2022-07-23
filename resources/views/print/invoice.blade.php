@@ -101,7 +101,7 @@
             Total price
         </td>
         <td class="payment" style="text-align:right;">
-            {{ $order->price() }}
+            <b>{{ money_format_india($order->price()) }}</b>
         </td>
         </tr>
         {{-- <tr class="">

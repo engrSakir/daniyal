@@ -25,7 +25,7 @@ class Order extends Model
     }
 
     public function price(){
-        return 0;
+        return $this->order_items->sum('selling_price');
     }
 
     public static function boot()

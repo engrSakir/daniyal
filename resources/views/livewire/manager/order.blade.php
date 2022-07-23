@@ -201,10 +201,15 @@
                 <tbody>
                     @foreach ($orders as $order)
                     <tr>
-                        <th scope="row">{{ $order->serial_number }}</th>
+                        <th scope="row">
+                            {{ $order->serial_number }} <br>
+                            @if($order->status != 'Complete')
+                                {{ $order->created_at->diffForHumans() }}
+                            @endif
+                        </th>
                         <td>
                             {{ $order->waiter->name ?? 'N/A' }} / @if($order->is_parcel) Parcel @else {{ $order->table->name ?? 'N/A' }} @endif 
-                            <br> <span class="badge badge-success mt-2" style="font-size:20px;">{{ $order->price() }}2800</span>
+                            <br> <span class="badge badge-success mt-2" style="font-size:20px;">{{ money_format_india($order->price()) }}2800</span>
                         </td>
                         <td class="text-center">
                             @if($order->is_online && $order->status == 'Pending')
