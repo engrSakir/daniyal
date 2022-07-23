@@ -7,7 +7,7 @@
                     <h2 class="text-white">Hi !</h2>
                     <h1 class="text-white">Welcome</h1>
                     <p class="card-text text-white text-justify pt-3">
-                        This software can help you create invoices, product categories, purchase orders, receipt lists, payment slips, and print barcode labels. A supermarket management software system configured for a warehouse, store, or product line helps generate revenue for your business.
+
                     </p>
                 </div>
             </div>
