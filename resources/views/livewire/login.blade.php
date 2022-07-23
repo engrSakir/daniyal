@@ -1,11 +1,11 @@
 <div id="wrapper">
     <div class="card-authentication2 mx-auto my-5">
         <div class="card-group shadow-lg">
-            <div class="card mb-0 bg-danger">
+            <div class="card mb-0" style="background-color: #AE292F;">
                 {{-- <div class="bg-signin2"></div> --}}
                 <div class="card-img-overlay rounded-left my-5">
-                    <h2 class="text-white">Login ...</h2>
-                    <h1 class="text-white">To Your Shop</h1>
+                    <h2 class="text-white">Hi !</h2>
+                    <h1 class="text-white">Welcome</h1>
                     <p class="card-text text-white text-justify pt-3">
                         This software can help you create invoices, product categories, purchase orders, receipt lists, payment slips, and print barcode labels. A supermarket management software system configured for a warehouse, store, or product line helps generate revenue for your business.
                     </p>
@@ -47,7 +47,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-6 text-right">
-                                    <a href="authentication-reset-password2.html">Reset Password</a>
+                                    {{-- <a href="authentication-reset-password2.html">Reset Password</a> --}}
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary shadow-primary btn-block waves-effect waves-light">Sign In</button>

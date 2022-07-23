@@ -23,6 +23,19 @@
     <!-- Custom Style-->
     <link href="{{ asset('assets/css/app-style.css') }}" rel="stylesheet" />
     @livewireStyles
+
+    <style>
+        .gradient-ibiza {
+            background-color: #AE292F;
+        }
+
+        .gradient-ibiza {
+            background: #AE292F;
+            background: -webkit-linear-gradient(45deg, #AE292F, #AE292F) !important;
+            background: linear-gradient(45deg, #AE292F, #AE292F) !important;
+        }
+
+    </style>
 </head>
 
 <body>
