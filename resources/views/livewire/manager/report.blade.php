@@ -20,7 +20,7 @@
                <input type="date" class="form-control form-control-lg @error('date_for_daily_report') border-danger @enderror" wire:model="date_for_daily_report">
                <hr>
                <a href="{{ route('manager.daily_report', $date_for_daily_report ?? date('d-m-Y')) }}" class="btn btn-inverse-primary waves-effect waves-light m-1 w-100" target="_blank">
-                <i class="fa fa-globe mr-1"></i>Download for {{ $date_for_daily_report ?? date('Y-m-d') }}
+                <i class="fa fa-globe mr-1"></i>Renerate for {{ $date_for_daily_report ?? date('Y-m-d') }}
                 </a>
              </div>
            </div>
