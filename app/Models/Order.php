@@ -28,6 +28,18 @@ class Order extends Model
         return $this->order_items->sum('selling_price');
     }
 
+    public function due(){
+        return ($this->price() - $this->paid_amount);
+    }
+    
+    public function is_due(){
+        if($this->due() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public static function boot()
     {
         parent::boot();
