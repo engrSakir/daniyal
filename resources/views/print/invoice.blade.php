@@ -135,6 +135,14 @@
             </td>
         </tr> --}}
     </table>
+    @if ($order->is_parcel == true)
+    <div class="parcel" style="margin-top: 10px;">
+        <p style="font-size: 10px;">
+            Phone: <b>{{ $order->customer_phone ?? 'N/A' }}</b> <br>
+            Address: {{ $order->customer_address ?? 'N/A' }} <br>
+        </p>
+    </div>
+    @endif
     <div style="margin-top: 10px;">
         <p style="text-align: center; color:black;">
             HOME DELIVERY AVAILABLE
@@ -143,14 +151,6 @@
             Developed by <b>Datatech BD Ltd. (01304734623)</b>
         </p>
     </div>
-    @if ($order->is_parcel == true)
-    <div class="parcel">
-        <p style="font-size: 10px;">
-            Phone: <b>{{ $order->customer_phone ?? 'N/A' }}</b> <br>
-            Address: {{ $order->customer_address ?? 'N/A' }} <br>
-        </p>
-    </div>
-    @endif
 </body>
 
 </html>

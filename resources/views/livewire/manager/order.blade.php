@@ -206,7 +206,7 @@
                         <th scope="row">
                             {{ $order->serial_number }} <br>
                             @if($order->status != 'Complete')
-                                {{ $order->created_at->diffForHumans() }}
+                                <small>{{ $order->created_at->diffForHumans() }}</small>
                             @endif
                         </th>
                         <td>
