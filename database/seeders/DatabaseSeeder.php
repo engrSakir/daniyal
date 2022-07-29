@@ -40,6 +40,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ItemSeed15Dessert::class);
         $this->call(ItemSeed16Juice::class);
         $this->call(ItemSeed17SetMenu::class);
+        $this->call(ItemSeed18PlatterMenu::class);
         $this->call(TableSeeder::class);
         $this->call(WaiterSeeder::class);
     }
