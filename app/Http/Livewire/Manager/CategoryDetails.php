@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\CategoryWiseItem;
 use App\Models\Item;
 use App\Models\SubCategory;
+use Carbon\Carbon;
 use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
@@ -62,12 +63,14 @@ class CategoryDetails extends Component
         $subCategory->delete();
     }
 
+
     public function create_item()
     {
         foreach (SubCategory::where('category_id', $this->category->id)->get() as $sub_category) {
             array_push($this->sub_category_wise_price_array, [
                 'sub_category_id' => $sub_category->id,
-                'price' => null
+                'price' => null,
+                'shortcut_number' => null
             ]);
         }
     }
@@ -77,7 +80,7 @@ class CategoryDetails extends Component
     public $selected_model;
     public function submit_item()
     {
-        $validate_data = $this->validate([
+        $this->validate([
             'offline_active' => 'required|boolean',
             'online_active' => 'required|boolean',
             'name' => 'required|string',
@@ -86,14 +89,15 @@ class CategoryDetails extends Component
             'description' => 'nullable',
         ]);
 
-        $validate_data['category_id'] = $this->category->id;
-
         $item = Item::firstOrCreate(
             [
                 'name' =>  $this->name,
-                'category_id' => $this->category->id
             ],
-            $validate_data
+            [
+                'name' => $this->name,
+                'image' => $this->image,
+                'description' => $this->description,
+            ],
         );
         $category_wise_item = [];
         if ($this->category->has_sub_category) {
@@ -101,16 +105,29 @@ class CategoryDetails extends Component
                 if ($sub_category_wise_price['price']) {
                     array_push($category_wise_item, [
                         'item_id' => $item->id,
+                        'category_id' => $this->category->id,
                         'sub_category_id' => $sub_category_wise_price['sub_category_id'],
                         'price' => $sub_category_wise_price['price'],
+                        'offline_active' => $this->offline_active,
+                        'offline_active' => $this->online_active,
+                        'shortcut_number' => $sub_category_wise_price['shortcut_number'],
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),
+
                     ]);
                 }
             }
-        }else{
+        } else {
             $category_wise_item = [
                 'item_id' => $item->id,
+                'category_id' => $this->category->id,
                 'sub_category_id' => null,
                 'price' => $this->price,
+                'offline_active' => $this->offline_active,
+                'offline_active' => $this->online_active,
+                'shortcut_number' => $this->shortcut_number,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ];
         }
         CategoryWiseItem::insert($category_wise_item);

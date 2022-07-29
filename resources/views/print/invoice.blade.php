@@ -140,6 +140,7 @@
         <p style="font-size: 10px;">
             Phone: <b>{{ $order->customer_phone ?? 'N/A' }}</b> <br>
             Address: {{ $order->customer_address ?? 'N/A' }} <br>
+            Delivery Charge: {{ $order->delivery_fee ?? 'N/A' }} <br>
         </p>
     </div>
     @endif

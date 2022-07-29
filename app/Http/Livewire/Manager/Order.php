@@ -141,7 +141,6 @@ class Order extends Component
                 'delivery_charge' => 'required_if:parcel,1',
                 'table' => 'required_without:parcel',
                 'waiter' => 'required_without:parcel',
-
             ]);
             $total_order_count_of_this_month = ModelsOrder::select('id')->whereYear('created_at', date('Y'))->whereMonth('created_at', date('m'))->count();
             if ($this->selected_order_model_for_edit) {
@@ -161,6 +160,7 @@ class Order extends Component
             $order->customer_phone =  $this->phone;
             $order->customer_address = $this->parcel ? $this->address : null;
             $order->paid_amount = $this->paid_amount;
+            $order->delivery_fee = $this->parcel ? $this->delivery_charge : 0;
             $order->save();
 
             //Items
@@ -183,7 +183,7 @@ class Order extends Component
 
             //Make clear
             $this->phone = $this->address = $this->parcel = $this->waiter = $this->table = null;
-            $this->receive_amount = $this->total_bill = $this->return_amount = 0;
+            $this->receive_amount = $this->total_bill = $this->return_amount = $this->delivery_charge = 0;
             $this->items_array = [];
             $this->selected_order_model_for_edit = null;
             $this->alert('success', 'Saved', [
