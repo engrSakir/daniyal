@@ -95,21 +95,17 @@
             <div class="card border border-primary">
                     <form class="mb-2">
                         <div class="form-row">
-                            <div class="form-group col-md-5">
-                                <input type="text" class="form-control form-control-square form-control-sm" placeholder="Phone" wire:model="phone">
-                            </div>
                             <div class="form-group col-md-6">
-                                @if($parcel)
-                                <input type="text" class="form-control form-control-square form-control-sm" placeholder="Address" wire:model="address">
-                                @endif
+                                <input type="text" class="form-control form-control-square form-control-sm @error('phone') border-danger @enderror" placeholder="Phone" wire:model="phone">
                             </div>
-                            <div class="form-group col-md-1">
-                                <input type="checkbox" id="parcel" class="filled-in chk-col-success" wire:model="parcel" value="1">
-                                <label for="parcel"></label>
+                            
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control form-control-square form-control-sm @error('address') border-danger @enderror" placeholder="Address" wire:model="address">
                             </div>
+                           
                             <div class="form-group col-md-6">
                                 <label for="waiter" class="sr-only">Waiter</label>
-                                <select class="form-control form-control-square form-control-sm" id="waiter" wire:model="waiter">
+                                <select class="form-control form-control-square form-control-sm @error('waiter') border-danger @enderror" id="waiter" wire:model="waiter">
                                     <option value="">Select Waiter</option>
                                     @foreach ($waiters as $waiter)
                                     <option value="{{ $waiter->id }}">{{ $waiter->name }}</option>
@@ -117,9 +113,11 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
-                                @if(!$parcel)
+                                @if($parcel)
+                                <input type="number" class="form-control form-control-square form-control-sm @error('delivery_charge') border-danger @enderror" placeholder="Delivery Charge" wire:model="delivery_charge">
+                                @else
                                 <label for="table" class="sr-only">Table</label>
-                                <select class="form-control form-control-square form-control-sm" id="table" wire:model="table">
+                                <select class="form-control form-control-square form-control-sm @error('table') border-danger @enderror" id="table" wire:model="table">
                                     <option value="">Select Tale</option>
                                     @foreach ($tables as $table)
                                     <option value="{{ $table->id }}">{{ $table->name }}</option>
@@ -128,13 +126,17 @@
                                 @endif
                             </div>
                             <div class="form-group col-md-4">
-                                <input type="number" class="form-control form-control-square text-right form-control-sm" wire:model="receive_amount" placeholder="Receive">
+                                <input type="number" class="form-control form-control-square text-right form-control-sm @error('receive_amount') border-danger @enderror" wire:model="receive_amount" placeholder="Receive">
                             </div>
                             <div class="form-group col-md-4">
-                                <input type="number" class="form-control form-control-square bg-success text-white text-right form-control-sm" readonly wire:model="total_bill" placeholder="Bill">
+                                <input type="number" class="form-control form-control-square bg-success text-white text-right form-control-sm @error('total_bill') border-danger @enderror" readonly wire:model="total_bill" placeholder="Bill">
                             </div>
-                            <div class="form-group col-md-4">
-                                <input type="number" class="form-control form-control-square text-right form-control-sm" wire:model="return_amount" readonly placeholder="Return">
+                            <div class="form-group col-md-3">
+                                <input type="number" class="form-control form-control-square text-right form-control-sm @error('return_amount') border-danger @enderror" wire:model="return_amount" readonly placeholder="Return">
+                            </div>
+                            <div class="form-group col-md-1">
+                                <input type="checkbox" id="parcel" class="filled-in chk-col-success @error('parcel') border-danger @enderror" wire:model="parcel" value="1">
+                                <label for="parcel"></label>
                             </div>
                         </div>
                     </form>
@@ -208,8 +210,13 @@
                             @endif
                         </th>
                         <td>
-                            {{ $order->waiter->name ?? 'N/A' }} / @if($order->is_parcel) Parcel @else {{ $order->table->name ?? 'N/A' }} @endif 
-                            <br> <span class="badge @if($order->price() - $order->paid_amount > 0) badge-danger @else badge-success @endif mt-2" style="font-size:20px;">{{ money_format_india($order->price()) }}</span>
+                            @if($order->waiter->name ?? false) <span class="badge badge-info">Waiter: {{ $order->waiter->name ?? ''}}</span> @endif
+                            @if($order->is_parcel) 
+                            <img src="{{ asset('assets/images/deliveryman.png') }}" alt="" style="width:30px;">
+                            @else 
+                            @if($order->table->name ?? false) <span class="badge badge-info">Table: {{ $order->table->name ?? ''}}</span> @endif
+                            @endif 
+                            <br> <span class="badge @if($order->price() - $order->paid_amount > 0) badge-danger @else badge-success @endif mt-2" style="font-size:20px;">Bill: {{ money_format_india($order->price()) }}</span>
                         </td>
                         <td class="text-center">
                             @if($order->is_online && $order->status == 'Pending')

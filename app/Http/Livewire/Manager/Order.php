@@ -22,7 +22,7 @@ class Order extends Component
 
     public $category, $category_id;
     public $items_array = [];
-    public $parcel, $phone, $address, $paid_amount, $waiter, $table;
+    public $parcel, $phone, $address, $paid_amount, $waiter, $table, $delivery_charge;
     public $receive_amount, $total_bill, $return_amount;
     public $selected_order_model_for_edit;
 
@@ -137,6 +137,12 @@ class Order extends Component
                 'position' => 'center'
             ]);
         } else {
+            $this->validate([
+                'delivery_charge' => 'required_if:parcel,1',
+                'table' => 'required_without:parcel',
+                'waiter' => 'required_without:parcel',
+
+            ]);
             $total_order_count_of_this_month = ModelsOrder::select('id')->whereYear('created_at', date('Y'))->whereMonth('created_at', date('m'))->count();
             if ($this->selected_order_model_for_edit) {
                 $order = $this->selected_order_model_for_edit;
