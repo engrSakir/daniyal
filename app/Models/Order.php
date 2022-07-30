@@ -25,7 +25,9 @@ class Order extends Model
     }
 
     public function price(){
-        return $this->order_items->sum('selling_price');
+        return $this->order_items->sum(function($item){
+            return $item->selling_price * $item->quantity;
+        });
     }
 
     public function due(){
