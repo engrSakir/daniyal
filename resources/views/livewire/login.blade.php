@@ -9,6 +9,9 @@
                     <p class="card-text text-white text-justify pt-3">
 
                     </p>
+                    <p class="text-center mt-5">
+                        <img src="{{ asset('assets/images/datatechbdlogo.png') }}" alt="" style="background-color:white; padding:10px; border-radius:10px;">
+                    </p>
                 </div>
             </div>
 

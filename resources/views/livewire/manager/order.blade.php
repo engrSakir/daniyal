@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <style>
         .item_box {
-            height: 450px;
+            height: 415px;
             overflow: auto;
         }
 
@@ -18,16 +18,17 @@
     <div class="row">
         <div class="col-lg-7">
             <div class="card border border-primary">
+                <select class="form-control" wire:model="category_id">
+                    <option value="-1">Select Category</option>
+                    @foreach ($caregories as $category_option)
+                    <option value="{{ $category_option->id }}">{{ $category_option->name }}</option>
+                    @endforeach
+                </select>
+                <p class="text-danger" wire:loading wire:target="category_id">
+                    Updating Items -----
+                </p>
                 <div class="item_box">
-                    <select class="form-control" wire:model="category_id">
-                        <option value="-1">Select Category</option>
-                        @foreach ($caregories as $category_option)
-                        <option value="{{ $category_option->id }}">{{ $category_option->name }}</option>
-                        @endforeach
-                    </select>
-                    <p class="text-danger" wire:loading wire:target="category_id">
-                        Updating Items -----
-                    </p>
+                    
                     @if($category)
                     <table class="table table-bordered table-sm">
                         <thead class="">
@@ -79,14 +80,7 @@
                         </tbody>
                     </table>
                     @else
-                    <div class="alert alert-outline-warning alert-dismissible mt-3" role="alert">
-                        <div class="alert-icon">
-                            <i class="icon-exclamation"></i>
-                        </div>
-                        <div class="alert-message">
-                            <span><strong>Hey!</strong> Please select a category</span>
-                        </div>
-                    </div>
+                    <img src="{{ asset('assets/images/order-page-bg.png') }}" class="w-100 mt-3" alt="">
                     @endif
                 </div>
             </div>
