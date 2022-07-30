@@ -22,6 +22,7 @@ Route::get('/', Login::class)->name('login')->middleware('guest');
 
 Route::group(['middleware' => ['admin', 'auth'], 'as' => 'admin.', 'prefix' => 'admin/'], function (){
     Route::get('dashboard', Admin\Dashoard::class)->name('dashboard');
+    Route::get('manager', Admin\Manager::class)->name('manager');
 });
 
 Route::group(['middleware' => ['manager','auth'], 'as' => 'manager.', 'prefix' => 'manager/'], function (){

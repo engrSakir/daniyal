@@ -4,9 +4,13 @@ namespace App\Http\Livewire\Manager;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Hash;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
+
 
 class Profile extends Component
 {
+    use LivewireAlert;
+    
     public $old_password;
     public $new_password;
     public $confirm_password;
