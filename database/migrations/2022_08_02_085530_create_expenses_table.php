@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('category_id');
             $table->foreignId('creator_id');
             $table->double('amount');
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->longText('description')->nullable();
             $table->string('image')->nullable();
             $table->datetime('date');
