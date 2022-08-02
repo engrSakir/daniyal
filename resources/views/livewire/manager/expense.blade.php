@@ -17,6 +17,20 @@
     </div>
     <!-- End Breadcrumb-->
     <div class="row">
+        <div class="col-12 col-sm-6 col-lg-6 col-xl-3">
+            <div class="card gradient-bloody">
+              <div class="card-body p-4">
+                <div class="media">
+                <div class="media-body text-left">
+                  <h4 class="text-white">{{ money_format_india($expenses->sum('amount')) }}</h4>
+                  <span class="text-white">Total Expenses</span>
+                </div>
+                <div class="align-self-center w-icon"><i class="icon-wallet text-white"></i></div>
+              </div>
+              </div>
+            </div>
+          </div>
+
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
