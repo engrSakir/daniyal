@@ -20,6 +20,7 @@
                 <li><a href="{{ route('manager.order') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Order</span></a></li>
                 {{-- <li><a href="{{ route('manager.pos') }}" class="waves-effect" target="_blank"><i class="fa fa-circle-o text-aqua"></i> <span>POS</span></a></li> --}}
                 <li><a href="{{ route('manager.menu') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Menu</span></a></li>
+                <li><a href="{{ route('manager.expense') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Expense</span></a></li>
                 <li><a href="{{ route('manager.report') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Report</span></a></li>
                 <li class="">
                     <a href="javaScript:void();" class="waves-effect">
