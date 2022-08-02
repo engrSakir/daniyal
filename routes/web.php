@@ -38,6 +38,7 @@ Route::group(['middleware' => ['manager','auth'], 'as' => 'manager.', 'prefix' =
     Route::get('menu', Manager\Menu::class)->name('menu');
     Route::get('report', Manager\Report::class)->name('report');
     Route::get('profile', Manager\Profile::class)->name('profile');
+    Route::get('expense', Manager\Expense::class)->name('expense');
 
 
     Route::get('invoice/{order}', [PrintController::class, 'invoice'])->name('invoice');

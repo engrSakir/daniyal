@@ -43,5 +43,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ItemSeed18PlatterMenu::class);
         $this->call(TableSeeder::class);
         $this->call(WaiterSeeder::class);
+        $this->call(ExpenseCategorySeeder::class);
     }
 }
