@@ -52,7 +52,7 @@
                                     </td>
                                     <td>
                                         @foreach ($expenses->where('category_id', $expense_category->id) as $expense)
-                                            {{ $expense->amount }}, 
+                                        <span class="badge badge-danger m-1" title="{{ $expense->title ?? 'N/A' }}"> {{ $expense->amount }}</span> 
                                         @endforeach
                                     </td>
                                 </tr>
