@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PosController;
 use App\Http\Controllers\PrintController;
 use App\Http\Livewire\Login;
 use App\Http\Livewire\SuperAdmin;
@@ -27,7 +28,6 @@ Route::group(['middleware' => ['admin', 'auth'], 'as' => 'admin.', 'prefix' => '
 
 Route::group(['middleware' => ['manager','auth'], 'as' => 'manager.', 'prefix' => 'manager/'], function (){
     Route::get('dashboard', Manager\Dashoard::class)->name('dashboard');
-    Route::get('pos', Manager\POS::class)->name('pos');
     Route::get('order', Manager\Order::class)->name('order');
     Route::get('category', Manager\Category::class)->name('category');
     Route::get('category-details/{category}', Manager\CategoryDetails::class)->name('category_details');
@@ -39,6 +39,9 @@ Route::group(['middleware' => ['manager','auth'], 'as' => 'manager.', 'prefix' =
     Route::get('report', Manager\Report::class)->name('report');
     Route::get('profile', Manager\Profile::class)->name('profile');
     Route::get('expense', Manager\Expense::class)->name('expense');
+
+    Route::get('pos', [PosController::class, 'index'])->name('pos');
+
 
 
     Route::get('invoice/{order}', [PrintController::class, 'invoice'])->name('invoice');

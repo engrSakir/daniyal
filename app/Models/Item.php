@@ -16,6 +16,10 @@ class Item extends Model
         return $this->hasMany(SubItem::class, 'item_id', 'id');
     }
 
+    public function category_wise_items(){
+        return $this->hasMany(CategoryWiseItem::class, 'item_id', 'id');
+    }
+
     public static function boot()
     {
         parent::boot();
