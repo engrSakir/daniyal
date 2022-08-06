@@ -7,7 +7,7 @@
             }
 
             .calculation_box {
-                height: 480px;
+                height: 420px;
                 overflow: auto;
             }
 
@@ -109,8 +109,8 @@
 
                         </tbody>
                     </table>
-                    <button type="button" class="btn btn-primary btn-lg btn-block" style="width: 100%;" onclick="save_invoice()">Save Invoice</button>
                 </div>
+                <button type="button" class="btn btn-primary btn-lg btn-block" style="width: 100%;" onclick="save_invoice()">Save Invoice</button>
             </div>
             {{-- <div class="card mt-3">
                 <div class="card-header">
