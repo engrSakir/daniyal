@@ -101,7 +101,7 @@
 
         basket = [];
 
-        // get_from_basket(basket, item_number) [0].. for data and [1] for array key
+        // check_from_basket(basket, item_number) [0].. for data and [1] for array key
         function category_wise_items_modal_open(item_id, item_name) {
             $("#category_wise_items_modal_title").text(item_name);
             let modal_item_html = '';
@@ -154,38 +154,38 @@
 
         function add_to_basket(category_wise_item_id) {
             let item_info = get_item_details_by_category_wise_item_id(category_wise_item_id)
-            if (get_from_basket(category_wise_items, category_wise_item_id)[0]) {
-                if (get_from_basket(basket, category_wise_item_id)) { //increase qty
-                    basket[get_from_basket(basket, category_wise_item_id)[1]]['quantity'] += 1;
+            if (check_from_basket(category_wise_items, category_wise_item_id)[0]) {
+                if (check_from_basket(basket, category_wise_item_id)) { //increase qty
+                    basket[check_from_basket(basket, category_wise_item_id)[1]]['quantity'] += 1;
                 } else { //add as new in basket
                     basket.push({id: category_wise_item_id, name: item_info.name, price: item_info.price, quantity: 1});
                 }
             } else {
                 Swal.fire('দুঃখিত', 'এই নাম্বারের তালিকা ভুক্ত আইটেম নেই', 'info')
             }
-            basker_render();
+            basket_render();
         }
 
         function remove_from_basket(category_wise_item_id) {
-            if (get_from_basket(basket, category_wise_item_id)) {
-                if (basket[get_from_basket(basket, category_wise_item_id)[1]]['quantity'] > 1)
-                    basket[get_from_basket(basket, category_wise_item_id)[1]]['quantity'] -= 1;
+            if (check_from_basket(basket, category_wise_item_id)) {
+                if (basket[check_from_basket(basket, category_wise_item_id)[1]]['quantity'] > 1)
+                    basket[check_from_basket(basket, category_wise_item_id)[1]]['quantity'] -= 1;
             } else {
                 Swal.fire('দুঃখিত', 'এখন পর্যন্ত বাছাই করাই হয়নি', 'info')
             }
-            basker_render();
+            basket_render();
         }
 
         function remove_all_to_basket(category_wise_item_id) {
-            if (get_from_basket(basket, category_wise_item_id)) {
-                basket.splice(get_from_basket(basket, category_wise_item_id)[1], 1)
+            if (check_from_basket(basket, category_wise_item_id)) {
+                basket.splice(check_from_basket(basket, category_wise_item_id)[1], 1)
             } else {
                 Swal.fire('দুঃখিত' , 'এখন পর্যন্ত বাছাই করাই হয়নি', 'info')
             }
-            basker_render();
+            basket_render();
         }
 
-        function get_from_basket(array_collection, category_wise_item_id) {
+        function check_from_basket(array_collection, category_wise_item_id) {
             result = null;
             $.map(array_collection, function(collection_item, index) {
                 if (collection_item.id == category_wise_item_id) {
@@ -195,7 +195,7 @@
             return result;
         }
 
-        function basker_render() {
+        function basket_render() {
             var html = '';
             var total_price = 0;
             if (basket.length > 0) {
@@ -209,7 +209,7 @@
                         <td style="text-align: right;" class="price">` + item.price + `</td>
                         <td style="text-align: right;">
                             <input type="hidden" class="item_number" value="` + item.id + `">
-                            <input type="number" style="width: 80px;" class="form-control form-control-sm quantity" value="` + item.quantity + `">
+                            <input type="number" style="width: 80px;" class="form-control form-control-sm quantity" minimum="1" value="` + item.quantity + `">
                         </td>
                         <td style="text-align: right;" class="sub_total">` + (item.price * item.quantity) + `</td>
                         <td style="text-align: right;">
@@ -233,11 +233,17 @@
             if (quantity == '' || quantity == null) {
                 quantity = 0;
             }
-            if (get_from_basket(basket, item_number)) {
-                basket[get_from_basket(basket, item_number)[1]]['quantity'] = quantity;
+            if (check_from_basket(basket, item_number)) {
+                basket[check_from_basket(basket, item_number)[1]]['quantity'] = quantity;
             } else {
                 Swal.fire('দুঃখিত', 'এখন পর্যন্ত বাছাই করাই হয়নি', 'info')
             }
+
+            var total_price = 0;
+            $.map(basket, function(item, index) {
+                total_price += item.price * item.quantity;
+            });
+            document.getElementById("total_price").innerHTML = total_price + ' টাকা';
         });
 
         $('.item_search_by_id_field').on('input', function() {
