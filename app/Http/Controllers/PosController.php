@@ -55,15 +55,17 @@ class PosController extends Controller
 
                 //Items
                 foreach ($item_list as $item) {
-                    $category_wise_item = CategoryWiseItem::find($item['id']);
-                    $order_item = new OrderItem();
-                    $order_item->order_id = $order->id;
-                    $order_item->category_wise_item_id = $category_wise_item->id;
-                    $order_item->original_price = $category_wise_item->price;
-                    $order_item->offer_id = $item['offer_id'];
-                    $order_item->selling_price = $item['offer_id'] ? $item['item_single_price'] : $category_wise_item->price;
-                    $order_item->quantity = $item['quantity'];
-                    $order_item->save();
+                    if($item['quantity'] > 0){
+                        $category_wise_item = CategoryWiseItem::find($item['id']);
+                        $order_item = new OrderItem();
+                        $order_item->order_id = $order->id;
+                        $order_item->category_wise_item_id = $category_wise_item->id;
+                        $order_item->original_price = $category_wise_item->price;
+                        $order_item->offer_id = $item['offer_id'];
+                        $order_item->selling_price = $item['offer_id'] ? $item['item_single_price'] : $category_wise_item->price;
+                        $order_item->quantity = $item['quantity'];
+                        $order_item->save();
+                    }
                 }
 
                 $response = [
