@@ -105,15 +105,14 @@
         function category_wise_items_modal_open(item_id, item_name) {
             $("#category_wise_items_modal_title").text(item_name);            
             let modal_item_html = '';
-            $.grep(category_wise_items, function(item) {
-                if(item.item_id == item_id){
+            $.grep(category_wise_items, function(category_wise_item) {
+                if(category_wise_item.item_id == item_id){
                     // console.log(item)
                     let sub_category_name = null;
-                    if(item.sub_category_id){
+                    if(category_wise_item.sub_category_id){
                         $.grep(sub_categories, function(sub_category) {
-                            if(sub_category.id == item.sub_category_id){
-                                // console.log(sub_category)
-                                modal_item_html += '<button type="button" class="btn btn-primary m-1">'+ sub_category.name +' = '+ item.price +' TAKA </button>'; 
+                            if(sub_category.id == category_wise_item.sub_category_id){
+                                modal_item_html += '<button type="button" class="btn btn-primary m-1" onclick="add_to_basket('+category_wise_item.id+')">'+ sub_category.name +' = '+ category_wise_item.price +' TAKA </button>'; 
                             }
                         });
                     }
@@ -122,25 +121,60 @@
             $("#category_wise_items_modal_body").html(modal_item_html);            
         }
 
-        function add_to_basket(item_number) {
-            if (get_from_basket(items, item_number)[0]) {
-                if (get_from_basket(basket, item_number)) { //increase qty
-                    basket[get_from_basket(basket, item_number)[1]]['quantity'] += 1;
-                } else { //add as new in basket
-                    basket.push({
-                        item_number: get_from_basket(items, item_number)[0].item_number
-                        , name: get_from_basket(items, item_number)[0].name
-                        , price: get_from_basket(items, item_number)[0].price
-                        , quantity: 1
-                    , });
+        function get_item_details_by_category_wise_item_id(category_wise_item_id) {
+            let item_info = [];
+            item_info['category_wise_item_id'] = category_wise_item_id;
+            item_info['name'] = null;
+            item_info['price'] = null;
+            item_info['sub_category'] = null;
+
+            $.grep(category_wise_items, function(category_wise_item) {
+                if(category_wise_item.id == category_wise_item_id){
+                    //We find category wise item ** now need to find item and sub category
+                    item_info['price'] = category_wise_item.price;
+                    if(category_wise_item.item_id){
+                        //Find Item
+                        $.grep(items, function(item) {
+                            if(item.id == category_wise_item.item_id){
+                                item_info['name'] = item.name;
+                            }
+                        });
+                    }
+                    if(category_wise_item.sub_category_id){
+                        //Find sub category
+                        $.grep(sub_categories, function(sub_category) {
+                            if(sub_category.id == category_wise_item.sub_category_id){
+                                item_info['sub_category'] = sub_category.name;
+                            }
+                        });
+                    }
                 }
-            } else {
-                Swal.fire(
-                    'দুঃখিত'
-                    , 'এই নাম্বারের তালিকা ভুক্ত আইটেম নেই'
-                    , 'info')
-            }
-            basker_render();
+            });
+            return item_info;
+        }
+
+        function add_to_basket(category_wise_item_id) {
+            let item_info = get_item_details_by_category_wise_item_id(category_wise_item_id)
+            console.log(item_info);
+            // if (get_from_basket(category_wise_items, category_wise_item_id)[0]) {
+            //     if (get_from_basket(basket, category_wise_item_id)) { //increase qty
+            //         basket[get_from_basket(basket, category_wise_item_id)[1]]['quantity'] += 1;
+            //     } else { //add as new in basket
+            //         console.log(get_from_basket(category_wise_items, category_wise_item_id));
+            //         basket.push({
+            //             category_wise_item_id: get_from_basket(category_wise_items, category_wise_item_id)[0].category_wise_item_id
+            //             , name: get_from_basket(category_wise_items, category_wise_item_id)[0].name
+            //             , price: get_from_basket(category_wise_items, category_wise_item_id)[0].price
+            //             , quantity: 1
+            //         , });
+            //     }
+            // } else {
+            //     Swal.fire(
+            //         'দুঃখিত'
+            //         , 'এই নাম্বারের তালিকা ভুক্ত আইটেম নেই'
+            //         , 'info')
+            // }
+            // basker_render();
         }
 
         function remove_from_basket(item_number) {
@@ -169,11 +203,33 @@
             basker_render();
         }
 
-        function get_from_basket(array_collection, item_number) {
+        function get_from_basket(array_collection, category_wise_item_id) {
             result = null;
-            $.map(array_collection, function(item, index) {
-                if (item.item_number == item_number) {
-                    result = [item, index]
+            $.map(array_collection, function(category_wise_item, index) {
+                if (category_wise_item.id == category_wise_item_id) {
+                    // console.log(category_wise_item, category_wise_items);
+                    // category_wise_item['name'] =
+
+                    $.grep(category_wise_items, function(category_wise_item) {
+                        if(category_wise_item.item_id == item_id){
+                            // console.log(item)
+                            let sub_category_name = null;
+                            if(category_wise_item.sub_category_id){
+                                $.grep(sub_categories, function(sub_category) {
+                                    if(sub_category.id == category_wise_item.sub_category_id){
+                                        // console.log(sub_category)
+                                        modal_item_html += '<button type="button" class="btn btn-primary m-1" onclick="add_to_basket('+category_wise_item.id+')">'+ sub_category.name +' = '+ category_wise_item.price +' TAKA </button>'; 
+                                    }
+                                });
+                            }
+                        }
+                    });
+                    
+                    
+
+
+                    //
+                    result = [category_wise_item, index]
                 }
             });
             return result;
@@ -226,6 +282,14 @@
                     , 'info')
             }
             // basker_render();
+        });
+
+        $('.item_search_by_id_field').on('input', function() {
+            $(".item").hide();
+            $(".item_id_"+$(this).val()).show();
+            if(!$(this).val()){
+                $(".item").show();
+            }
         });
 
     </script>

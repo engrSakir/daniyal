@@ -6,21 +6,21 @@
                 Online Order <b>({{ $online_pending_order }}) </b>
             </a>
             @endif
+            <input type="text" class="form-control item_search_by_id_field" placeholder="Item ID">
         </div>
         <div class="card-body item-card">
             <div class="row">
                 @foreach ($items as $item)
-                <div class="col-3">
+                <div class="col-3 item item_id_{{ $item->id }}">
                     <code>{{ $item->category_wise_items_count ?? 'not' }}</code>
-                    <div class="card m-1 hoverable" @if($item->category_wise_items_count == 1) onclick="add_to_basket({{ $item->item_number }})"
+                    <div class="card m-1 hoverable" @if($item->category_wise_items_count == 1) onclick="add_to_basket({{ $item->category_wise_items()->first()->id }})"
                         @else
                         data-bs-toggle="modal" data-bs-target="#category_wise_items_modal"
                         onclick="category_wise_items_modal_open({{ $item->id }}, '{{ $item->name }}')"
                         @endif>
                         <img class="card-img-top rounded mx-auto d-block" height="90px;" style="margin-bottom: -10px;" src="{{ asset($item->image ?? 'assets/images/food-icon.png') }}">
                         <div class="card-body text-center">
-                            <p class="card-text" style="margin-bottom: -5px;">
-                                {{ $item->id }}) {{ $item->name }}</p>
+                            <p class="card-text" style="margin-bottom: -5px;">{{ $item->name }}</p>
                             <span class="badge bg-primary">{{ $item->price }}</span>
                         </div>
                     </div>
