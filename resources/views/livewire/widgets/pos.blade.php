@@ -322,6 +322,7 @@
                                 timer: 1500
                             });
                             printJS(data.invoice_url)
+                            Livewire.emit('updateOrder')
                         },
                         error: function() {
                             console.log(data);

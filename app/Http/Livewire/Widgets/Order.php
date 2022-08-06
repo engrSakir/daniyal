@@ -12,6 +12,8 @@ class Order extends Component
 {
     use LivewireAlert, WithFileUploads;
 
+    protected $listeners = ['updateOrder' => 'render'];
+
     public function render()
     {
         return view('livewire.widgets.order',[
@@ -34,4 +36,5 @@ class Order extends Component
             'position' => 'bottom-start'
         ]);
     }
+
 }
