@@ -59,8 +59,6 @@
 
 <script>
     function save_invoice(){
-        console.log(basket)
-
         if(basket.length > 0){
             $.ajax({
                 type: 'GET', //THIS NEEDS TO BE GET
