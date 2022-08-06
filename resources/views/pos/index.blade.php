@@ -55,7 +55,7 @@
             cursor: pointer;
         }
 
-        #item_number {
+        #category_wise_item_id {
             width: 90%;
             border: 2px solid rgb(248, 31, 2);
             border-radius: 10px;
@@ -101,7 +101,7 @@
 
         basket = [];
 
-        // check_from_basket(basket, item_number) [0].. for data and [1] for array key
+        // check_from_basket(basket, category_wise_item_id) [0].. for data and [1] for array key
         function category_wise_items_modal_open(item_id, item_name) {
             $("#category_wise_items_modal_title").text(item_name);
             let modal_item_html = '';
@@ -208,7 +208,7 @@
                         <td style="font-size:12px;">` + item.id + '- ' + item.name + `</td>
                         <td style="text-align: right;" class="price">` + item.price + `</td>
                         <td style="text-align: right;">
-                            <input type="hidden" class="item_number" value="` + item.id + `">
+                            <input type="hidden" class="category_wise_item_id" value="` + item.id + `">
                             <input type="number" style="width: 80px;" class="form-control form-control-sm quantity" minimum="1" value="` + item.quantity + `">
                         </td>
                         <td style="text-align: right;" class="sub_total">` + (item.price * item.quantity) + `</td>
@@ -228,13 +228,13 @@
         $('#basket_table').on('keyup change', '.quantity', function() {
             let quantity = $(this).val();
             let price = $(this).parent().parent().find('.price').text();
-            let item_number = $(this).parent().find('.item_number').val();
+            let category_wise_item_id = $(this).parent().find('.category_wise_item_id').val();
             $(this).parent().parent().find('.sub_total').text(quantity * price);
             if (quantity == '' || quantity == null) {
                 quantity = 0;
             }
-            if (check_from_basket(basket, item_number)) {
-                basket[check_from_basket(basket, item_number)[1]]['quantity'] = quantity;
+            if (check_from_basket(basket, category_wise_item_id)) {
+                basket[check_from_basket(basket, category_wise_item_id)[1]]['quantity'] = quantity;
             } else {
                 Swal.fire('দুঃখিত', 'এখন পর্যন্ত বাছাই করাই হয়নি', 'info')
             }
