@@ -12,7 +12,6 @@
             <div class="row">
                 @foreach ($items as $item)
                 <div class="col-3 item item_id_{{ $item->id }}">
-                    <code>{{ $item->category_wise_items_count ?? 'not' }}</code>
                     <div class="card m-1 hoverable" @if($item->category_wise_items_count == 1) onclick="add_to_basket({{ $item->category_wise_items()->first()->id }})"
                         @else
                         data-bs-toggle="modal" data-bs-target="#category_wise_items_modal"

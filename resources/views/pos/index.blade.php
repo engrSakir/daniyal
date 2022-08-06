@@ -125,7 +125,7 @@
             item_info['id'] = category_wise_item_id;
             item_info['name'] = null;
             item_info['price'] = null;
-            item_info['sub_category'] = null;
+            item_info['sub_category'] = '';
 
             $.grep(category_wise_items, function(category_wise_item) {
                 if(category_wise_item.id == category_wise_item_id){
@@ -158,7 +158,7 @@
                 if (check_from_basket(basket, category_wise_item_id)) { //increase qty
                     basket[check_from_basket(basket, category_wise_item_id)[1]]['quantity'] += 1;
                 } else { //add as new in basket
-                    basket.push({id: category_wise_item_id, name: item_info.name, price: item_info.price, quantity: 1});
+                    basket.push({id: category_wise_item_id, name: item_info.name, sub_category: item_info.sub_category, price: item_info.price, quantity: 1});
                 }
             } else {
                 Swal.fire('দুঃখিত', 'এই নাম্বারের তালিকা ভুক্ত আইটেম নেই', 'info')
@@ -200,12 +200,13 @@
             var total_price = 0;
             if (basket.length > 0) {
                 $.map(basket, function(item, index) {
+                    console.log(item)
                     total_price += item.price * item.quantity;
                     html +=
                         `
                     <tr class="item_card">
                         <td>` + (index + 1) + `</td>
-                        <td style="font-size:12px;">` + item.id + '- ' + item.name + `</td>
+                        <td style="font-size:12px;">`+ item.name + `<sub>`+item.sub_category+`</sub></td>
                         <td style="text-align: right;" class="price">` + item.price + `</td>
                         <td style="text-align: right;">
                             <input type="hidden" class="category_wise_item_id" value="` + item.id + `">

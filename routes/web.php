@@ -41,6 +41,9 @@ Route::group(['middleware' => ['manager','auth'], 'as' => 'manager.', 'prefix' =
     Route::get('expense', Manager\Expense::class)->name('expense');
 
     Route::get('pos', [PosController::class, 'index'])->name('pos');
+    Route::get('/pos/save/{item_list}', [PosController::class, 'save']);
+
+
 
 
 

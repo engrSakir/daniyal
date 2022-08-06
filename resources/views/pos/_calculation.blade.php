@@ -1,15 +1,5 @@
 <div class="col-5">
     <div class="card">
-        <div class="card-header bg-danger text-white d-flex justify-content-between">
-            <div>
-                <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Sales receipt ID" name="sales_receipt_id" wire:model="sales_receipt_id">
-                    <div class="input-group-append">
-                        <a href="#" class="btn btn-success" target="_blank"><i class="fas fa-print"></i> PRINT</a>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="card-body item-card">
             <div class="row">
                 <div class="col-md-12 d-flex justify-content-center">
@@ -27,9 +17,9 @@
                     </style>
                     <div id="total_price">00.00 টাকা</div>
                 </div>
-                <div class="col-md-12 d-flex justify-content-center mt-2">
+                {{-- <div class="col-md-12 d-flex justify-content-center mt-2">
                     <input type="number" class="form-control text-center" id="item_number" placeholder="item Number" onkeypress="return onlyNumberKey(event)">
-                </div>
+                </div> --}}
             </div>
             <table class="table table-striped table-hover mt-1">
                 <thead class="bg-info text-white">
@@ -69,19 +59,20 @@
 
 <script>
     function save_invoice(){
+        console.log(basket)
+
         if(basket.length > 0){
             $.ajax({
                 type: 'GET', //THIS NEEDS TO BE GET
-                url: '/pos/save/'+encodeURIComponent(JSON.stringify(basket)),
+                url: '/manager/pos/save/'+encodeURIComponent(JSON.stringify(basket)),
                 success: function (data) {
-                    // console.log(data)
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title: 'সফলভাবে তৈরি হয়েছে',
+                        title: 'Success',
                         showConfirmButton: false,
                         timer: 1500
-                    })
+                    });
                     printJS(data.invoice_url)
                 },
                 error: function() {
@@ -89,13 +80,9 @@
                 }
             });
             basket=[];
-            document.getElementById("item_number").value = '';
-            basker_render();
+            basket_render();
         }else{
-            Swal.fire(
-                'দুঃখিত',
-                'বিক্রয়ের জন্য বাছাই করাই হয়নি',
-                'info')
+            Swal.fire( 'Sorry', 'Selected item not found', 'info')
         }
     }
 
@@ -108,35 +95,17 @@
     }
 
     document.addEventListener("keypress", function(event) {
-        // console.log(event.which);
-        item_number = document.getElementById("item_number").value;
-        if (item_number) {
-            if (event.keyCode == 43) { // 43 means +
-                add_to_basket(item_number);
-            }
-            if (event.keyCode == 45) { // 45 means -
-                remove_from_basket(item_number);
-            }
-            if (event.keyCode == 47) { // 47 means /
-                remove_all_to_basket(item_number);
-            }
-        }
         if (event.keyCode == 115 || event.keyCode == 13) { // 115 means s or enter
             save_invoice();
         }
-        if (event.keyCode == 32) { // 115 means space
-            document.getElementById('item_number').value = '';
-            document.getElementById('item_number').focus();
-            document.getElementById('item_number').select();
-        }
         if (event.keyCode == 99) { // 99 means c
             basket=[];
-            basker_render();
+            basket_render();
             document.getElementById("item_number").value = '';
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
-                title: 'বাছাই করা আইটেমগুলো বাদ দেয়া হয়েছে',
+                title: 'Clear ....',
                 showConfirmButton: false,
                 timer: 1500
             })
