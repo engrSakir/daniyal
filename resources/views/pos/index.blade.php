@@ -1,3 +1,5 @@
+@extends('layouts.app')
+@section('content')
 <!doctype html>
 <html lang="en">
 <head>
@@ -79,6 +81,7 @@
     <div class="row">
         @include('pos._item')
         @include('pos._calculation')
+        @livewire('manager.order')
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
@@ -265,3 +268,4 @@
 
 </body>
 </html>
+@endsection
