@@ -28,7 +28,7 @@
                     Updating Items -----
                 </p>
                 <div class="item_box">
-                    
+
                     @if($category)
                     <table class="table table-bordered table-sm">
                         <thead class="">
@@ -92,11 +92,11 @@
                             <div class="form-group col-md-6">
                                 <input type="text" class="form-control form-control-square form-control-sm @error('phone') border-danger @enderror" placeholder="Phone" wire:model="phone">
                             </div>
-                            
+
                             <div class="form-group col-md-6">
                                 <input type="text" class="form-control form-control-square form-control-sm @error('address') border-danger @enderror" placeholder="Address" wire:model="address">
                             </div>
-                           
+
                             <div class="form-group col-md-6">
                                 <label for="waiter" class="sr-only">Waiter</label>
                                 <select class="form-control form-control-square form-control-sm @error('waiter') border-danger @enderror" id="waiter" wire:model="waiter">
@@ -205,11 +205,11 @@
                         </th>
                         <td>
                             @if($order->waiter->name ?? false) <span class="badge badge-info">Waiter: {{ $order->waiter->name ?? ''}}</span> @endif
-                            @if($order->is_parcel) 
+                            @if($order->is_parcel)
                             <img src="{{ asset('assets/images/deliveryman.png') }}" alt="" style="width:30px;">
-                            @else 
+                            @else
                             @if($order->table->name ?? false) <span class="badge badge-info">Table: {{ $order->table->name ?? ''}}</span> @endif
-                            @endif 
+                            @endif
                             <br> <span class="badge @if($order->price() - $order->paid_amount > 0) badge-danger @else badge-success @endif mt-2" style="font-size:20px;">Bill: {{ money_format_india($order->price()) }}</span>
                         </td>
                         <td class="text-center">
@@ -238,9 +238,9 @@
                             <div class="btn-group m-1">
                                 <a href="{{ route('manager.invoice', $order) }}" class="btn btn-outline-primary waves-effect waves-light" target="_blank"> <i class="zmdi zmdi-print"></i> </a>
                                 {{-- <button type="button" class="btn btn-outline-warning waves-effect waves-light" wire:click="print({{ $order->id }})"> <i class="zmdi zmdi-print"></i> </button> --}}
-                               
+
                                 <button type="button"  @if($order->status == 'Complete') disabled @endif class="btn btn-outline-danger waves-effect waves-light" wire:click="edit({{ $order->id }})"> <i class="zmdi zmdi-edit"></i> </button>
-                                
+
                                 <button type="button" class="btn btn-outline-danger waves-effect waves-light" wire:click="delete({{ $order->id }})" onclick="confirm('Are you sure you want to remove ?') || event.stopImmediatePropagation()"> <i class="fa fa fa-trash-o"></i> </button>
                              </div>
                         </th>
