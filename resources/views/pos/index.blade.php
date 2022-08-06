@@ -103,27 +103,26 @@
 
         // get_from_basket(basket, item_number) [0].. for data and [1] for array key
         function category_wise_items_modal_open(item_id, item_name) {
-            $("#category_wise_items_modal_title").text(item_name);            
+            $("#category_wise_items_modal_title").text(item_name);
             let modal_item_html = '';
             $.grep(category_wise_items, function(category_wise_item) {
                 if(category_wise_item.item_id == item_id){
-                    // console.log(item)
                     let sub_category_name = null;
                     if(category_wise_item.sub_category_id){
                         $.grep(sub_categories, function(sub_category) {
                             if(sub_category.id == category_wise_item.sub_category_id){
-                                modal_item_html += '<button type="button" class="btn btn-primary m-1" onclick="add_to_basket('+category_wise_item.id+')">'+ sub_category.name +' = '+ category_wise_item.price +' TAKA </button>'; 
+                                modal_item_html += '<button type="button" class="btn btn-primary m-1" onclick="add_to_basket('+category_wise_item.id+')">'+ sub_category.name +' = '+ category_wise_item.price +' TAKA </button>';
                             }
                         });
                     }
                 }
             });
-            $("#category_wise_items_modal_body").html(modal_item_html);            
+            $("#category_wise_items_modal_body").html(modal_item_html);
         }
 
         function get_item_details_by_category_wise_item_id(category_wise_item_id) {
             let item_info = [];
-            item_info['category_wise_item_id'] = category_wise_item_id;
+            item_info['id'] = category_wise_item_id;
             item_info['name'] = null;
             item_info['price'] = null;
             item_info['sub_category'] = null;
@@ -155,81 +154,42 @@
 
         function add_to_basket(category_wise_item_id) {
             let item_info = get_item_details_by_category_wise_item_id(category_wise_item_id)
-            console.log(item_info);
-            // if (get_from_basket(category_wise_items, category_wise_item_id)[0]) {
-            //     if (get_from_basket(basket, category_wise_item_id)) { //increase qty
-            //         basket[get_from_basket(basket, category_wise_item_id)[1]]['quantity'] += 1;
-            //     } else { //add as new in basket
-            //         console.log(get_from_basket(category_wise_items, category_wise_item_id));
-            //         basket.push({
-            //             category_wise_item_id: get_from_basket(category_wise_items, category_wise_item_id)[0].category_wise_item_id
-            //             , name: get_from_basket(category_wise_items, category_wise_item_id)[0].name
-            //             , price: get_from_basket(category_wise_items, category_wise_item_id)[0].price
-            //             , quantity: 1
-            //         , });
-            //     }
-            // } else {
-            //     Swal.fire(
-            //         'দুঃখিত'
-            //         , 'এই নাম্বারের তালিকা ভুক্ত আইটেম নেই'
-            //         , 'info')
-            // }
-            // basker_render();
-        }
-
-        function remove_from_basket(item_number) {
-            if (get_from_basket(basket, item_number)) {
-                if (basket[get_from_basket(basket, item_number)[1]]['quantity'] > 1)
-                    basket[get_from_basket(basket, item_number)[1]]['quantity'] -= 1;
+            if (get_from_basket(category_wise_items, category_wise_item_id)[0]) {
+                if (get_from_basket(basket, category_wise_item_id)) { //increase qty
+                    basket[get_from_basket(basket, category_wise_item_id)[1]]['quantity'] += 1;
+                } else { //add as new in basket
+                    basket.push({id: category_wise_item_id, name: item_info.name, price: item_info.price, quantity: 1});
+                }
             } else {
-                Swal.fire(
-                    'দুঃখিত'
-                    , 'এখন পর্যন্ত বাছাই করাই হয়নি'
-                    , 'info')
+                Swal.fire('দুঃখিত', 'এই নাম্বারের তালিকা ভুক্ত আইটেম নেই', 'info')
             }
             basker_render();
         }
 
-        function remove_all_to_basket(item_number) {
-            if (get_from_basket(basket, item_number)) {
-                basket.splice(get_from_basket(basket, item_number)[1], 1)
+        function remove_from_basket(category_wise_item_id) {
+            if (get_from_basket(basket, category_wise_item_id)) {
+                if (basket[get_from_basket(basket, category_wise_item_id)[1]]['quantity'] > 1)
+                    basket[get_from_basket(basket, category_wise_item_id)[1]]['quantity'] -= 1;
             } else {
-                Swal.fire(
-                    'দুঃখিত'
-                    , 'এখন পর্যন্ত বাছাই করাই হয়নি'
-                    , 'info')
+                Swal.fire('দুঃখিত', 'এখন পর্যন্ত বাছাই করাই হয়নি', 'info')
             }
+            basker_render();
+        }
 
+        function remove_all_to_basket(category_wise_item_id) {
+            if (get_from_basket(basket, category_wise_item_id)) {
+                basket.splice(get_from_basket(basket, category_wise_item_id)[1], 1)
+            } else {
+                Swal.fire('দুঃখিত' , 'এখন পর্যন্ত বাছাই করাই হয়নি', 'info')
+            }
             basker_render();
         }
 
         function get_from_basket(array_collection, category_wise_item_id) {
             result = null;
-            $.map(array_collection, function(category_wise_item, index) {
-                if (category_wise_item.id == category_wise_item_id) {
-                    // console.log(category_wise_item, category_wise_items);
-                    // category_wise_item['name'] =
-
-                    $.grep(category_wise_items, function(category_wise_item) {
-                        if(category_wise_item.item_id == item_id){
-                            // console.log(item)
-                            let sub_category_name = null;
-                            if(category_wise_item.sub_category_id){
-                                $.grep(sub_categories, function(sub_category) {
-                                    if(sub_category.id == category_wise_item.sub_category_id){
-                                        // console.log(sub_category)
-                                        modal_item_html += '<button type="button" class="btn btn-primary m-1" onclick="add_to_basket('+category_wise_item.id+')">'+ sub_category.name +' = '+ category_wise_item.price +' TAKA </button>'; 
-                                    }
-                                });
-                            }
-                        }
-                    });
-                    
-                    
-
-
-                    //
-                    result = [category_wise_item, index]
+            $.map(array_collection, function(collection_item, index) {
+                if (collection_item.id == category_wise_item_id) {
+                    result = [collection_item, index]
                 }
             });
             return result;
@@ -245,17 +205,17 @@
                         `
                     <tr class="item_card">
                         <td>` + (index + 1) + `</td>
-                        <td style="font-size:12px;">` + item.item_number + '- ' + item.name + `</td>
+                        <td style="font-size:12px;">` + item.id + '- ' + item.name + `</td>
                         <td style="text-align: right;" class="price">` + item.price + `</td>
                         <td style="text-align: right;">
-                            <input type="hidden" class="item_number" value="` + item.item_number + `">
+                            <input type="hidden" class="item_number" value="` + item.id + `">
                             <input type="number" style="width: 80px;" class="form-control form-control-sm quantity" value="` + item.quantity + `">
                         </td>
                         <td style="text-align: right;" class="sub_total">` + (item.price * item.quantity) + `</td>
                         <td style="text-align: right;">
-                            <i class="fa fa-plus-square fa-lg text-success hoverable" onclick="add_to_basket(` + item.item_number + `)"></i>
-                            <i class="fa fa-minus-square fa-lg text-warning hoverable" onclick="remove_from_basket(` + item.item_number + `)"></i>
-                            <i class="fa fa-trash fa-lg text-danger hoverable" onclick="remove_all_to_basket(` + item.item_number + `)"></i>
+                            <i class="fa fa-plus-square fa-lg text-success hoverable" onclick="add_to_basket(` + item.id + `)"></i>
+                            <i class="fa fa-minus-square fa-lg text-warning hoverable" onclick="remove_from_basket(` + item.id + `)"></i>
+                            <i class="fa fa-trash fa-lg text-danger hoverable" onclick="remove_all_to_basket(` + item.id + `)"></i>
                         </td>
                     </tr>
                     `;
@@ -276,12 +236,8 @@
             if (get_from_basket(basket, item_number)) {
                 basket[get_from_basket(basket, item_number)[1]]['quantity'] = quantity;
             } else {
-                Swal.fire(
-                    'দুঃখিত'
-                    , 'এখন পর্যন্ত বাছাই করাই হয়নি'
-                    , 'info')
+                Swal.fire('দুঃখিত', 'এখন পর্যন্ত বাছাই করাই হয়নি', 'info')
             }
-            // basker_render();
         });
 
         $('.item_search_by_id_field').on('input', function() {
