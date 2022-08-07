@@ -20,17 +20,20 @@
                 margin-bottom: 0rem;
             }
 
-/* 
-            #total_price {
+            .has-icon-left .form-control {
+                /* padding-right: 0.85rem; */
+                padding-left: 1.5rem;
+            }
+            .form-control-position {
+                position: absolute;
+                top: -8px;
+                right: 0;
+                z-index: 2;
+                display: block;
+                width: 2rem;
+                line-height: 2.9rem;
                 text-align: center;
-                border: 5px solid rgba(94, 255, 0, 0.103);
-                font-size: 40px;
-                width: 3in;
-                border-radius: 18px;
-                background: green;
-                color:white;
-                font-weight: bold;
-                } */
+            }
         </style>
 
         <div class="col-7">
@@ -68,33 +71,58 @@
             <div class="card">
                 <div class="card-body calculation_box">
                     <div class="row">
-                        {{-- <div class="col-md-12 d-flex justify-content-center">
-                            <div id="total_price">00.00 টাকা</div>
-                        </div> --}}
                         <div class="col-md-12">
-                            <form>
                                 <h4 class="form-header text-uppercase text-center"id="total_price">00.00 টাকা</h4>
                                 <div class="form-row">
                                   <div class="form-group col-md-6">
-                                    <label for="input-1">First Name</label>
-                                    <input type="text" class="form-control" id="input-1">
+                                    <select class="custom-select custom-select-sm">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
                                   </div>
                                   <div class="form-group col-md-6">
-                                    <label for="input-2">Last Name</label>
-                                    <input type="text" class="form-control" id="input-2">
+                                    <select class="custom-select custom-select-sm">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <div class="position-relative has-icon-left">
+                                        <input type="text" class="form-control form-control-sm" placeholder="Phone Number">
+                                        <div class="form-control-position">
+                                            <i class="zmdi zmdi-phone"></i>
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <div class="position-relative has-icon-left">
+                                        <input type="text" class="form-control form-control-sm" placeholder="Delivery Address">
+                                        <div class="form-control-position">
+                                            <i class="zmdi zmdi-pin-drop"></i>
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <div class="position-relative has-icon-left">
+                                        <input type="text" class="form-control form-control-sm" placeholder="Discount Percentage">
+                                        <div class="form-control-position">
+                                            <i class="zmdi zmdi-favorite-outline"></i>
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <div class="position-relative has-icon-left">
+                                        <input type="text" class="form-control form-control-sm" placeholder="Delivery Change">
+                                        <div class="form-control-position">
+                                            <i class="zmdi zmdi-truck"></i>
+                                        </div>
+                                    </div>
                                   </div>
                                 </div>
-                                <div class="form-row">
-                                  <div class="form-group col-md-6">
-                                    <label for="input-3">Email ID</label>
-                                    <input type="email" class="form-control" id="input-3">
-                                  </div>
-                                  <div class="form-group col-md-6">
-                                    <label for="input-4">Contact Number</label>
-                                    <input type="password" class="form-control" id="input-4">
-                                  </div>
-                                </div>
-                              </form>
                         </div>
                         {{-- <div class="col-md-12 d-flex justify-content-center mt-2">
                             <input type="number" class="form-control text-center" id="item_number" placeholder="item Number" onkeypress="return onlyNumberKey(event)">
