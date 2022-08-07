@@ -11,10 +11,16 @@
                 overflow: auto;
             }
 
-            .card_box {
-                height: 300px;
-                overflow: auto;
+            .food_item{
+                background-color: rgba(128, 128, 128, 0.452);
+                border-style: dotted;
+
+                
+    box-shadow:0px 0px 0px 1px black inset;
+    border-radius: 8px;
+    cursor: pointer;
             }
+
 
             .form-group {
                 margin-bottom: 0rem;
@@ -34,16 +40,15 @@
                 <div class="card-body item_box">
                     <div class="row">
                         @foreach ($items as $item)
-                        <div class="col-3 card_box item item_id_{{ $item->id }}">
-                            <div class="card m-1 hoverable" @if($item->category_wise_items_count == 1) onclick="add_to_basket({{ $item->category_wise_items()->first()->id }})"
+                        <div class="col-3 food_item item item_id_{{ $item->id }}">
+                            <div class="m-1 hoverable" @if($item->category_wise_items_count == 1) onclick="add_to_basket({{ $item->category_wise_items()->first()->id }})"
                                 @else
                                 data-toggle="modal" data-target="#category_wise_items_modal"
                                 onclick="category_wise_items_modal_open({{ $item->id }}, '{{ $item->name }}')"
                                 @endif>
-                                {{-- <img class="card-img-top rounded mx-auto d-block" height="90px;" style="margin-bottom: -10px;" src="{{ asset($item->image ?? 'assets/images/food-icon.png') }}"> --}}
-                                <div class="card-body text-center">
-                                    <p class="card-text" style="margin-bottom: -5px;">{{ $item->name }}</p>
-                                    <span class="badge bg-primary">{{ $item->price }}</span>
+                                <img class="rounded mx-auto d-block" height="40px;" style="" src="{{ asset($item->image ?? 'assets/images/food-icon.png') }}">
+                                <div class="text-center">
+                                    <p class="" style="margin-bottom: -5px; font-size: 12px;">{{ $item->name }}</p>
                                 </div>
                             </div>
                         </div>
