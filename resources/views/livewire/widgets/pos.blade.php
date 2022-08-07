@@ -19,6 +19,18 @@
             .form-group {
                 margin-bottom: 0rem;
             }
+
+/* 
+            #total_price {
+                text-align: center;
+                border: 5px solid rgba(94, 255, 0, 0.103);
+                font-size: 40px;
+                width: 3in;
+                border-radius: 18px;
+                background: green;
+                color:white;
+                font-weight: bold;
+                } */
         </style>
 
         <div class="col-7">
@@ -51,42 +63,38 @@
                     </div>
                 </div>
             </div>
-            <!-- Modal -->
-            <div class="modal fade" id="category_wise_items_modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="category_wise_items_modal_title">{{-- Set by jQuery --}}</h5>
-                            <button type="button" class="close text-white bg-danger" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body item-card" id="category_wise_items_modal_body">
-                            ...
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-
         <div class="col-5">
             <div class="card">
                 <div class="card-body calculation_box">
                     <div class="row">
-                        <div class="col-md-12 d-flex justify-content-center">
-                            <style>
-                                #total_price {
-                                    text-align: center;
-                                    border: 5px solid rgba(94, 255, 0, 0.103);
-                                    font-size: 40px;
-                                    width: 3in;
-                                    border-radius: 18px;
-                                    background: green;
-                                    color:white;
-                                    font-weight: bold;
-                                    }
-                            </style>
+                        {{-- <div class="col-md-12 d-flex justify-content-center">
                             <div id="total_price">00.00 টাকা</div>
+                        </div> --}}
+                        <div class="col-md-12">
+                            <form>
+                                <h4 class="form-header text-uppercase text-center"id="total_price">00.00 টাকা</h4>
+                                <div class="form-row">
+                                  <div class="form-group col-md-6">
+                                    <label for="input-1">First Name</label>
+                                    <input type="text" class="form-control" id="input-1">
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="input-2">Last Name</label>
+                                    <input type="text" class="form-control" id="input-2">
+                                  </div>
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-6">
+                                    <label for="input-3">Email ID</label>
+                                    <input type="email" class="form-control" id="input-3">
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="input-4">Contact Number</label>
+                                    <input type="password" class="form-control" id="input-4">
+                                  </div>
+                                </div>
+                              </form>
                         </div>
                         {{-- <div class="col-md-12 d-flex justify-content-center mt-2">
                             <input type="number" class="form-control text-center" id="item_number" placeholder="item Number" onkeypress="return onlyNumberKey(event)">
@@ -127,6 +135,24 @@
                 </div>
             </div> --}}
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="category_wise_items_modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="category_wise_items_modal_title">{{-- Set by jQuery --}}</h5>
+                        <button type="button" class="close text-white bg-danger" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body item-card" id="category_wise_items_modal_body">
+                        ...
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
 
         <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
