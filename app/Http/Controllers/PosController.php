@@ -8,6 +8,8 @@ use App\Models\Item;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\SubCategory;
+use App\Models\Table;
+use App\Models\Waiter;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -23,9 +25,45 @@ class PosController extends Controller
     }
 
 
-    public function save($item_list){
+    public function save($order_data){
 
-        $item_list = json_decode($item_list, true);
+        $order_data = json_decode($order_data, true);
+
+        $item_list = $order_data['basket'];
+
+        $error_messages = [];
+
+        if(!Waiter::find($order_data['waiter'])){
+            array_push($error_messages, 'Select waiter');
+        }
+
+        if($order_data['table'] == '' || $order_data['parcel'] == 1){
+            $order_data['table'] = null;
+        }
+        
+        if($order_data['parcel'] == 0 && !Table::find($order_data['table'])){
+            array_push($error_messages, 'Select table');
+        }
+   
+        if($order_data['phone'] == ''){
+            $order_data['phone'] = null;
+        }
+        if($order_data['phone'] && !is_numeric($order_data['phone']) != 11){
+            array_push($error_messages, 'Use numeric phone number');
+        }
+        
+        if($order_data['phone'] && strlen($order_data['phone']) != 11){
+            array_push($error_messages, 'Use 11 digit phone number');
+        }
+
+        if(count($error_messages) > 0){
+            return [
+                'type' => 'error',
+                'messages' => $error_messages,
+            ];
+        }
+
+        
 
         if (count($item_list) > 0) {
             $total_price = 0;
@@ -33,24 +71,19 @@ class PosController extends Controller
                 $total_price += ($item['price'] * $item['quantity']);
             }
             try {
-                // $this->validate([
-                //     'delivery_charge' => 'required_if:parcel,1',
-                //     'table' => 'required_without:parcel',
-                //     'waiter' => 'required_without:parcel',
-                // ]);
                 $total_order_count_of_this_month = Order::select('id')->whereYear('created_at', date('Y'))->whereMonth('created_at', date('m'))->count();
                 $order = new Order();
                 $order->creator_id = Auth::user()->id;
                 $order->serial_number = date('ym') . sprintf("%'.05d", $total_order_count_of_this_month + 1); //220700001
                 $order->status = 'Cook'; //Penging, Reject, Cook, Serve, Complete
-                $order->waiter_id = request()->waiter;
-                $order->table_id = request()->parcel ? null : request()->table;
+                $order->waiter_id = $order_data['waiter'];
+                $order->table_id = $order_data['parcel'] ? null : $order_data['table'];
                 $order->is_online = false;
-                $order->is_parcel = request()->parcel ?? false;
-                $order->customer_phone =  request()->phone;
-                $order->customer_address = request()->parcel ? request()->address : null;
+                $order->is_parcel = $order_data['parcel'] ?? false;
+                $order->customer_phone =  $order_data['phone'];
+                $order->customer_address = $order_data['parcel'] ? $order_data['address'] : null;
                 $order->paid_amount = $total_price;
-                $order->delivery_fee = request()->parcel ? request()->delivery_charge : 0;
+                $order->delivery_fee = $order_data['parcel'] ? $order_data['delivery_charge'] : 0;
                 $order->save();
 
                 //Items

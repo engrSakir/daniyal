@@ -60,19 +60,19 @@
                             <h4 class="form-header text-uppercase text-center" id="total_price">00.00 টাকা</h4>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <select class="custom-select custom-select-sm">
-                                        <option selected>Open this select menu</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <select class="custom-select custom-select-sm" id="table">
+                                        <option value="">Select Table</option>
+                                        @foreach ($tables as $table)
+                                        <option value="{{ $table->id }}">{{ $table->name }}</option>                                            
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <select class="custom-select custom-select-sm">
-                                        <option selected>Open this select menu</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <select class="custom-select custom-select-sm" id="waiter">
+                                        <option value="">Select Waiter</option>
+                                        @foreach ($waiters as $waiter)
+                                        <option value="{{ $waiter->id }}">{{ $waiter->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
@@ -82,7 +82,7 @@
                                                 <i class="zmdi zmdi-phone"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm" placeholder="Phone Number">
+                                        <input type="text" class="form-control form-control-sm" placeholder="Phone Number" id="phone">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
@@ -92,7 +92,7 @@
                                                 <i class="zmdi zmdi-pin-drop"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm" placeholder="Delivery Address">
+                                        <input type="text" class="form-control form-control-sm" placeholder="Delivery Address" id="address">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
@@ -102,14 +102,14 @@
                                                 <i class="zmdi zmdi-favorite-outline"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm" placeholder="Discount Percentage">
+                                        <input type="text" class="form-control form-control-sm" placeholder="Discount Percentage" id="discount_percentage">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
-                                                <input type="checkbox" id="parcel_check">
+                                                <input type="checkbox" value="0" id="parcel_check">
                                             </div>
                                         </div>
                                         <input type="text" class="form-control form-control-sm" id="delivery_charge" placeholder="Delivery Charge">
@@ -347,26 +347,56 @@
 
             function save_invoice(){
                 if(basket.length > 0){
+                    let data = {
+                        basket: basket,
+                        waiter: $('#waiter').val(),
+                        table: $('#table').val(),
+                        phone: $('#phone').val(),
+                        address: $('#address').val(),
+                        parcel: $('#parcel_check').val(),
+                        delivery_charge: $('#delivery_charge').val()
+                    };
+
                     $.ajax({
                         type: 'GET', //THIS NEEDS TO BE GET
-                        url: '/manager/pos/save/'+encodeURIComponent(JSON.stringify(basket)),
+                        url: '/manager/pos/save/'+encodeURIComponent(JSON.stringify(data)),
                         success: function (data) {
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'success',
-                                title: 'Success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-                            printJS(data.invoice_url)
-                            Livewire.emit('updateOrder')
+                            console.log(data);
+                            if(data.type == 'error'){
+                                let messages = '';
+                                $.each(data.messages, function( index, value ) {
+                                    messages += value + ", ";
+                                });
+                                Swal.fire({
+                                    icon: 'error',
+                                    text: messages,
+                                    showConfirmButton: false
+                                });
+                            }else if(data.invoice_url){
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: 'Order has been saved',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                all_clear(0);
+                                printJS(data.invoice_url);
+                                Livewire.emit('updateOrder');
+                            }else{
+                                console.log(data);
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Something went wrong!',
+                                    showConfirmButton: false
+                                });
+                            }
                         },
                         error: function() {
                             console.log(data);
                         }
                     });
-                    basket=[];
-                    basket_render();
                 }else{
                     Swal.fire( 'Sorry', 'Selected item not found', 'info')
                 }
@@ -376,8 +406,12 @@
             $('#parcel_check').change(function(){
                 if ($('#parcel_check').is(':checked') == true){
                     $('#delivery_charge').val(0).prop('disabled', false);
+                    $('#table').val(null).prop('disabled', true);
+                    $('#parcel_check').val('1');
                 } else {
                     $('#delivery_charge').val('0').prop('disabled', true);
+                    $('#table').val(null).prop('disabled', false);
+                    $('#parcel_check').val('0');
                 }
             });
 
@@ -395,21 +429,36 @@
                     save_invoice();
                 }
                 if (event.keyCode == 99) { // 99 means c
-                    basket=[];
-                    basket_render();
-                    document.getElementById("item_number").value = '';
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Clear ....',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
+                    all_clear();
                 }
                 // if (event.keyCode == 112) { // 112 means p
                 //     print_invoice();
                 // }
             });
+
+            function all_clear(alert_message = 1){
+                $('#table').val(null);
+                $('#waiter').val(null);
+                $('#phone').val(null);
+                $('#address').val(null);
+                $('#discount_percentage').val(null);
+                $('#parcel_check').prop('checked', false);
+                $('#parcel_check').val('0');
+                $('#delivery_charge').val('0').prop('disabled', true);
+                $('#table').val(null).prop('disabled', false);
+
+                basket = [];
+                basket_render();
+                if(alert_message == 1){
+                    Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Clear ....',
+                    showConfirmButton: false,
+                    timer: 1500
+                });   
+                }
+            }
         </script>
     </div>
 
