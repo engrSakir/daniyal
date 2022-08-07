@@ -7,7 +7,7 @@
             }
 
             .calculation_box {
-                height: 420px;
+                height: 440px;
                 overflow: auto;
             }
 
