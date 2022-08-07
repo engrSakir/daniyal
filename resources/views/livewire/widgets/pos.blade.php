@@ -109,10 +109,10 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
-                                                <input type="checkbox">
+                                                <input type="checkbox" id="parcel_check">
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm" placeholder="Delivery Charge">
+                                        <input type="text" class="form-control form-control-sm" id="delivery_charge" placeholder="Delivery Charge">
                                     </div>
                                 </div>
                             </div>
@@ -337,13 +337,6 @@
                 document.getElementById("total_price").innerHTML = total_price + ' টাকা';
             }
 
-            // $('.quantity').on('input', function() {
-            //     let quantity = $(this).val();
-            //     basket[check_from_basket(basket, $(this).parent().find('.category_wise_item_id').val())[1]]['quantity'] = quantity;
-            //     basket_render();
-
-            // });
-
             $('.item_search_by_id_field').on('input', function() {
                 $(".item").hide();
                 $(".item_id_"+$(this).val()).show();
@@ -378,6 +371,16 @@
                     Swal.fire( 'Sorry', 'Selected item not found', 'info')
                 }
             }
+
+            $('#delivery_charge').val('0').prop('disabled', true);
+            $('#parcel_check').change(function(){
+                if ($('#parcel_check').is(':checked') == true){
+                    $('#delivery_charge').val(0).prop('disabled', false);
+                } else {
+                    $('#delivery_charge').val('0').prop('disabled', true);
+                }
+            });
+
 
             function onlyNumberKey(evt) {
                 // Only ASCII character in that range allowed
