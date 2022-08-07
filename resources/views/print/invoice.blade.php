@@ -95,22 +95,31 @@
         @endforeach
     </table>
     <table style="font-size: 14px; width:100%;">
-        <td style="text-align:left;">
-            Total price
-        </td>
-        <td class="payment" style="text-align:right;">
-            <b>{{ money_format_india($order->price()) }}</b>
-        </td>
+        <tr>
+            <td style="text-align:left;">
+                Total price
+            </td>
+            <td class="payment" style="text-align:right;">
+                {{ $order->price() }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Discount Amount
+            </td>
+            <td class="payment" style="text-align:right;">
+                {{ $order->discount_amount() }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h3>Paid Amount</h3>
+            </td>
+            <td class="payment" style="text-align:right;">
+               <h3> {{ money_format_india($order->price_after_discount()) }} Taka</h3>
+            </td>
         </tr>
         {{-- <tr class="">
-                        <td class="Rate">
-                            <h3>Discount</h3>
-                        </td>
-                        <td class="payment" style="text-align:right;">
-                            {{ $order->discount_amount }}
-        </td>
-        </tr>
-        <tr class="">
             <td class="Rate">
                 <h3> Discount price:</h3>
             </td>

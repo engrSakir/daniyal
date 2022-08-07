@@ -92,7 +92,7 @@ class PosController extends Controller
                 $order->is_parcel = $order_data['parcel'] ?? false;
                 $order->customer_phone =  $order_data['phone'];
                 $order->customer_address = $order_data['parcel'] ? $order_data['address'] : null;
-                $order->paid_amount = (($order_data['discount_percentage'] ?? 0) / 100) * $total_price;
+                $order->paid_amount = round($total_price - ((($order_data['discount_percentage'] ?? 0) / 100) * $total_price));
                 $order->delivery_fee = $order_data['parcel'] ? $order_data['delivery_charge'] : 0;
                 $order->discount_percentage = $order_data['discount_percentage'] ?? 0;
                 $order->save();

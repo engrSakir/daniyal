@@ -24,14 +24,22 @@ class Order extends Model
         return $this->hasMany(OrderItem::class, 'order_id', 'id');
     }
 
+    public function discount_amount(){
+        return (($this->discount_percentage / 100) * $this->price());
+    }
+
     public function price(){
         return $this->order_items->sum(function($item){
             return $item->selling_price * $item->quantity;
         });
     }
 
+    public function price_after_discount(){
+        return $this->price() - $this->discount_amount();
+    }
+
     public function due(){
-        return ($this->price() - $this->paid_amount);
+        return ($this->price_after_discount() - $this->paid_amount);
     }
     
     public function is_due(){
