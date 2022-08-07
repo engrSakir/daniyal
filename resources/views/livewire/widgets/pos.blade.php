@@ -153,7 +153,7 @@
                         </tbody>
                     </table>
                 </div>
-                <button type="button" class="btn btn-primary btn-sm btn-block " style="width: 100%;" onclick="save_invoice()">Save Invoice</button>
+                <button type="button" class="btn btn-primary btn-sm btn-block" id="save_btn" style="width: 100%;" onclick="save_invoice()">SAVE</button>
             </div>
             {{-- <div class="card mt-3">
                 <div class="card-header">
@@ -378,6 +378,15 @@
                     $.ajax({
                         type: 'GET', //THIS NEEDS TO BE GET
                         url: '/manager/pos/save/'+encodeURIComponent(JSON.stringify(data)),
+                        beforeSend: function() {
+                            $('#save_btn').html('Please wait ---- ');
+                            $('#save_btn').prop("disabled", true);
+                        },
+                        complete: function() {
+                            $('#save_btn').html('SAVE');
+                            $('#save_btn').prop("disabled", false);
+                        },
+
                         success: function (data) {
                             console.log(data);
                             if(data.type == 'error'){
