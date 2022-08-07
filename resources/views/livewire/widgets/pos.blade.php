@@ -55,7 +55,7 @@
                                 data-toggle="modal" data-target="#category_wise_items_modal"
                                 onclick="category_wise_items_modal_open({{ $item->id }}, '{{ $item->name }}')"
                                 @endif>
-                                <img class="card-img-top rounded mx-auto d-block" height="90px;" style="margin-bottom: -10px;" src="{{ asset($item->image ?? 'assets/images/food-icon.png') }}">
+                                {{-- <img class="card-img-top rounded mx-auto d-block" height="90px;" style="margin-bottom: -10px;" src="{{ asset($item->image ?? 'assets/images/food-icon.png') }}"> --}}
                                 <div class="card-body text-center">
                                     <p class="card-text" style="margin-bottom: -5px;">{{ $item->name }}</p>
                                     <span class="badge bg-primary">{{ $item->price }}</span>
