@@ -12,13 +12,29 @@
             }
 
             .food_item{
-                background-color: rgba(128, 128, 128, 0.452);
+                background-color: rgba(128, 128, 128, 0.212);
                 border-style: dotted;
+                box-shadow:0px 0px 0px 1px yellow inset;
+                border-radius: 8px;
+                cursor: pointer;
+            }
 
-                
-    box-shadow:0px 0px 0px 1px black inset;
-    border-radius: 8px;
-    cursor: pointer;
+            .food_item div{
+                margin: 3px;
+            }
+
+            .food_item:hover {
+                background-color: rgba(255, 255, 0, 0.808);
+            }
+
+            .noselect {
+                -webkit-touch-callout: none; /* iOS Safari */
+                    -webkit-user-select: none; /* Safari */
+                    -khtml-user-select: none; /* Konqueror HTML */
+                    -moz-user-select: none; /* Old versions of Firefox */
+                        -ms-user-select: none; /* Internet Explorer/Edge */
+                            user-select: none; /* Non-prefixed version, currently
+                                                supported by Chrome, Edge, Opera and Firefox */
             }
 
 
@@ -29,26 +45,21 @@
 
         <div class="col-7">
             <div class="card">
-                <div class="card-header bg-danger text-white d-flex justify-content-between">
-                    @if(config('app.frontend'))
-                    <a href="{{ route('onlineOrder') }}" class="btn btn-primary">
-                        Online Order <b>({{ $online_pending_order }}) </b>
-                    </a>
-                    @endif
-                    <input type="text" class="form-control item_search_by_id_field" placeholder="Item ID">
+                <div class="card-header text-white d-flex justify-content-between">
+                    <input type="text" class="form-control item_search_by_id_field form-control-sm" placeholder="Item ID">
                 </div>
                 <div class="card-body item_box">
                     <div class="row">
                         @foreach ($items as $item)
-                        <div class="col-3 food_item item item_id_{{ $item->id }}">
-                            <div class="m-1 hoverable" @if($item->category_wise_items_count == 1) onclick="add_to_basket({{ $item->category_wise_items()->first()->id }})"
+                        <div class="col-3 food_item noselect item item_id_{{ $item->id }}">
+                            <div @if($item->category_wise_items_count == 1) onclick="add_to_basket({{ $item->category_wise_items()->first()->id }})"
                                 @else
                                 data-toggle="modal" data-target="#category_wise_items_modal"
                                 onclick="category_wise_items_modal_open({{ $item->id }}, '{{ $item->name }}')"
                                 @endif>
                                 <img class="rounded mx-auto d-block" height="40px;" style="" src="{{ asset($item->image ?? 'assets/images/food-icon.png') }}">
                                 <div class="text-center">
-                                    <p class="" style="margin-bottom: -5px; font-size: 12px;">{{ $item->name }}</p>
+                                    <p class="" style="font-size: 12px; color:black;">{{ $item->name }}</p>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +135,7 @@
                             </div>
                         </div>
                     </div>
-                    <table class="table table-striped table-hover mt-1">
+                    <table class="table table-striped table-hover mt-1 table-sm">
                         <thead class="bg-info text-white">
                             <tr>
                                 <td>#</td>
@@ -142,7 +153,7 @@
                         </tbody>
                     </table>
                 </div>
-                <button type="button" class="btn btn-primary btn-lg btn-block" style="width: 100%;" onclick="save_invoice()">Save Invoice</button>
+                <button type="button" class="btn btn-primary btn-sm btn-block " style="width: 100%;" onclick="save_invoice()">Save Invoice</button>
             </div>
             {{-- <div class="card mt-3">
                 <div class="card-header">
