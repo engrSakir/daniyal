@@ -48,12 +48,22 @@ class PosController extends Controller
         if($order_data['phone'] == ''){
             $order_data['phone'] = null;
         }
-        if($order_data['phone'] && !is_numeric($order_data['phone']) != 11){
+
+        if($order_data['discount_percentage'] == ''){
+            $order_data['discount_percentage'] = null;
+        }
+
+        if($order_data['phone'] && !is_numeric($order_data['phone'])){
+            
             array_push($error_messages, 'Use numeric phone number');
         }
         
         if($order_data['phone'] && strlen($order_data['phone']) != 11){
             array_push($error_messages, 'Use 11 digit phone number');
+        }
+
+        if($order_data['discount_percentage'] && !is_numeric($order_data['discount_percentage'])){
+            array_push($error_messages, 'Use numeric discount');
         }
 
         if(count($error_messages) > 0){

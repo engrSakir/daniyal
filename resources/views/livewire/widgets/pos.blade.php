@@ -60,14 +60,6 @@
                             <h4 class="form-header text-uppercase text-center" id="total_price">00.00 টাকা</h4>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <select class="custom-select custom-select-sm" id="table">
-                                        <option value="">Select Table</option>
-                                        @foreach ($tables as $table)
-                                        <option value="{{ $table->id }}">{{ $table->name }}</option>                                            
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-6">
                                     <select class="custom-select custom-select-sm" id="waiter">
                                         <option value="">Select Waiter</option>
                                         @foreach ($waiters as $waiter)
@@ -75,6 +67,15 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-group col-md-6">
+                                    <select class="custom-select custom-select-sm" id="table">
+                                        <option value="">Select Table</option>
+                                        @foreach ($tables as $table)
+                                        <option value="{{ $table->id }}">{{ $table->name }}</option>                                            
+                                        @endforeach
+                                    </select>
+                                </div>
+                                
                                 <div class="form-group col-md-6">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -354,7 +355,8 @@
                         phone: $('#phone').val(),
                         address: $('#address').val(),
                         parcel: $('#parcel_check').val(),
-                        delivery_charge: $('#delivery_charge').val()
+                        delivery_charge: $('#delivery_charge').val(),
+                        discount_percentage: $('#discount_percentage').val(),
                     };
 
                     $.ajax({
