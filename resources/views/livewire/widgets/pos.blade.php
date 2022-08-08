@@ -37,6 +37,12 @@
                                                 supported by Chrome, Edge, Opera and Firefox */
             }
 
+            /* Chrome, Safari, Edge, Opera */
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+            }
 
             .form-group {
                 margin-bottom: 0rem;
@@ -70,10 +76,10 @@
         </div>
         <div class="col-5">
             <div class="card">
-                <div class="card-body calculation_box">
+                <div class="calculation_box">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="form-header text-uppercase text-center" id="total_price">00.00 টাকা</h4>
+                            <h4 class="form-header text-uppercase text-center mt-1" id="total_price">00.00 টাকা</h4>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <select class="custom-select custom-select-sm" id="waiter">
@@ -313,7 +319,7 @@
                             <td style="text-align: right;" class="price_item">` + item.price + `</td>
                             <td style="text-align: right;">
                                 <input type="hidden" class="category_wise_item_id" value="` + item.id + `">
-                                <input type="number" style="width: 80px;" class="form-control form-control-sm quantity" minimum="1" value="` + item.quantity + `">
+                                <input type="number" style="width: 50px;" class="form-control form-control-sm quantity" minimum="1" value="` + item.quantity + `">
                             </td>
                             <td style="text-align: right;" class="sub_total">` + (item.price * item.quantity) + `</td>
                             <td style="text-align: right;">
@@ -425,7 +431,12 @@
                         }
                     });
                 }else{
-                    Swal.fire( 'Sorry', 'Selected item not found', 'info')
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Item Empty...',
+                        text: '',
+                        showConfirmButton: false
+                    });
                 }
             }
 
@@ -452,10 +463,11 @@
             }
 
             document.addEventListener("keypress", function(event) {
-                if (event.keyCode == 115 || event.keyCode == 13) { // 115 means s or enter
+                console.log(event.keyCode);
+                if (event.keyCode == 13) { // 13 means enter
                     save_invoice();
                 }
-                if (event.keyCode == 99) { // 99 means c
+                if (event.keyCode == 55) { // 55 means -
                     all_clear();
                 }
                 // if (event.keyCode == 112) { // 112 means p

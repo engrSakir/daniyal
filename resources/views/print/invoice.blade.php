@@ -103,14 +103,16 @@
                 {{ $order->price() }}
             </td>
         </tr>
+        @if($order->discount_percentage > 0)
         <tr>
             <td>
-                Discount Amount
+                Discount Amount ({{ $order->discount_percentage }} %)
             </td>
             <td class="payment" style="text-align:right;">
                 {{ $order->discount_amount() }}
             </td>
         </tr>
+        @endif
         <tr>
             <td>
                 <h3>Paid Amount</h3>
