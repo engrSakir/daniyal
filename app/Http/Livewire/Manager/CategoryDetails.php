@@ -142,4 +142,8 @@ class CategoryDetails extends Component
             unset($this->childs[$key]);
         }
     }
+
+    public function edit_item($category_wise_item){
+
+    }
 }
