@@ -16,6 +16,7 @@ class PurchaseCategorySeeder extends Seeder
     public function run()
     {
         PurchaseCategory::insert([
+            ['name' => 'Others'],
             ['name' => 'Chill Sauce'],
             ['name' => 'Oyster Sauce'],
             ['name' => 'Fish Sauce'],
