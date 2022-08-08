@@ -487,7 +487,9 @@
                 $('#parcel_check').val('0');
                 $('#delivery_charge').val('0').prop('disabled', true);
                 $('#table').val(null).prop('disabled', false);
-
+                $('.item_search_by_category_dropdown').val('all')
+                $('.item_search_by_id_field').val('')
+                $(".item").show();
                 basket = [];
                 basket_render();
                 if(alert_message == 1){
