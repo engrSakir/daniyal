@@ -19,6 +19,7 @@
                 <li><a href="{{ route('manager.dashboard') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Dashboard</span></a></li>
                 <li><a href="{{ route('manager.sale') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Sales</span></a></li>
                 <li><a href="{{ route('manager.menu') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Menu</span></a></li>
+                <li><a href="{{ route('manager.purchase') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Purchase</span></a></li>
                 <li><a href="{{ route('manager.expense') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Expense</span></a></li>
                 <li><a href="{{ route('manager.report') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Report</span></a></li>
                 <li class="">

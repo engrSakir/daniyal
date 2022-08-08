@@ -18,7 +18,7 @@ class Expense extends Component
     {
         return view('livewire.manager.expense',[
             'expense_categories' => ExpenseCategory::all(),
-            'expenses' => ModelsExpense::whereDate('created_at', Carbon::today())->latest()->get()
+            'expenses' => ModelsExpense::whereDate('created_at', Carbon::today())->get()
         ]);
     }
 
