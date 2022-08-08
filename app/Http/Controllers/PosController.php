@@ -40,6 +40,10 @@ class PosController extends Controller
         if($order_data['table'] == '' || $order_data['parcel'] == 1){
             $order_data['table'] = null;
         }
+
+        if($order_data['parcel'] == 1 && !is_numeric($order_data['delivery_charge'])){
+            array_push($error_messages, 'Use numeric delivery charge');
+        }
         
         if($order_data['parcel'] == 0 && !Table::find($order_data['table'])){
             array_push($error_messages, 'Select table');
@@ -54,7 +58,6 @@ class PosController extends Controller
         }
 
         if($order_data['phone'] && !is_numeric($order_data['phone'])){
-
             array_push($error_messages, 'Use numeric phone number');
         }
         
