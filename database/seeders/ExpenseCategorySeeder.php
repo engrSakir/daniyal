@@ -18,8 +18,8 @@ class ExpenseCategorySeeder extends Seeder
 
 
         ExpenseCategory::insert([
-            ['name' => 'Electricity Bill '],
             ['name' => 'Others'],
+            ['name' => 'Electricity Bill '],
         ]);
     }
 }
