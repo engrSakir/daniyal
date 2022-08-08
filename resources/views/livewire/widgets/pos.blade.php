@@ -1,5 +1,5 @@
 <div wire:ignore>
-    <div class="row">
+    <div class="row noselect">
         <style>
             .item_box {
                 height: 415px;
@@ -57,7 +57,7 @@
                 <div class="card-body item_box">
                     <div class="row">
                         @foreach ($items as $item)
-                        <div class="col-3 food_item noselect item item_id_{{ $item->id }}">
+                        <div class="col-3 food_item item item_id_{{ $item->id }}">
                             <div @if($item->category_wise_items_count == 1) onclick="add_to_basket({{ $item->category_wise_items()->first()->id }})"
                                 @else
                                 data-toggle="modal" data-target="#category_wise_items_modal"
@@ -161,20 +161,6 @@
                 </div>
                 <button type="button" class="btn btn-primary btn-sm btn-block" id="save_btn" style="width: 100%;" onclick="save_invoice()">SAVE</button>
             </div>
-            {{-- <div class="card mt-3">
-                <div class="card-header">
-                    কীবোর্ড শর্টকাট
-                </div>
-                <div class="card-body">
-                    ১. <b class="text-danger">(Space)</b> বাটনে চাপ দিলে আইটেম নাম্বার এন্টি দেওয়া যাবে। <br>
-                    ২. আইটেম নাম্বার এন্ট্রি দেওয়ার ঘরকে খালি করতে হলে <b class="text-danger">(Space)</b> বাটনে চাপ দিতে হবে। <br>
-                    ৩. প্রোডাক্ট নাম্বার এন্ট্রি দেওয়ার পর <b class="text-danger">(+)</b> বাটনে চাপ দিলে কোয়ান্টিটি বাড়বে। <br>
-                    ৪. প্রোডাক্ট নাম্বার এন্ট্রি দেওয়ার পর <b class="text-danger">(-)</b> বাটনে চাপ দিলে উত্তর প্রোডাক্টের কোয়ান্টিটি কমবে। <br>
-                    ৫. আইটেম নাম্বার এন্ট্রি দেওয়ার পর <b class="text-danger">(/)</b> বাটনে চাপ দিলে আইটেম চলে যাবে। <br>
-                    ৬. <b class="text-danger">(s)</b> অথবা <b class="text-danger">(Enter) </b>বাটনে চাপ দিলে ইনভয়েস প্রিন্টের জন্য রেডি হবে। <br>
-                    ৭. <b class="text-danger">(c)</b> বাটনে চাপ দিয়ে সিলেক্টেড আইটেম গুলোকে ক্লিয়ার করে দেওয়া যাবে। <br>
-                </div>
-            </div> --}}
         </div>
 
         <!-- Modal -->
@@ -345,7 +331,7 @@
                     quantity = 0;
                 }
                 if (check_from_basket(basket, category_wise_item_id)) {
-                    basket[check_from_basket(basket, category_wise_item_id)[1]]['quantity'] = quantity;
+                    basket[check_from_basket(basket, category_wise_item_id)[1]]['quantity'] = parseInt(quantity);
                     total_counter();
                 } else {
                     Swal.fire('দুঃখিত', 'এখন পর্যন্ত বাছাই করাই হয়নি', 'info')
@@ -467,7 +453,7 @@
                 if (event.keyCode == 13) { // 13 means enter
                     save_invoice();
                 }
-                if (event.keyCode == 55) { // 55 means -
+                if (event.keyCode == 45) { // 45 means -
                     all_clear();
                 }
                 // if (event.keyCode == 112) { // 112 means p
