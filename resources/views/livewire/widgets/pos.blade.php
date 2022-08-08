@@ -76,7 +76,7 @@
         </div>
         <div class="col-5">
             <div class="card">
-                <div class="calculation_box">
+                <div class="card-body calculation_box">
                     <div class="row">
                         <div class="col-md-12">
                             <h4 class="form-header text-uppercase text-center mt-1" id="total_price">00.00 টাকা</h4>
@@ -149,7 +149,7 @@
                                 <td style="text-align: right;">Price</td>
                                 <td style="text-align: center;">QT</td>
                                 <td style="text-align: right;">Total</td>
-                                <td style="text-align: right;">Action</td>
+                                <td style="text-align: right; min-width:70px;">Action</td>
                             </tr>
                         </thead>
                         <tbody id="basket_table">
