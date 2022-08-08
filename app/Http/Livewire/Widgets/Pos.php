@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Widgets;
 
+use App\Models\Category;
 use App\Models\CategoryWiseItem;
 use App\Models\Item;
 use App\Models\SubCategory;
@@ -15,7 +16,8 @@ class Pos extends Component
     {
         return view('livewire.widgets.pos',[
             'items' => Item::withCount('category_wise_items')->get(),
-            'category_wise_items' => CategoryWiseItem::with(['category'])->get(),
+            'category_wise_items' => CategoryWiseItem::all(),
+            'categories' => Category::all(),
             'sub_categories' => SubCategory::all(),
             'waiters' => Waiter::all(),
             'tables' => Table::all(),

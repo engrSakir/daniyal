@@ -53,11 +53,17 @@
             <div class="card">
                 <div class="card-header text-white d-flex justify-content-between">
                     <input type="text" class="form-control item_search_by_id_field form-control-sm" placeholder="Item ID">
+                    <select class="custom-select custom-select-sm item_search_by_category_dropdown">
+                        <option value="all">Select Category</option>
+                        @foreach ($categories as $category)
+                        <option value="category_id_{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="card-body item_box">
                     <div class="row">
                         @foreach ($items as $item)
-                        <div class="col-3 food_item item item_id_{{ $item->id }}">
+                        <div class="col-3 food_item item item_id_{{ $item->id }} @foreach ($item->category_wise_items as $category_wise_item) category_id_{{ $category_wise_item->category_id }} @endforeach">
                             <div @if($item->category_wise_items_count == 1) onclick="add_to_basket({{ $item->category_wise_items()->first()->id }})"
                                 @else
                                 data-toggle="modal" data-target="#category_wise_items_modal"
@@ -352,6 +358,16 @@
                 if(!$(this).val()){
                     $(".item").show();
                 }
+                $('.item_search_by_category_dropdown').val('all')
+            });
+
+            $('.item_search_by_category_dropdown').on('change', function() {
+                $(".item").hide();
+                $("."+$(this).val()).show();
+                if(!$(this).val() || $(this).val() == "all"){
+                    $(".item").show();
+                }
+                $('.item_search_by_id_field').val('')
             });
 
             function save_invoice(){
