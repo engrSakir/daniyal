@@ -1,70 +1,147 @@
 @extends('layouts.pdf')
 @section('content')
-** Sales Report **
-<table style="width: 100%;" class="table" cellpading="0" cellspacing="0">
+
+
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .row {
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+
+    .invoice {
+        float: left;
+        width: auto;
+        padding: 5px;
+    }
+
+    .expense {
+        float: left;
+        width: auto;
+        padding: 5px;
+    }
+
+    .buy {
+        float: right;
+        width: auto;
+        padding: 5px;
+    }
+
+    /* Clearfix (clear floats) */
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    #data table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    #data th,
+    #data td {
+        text-align: left;
+        padding: 16px;
+    }
+
+    #data tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+</style>
+
+<div id="data" class="row">
+    <div class="invoice">
+        <table>
+            <tr>
+                <th>S/L</th>
+                <th>INVOICE NO</th>
+                <th>TABLE/PARCEL/GROUP</th>
+                <th>SALE</th>
+                <th>DISCOUNT</th>
+            </tr>
+            @foreach ($orders as $order)
+            <tr>
+                <th style="text-align:right;">{{ $loop->iteration }}</th>
+                <td style="text-align:right;">{{ $order->serial_number }}</td>
+                <td style="text-align: center;">
+                    @if($order->is_parcel)
+                    P
+                    @else
+                    {{ $order->table->name ?? '' }}
+                    @endif
+                </td>
+                <td style="text-align: right;">{{ number_format($order->paid_amount) }} &nbsp;</td>
+                <td style="text-align: right;">{{ number_format($order->discount_amount()) }} &nbsp;</td>
+            </tr>
+            @endforeach
+            <tr>
+                <th>S/L</th>
+                <th>INVOICE NO</th>
+                <th>TABLE/PARCEL/GROUP</th>
+                <th>SALE</th>
+                <th>DISCOUNT</th>
+            </tr>
+        </table>
+    </div>
+    <div class="expense">
+        <table>
+            <tr>
+                <th>Expense</th>
+            </tr>
+            @foreach ($expeses as $expese)
+            <tr>
+                <td style="text-align: right;">{{ number_format($expese->amount) }} &nbsp;</td>
+            </tr>
+            @endforeach
+            <tr>
+                <th>Expense</th>
+            </tr>
+        </table>
+    </div>
+    <div class="buy">
+        <table>
+            <tr>
+                <th>Buy</th>
+            </tr>
+            @foreach ($purchases as $purchase)
+            <tr>
+                <td style="text-align: right;">{{ number_format($purchase->amount) }} &nbsp;</td>
+            </tr>
+            @endforeach
+            <tr>
+                <th>Buy</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+{{-- <table style="width: 10%;" class="table" cellpading="0" cellspacing="0">
     <thead>
         <tr>
-            <th style="text-align:left;">SL</th>
-            <th style="text-align:left;">Items #QTY #Price</th>
-            <th style="text-align: right;">Paid</th>
-            <th style="text-align: right;">Due</th>
+            <th style="text-align:right;">Expense</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($orders as $order)
+        @foreach ($expeses as $expese)
         <tr>
-            <th style="text-align:left;">
-                #{{ $order->serial_number }}
-                <br> <br>
-                @if($order->status == 'Complete')
-                <img src="{{ asset('assets/images/complete.png') }}" alt="" width="20px;">
-                @if($order->price() - $order->paid_amount > 0)
-                <img src="{{ asset('assets/images/taka-red.png') }}" alt="" width="20px;">
-                @endif
-                @else
-                {{ $order->status }}
-                @endif
-            </th>
-            <td style="text-align:left;">
-                <ol>
-                    @foreach ($order->order_items as $order_item)
-                    <li>
-                        {{ $order_item->category_wise_item->item->name ?? 'N/A' }} <sub>{{ $order_item->category_wise_item->sub_category_name() }} </sub> <b>#</b>{{ $order_item->quantity }} <b>#</b>{{ $order_item->selling_price }}
-                    </li>
-                    @endforeach
-                </ol>
-            </td>
-            <td style="text-align: right;">{{ number_format($order->paid_amount) }} &nbsp;</td>
-            <td style="text-align: right;">{{ number_format($order->price() - $order->paid_amount) }} &nbsp;</td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-<hr>
-<hr>
-** Expense Report **
-<table style="width: 100%;" class="table" cellpading="0" cellspacing="0">
-    <thead>
-        <tr>
-            <th style="text-align:left;">SL</th>
-            <th style="text-align:left;">Category</th>
-            <th style="text-align: right;">Amount</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($expenses->groupBy('category_id') as $expense_group => $expense)
-        @dd($expense);
-        <tr>
-            <th style="text-align:left;">
-                #{{ $loop->iteration }}
-            </th>
-            <td style="text-align:left;">
-                Category
-            </td>
-            <td style="text-align: right;">{{ number_format($order->paid_amount) }} &nbsp;</td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+            <td style="text-align: right;">{{ number_format($expese->amount) }} &nbsp;</td>
+</tr>
+@endforeach
+</tbody>
+</table> --}}
+
+
 
 @endsection
