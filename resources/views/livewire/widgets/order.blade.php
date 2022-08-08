@@ -86,11 +86,11 @@
                                                     target="_blank"> <i class="zmdi zmdi-print"></i> </a>
                                                 {{-- <button type="button" class="btn btn-outline-warning waves-effect waves-light" wire:click="print({{ $order->id }})"> <i class="zmdi zmdi-print"></i> </button> --}}
 
-                                                <button type="button"
+                                                {{-- <button type="button"
                                                     @if ($order->status == 'Complete') disabled @endif
                                                     class="btn btn-outline-danger waves-effect waves-light"
                                                     wire:click="edit({{ $order->id }})"> <i
-                                                        class="zmdi zmdi-edit"></i> </button>
+                                                        class="zmdi zmdi-edit"></i> </button> --}}
 
                                                 <button type="button"
                                                     class="btn btn-outline-danger waves-effect waves-light"

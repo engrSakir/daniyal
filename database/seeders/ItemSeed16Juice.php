@@ -28,7 +28,7 @@ class ItemSeed16Juice extends Seeder
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => null,
-            'price' => 20,
+            'price' => 25,
         ]);
         $i = Item::create(['name' => 'Hot Coffee']);
         CategoryWiseItem::create([
@@ -149,7 +149,7 @@ class ItemSeed16Juice extends Seeder
             'item_id' => $i->id,
             'category_id' => $c->id,
             'sub_category_id' => null,
-            'price' => 25,
+            'price' => 30,
         ]);
         
     }

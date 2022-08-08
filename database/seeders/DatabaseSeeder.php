@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(UserSeeder::class);
-        $this->call(MenuSeeder::class);
         $this->call(ItemSeed1Salad::class);
         $this->call(ItemSeed2Soup::class);
         $this->call(ItemSeed3Appetizers::class);
