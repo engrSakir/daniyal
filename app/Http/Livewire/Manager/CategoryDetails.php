@@ -17,6 +17,7 @@ class CategoryDetails extends Component
 
     public $category;
     public $sub_category_model, $sub_category_name;
+    public $action_type, $selected_category_wise_item_model;
 
     public $childs = [];
 
@@ -66,11 +67,17 @@ class CategoryDetails extends Component
 
     public function create_item()
     {
+        $this->action_type = 'create';
+        $this->offline_active = null;
+        $this->online_active = null;
+        $this->name = null;
+        $this->shortcut_number = null;
+        $this->image = null;
+        $this->sub_category_wise_price_array = [];
         foreach (SubCategory::where('category_id', $this->category->id)->get() as $sub_category) {
             array_push($this->sub_category_wise_price_array, [
                 'sub_category_id' => $sub_category->id,
                 'price' => null,
-                'shortcut_number' => null
             ]);
         }
     }
@@ -88,50 +95,96 @@ class CategoryDetails extends Component
             'image' => 'nullable|image',
             'description' => 'nullable',
         ]);
-
-        $item = Item::firstOrCreate(
-            [
-                'name' =>  $this->name,
-            ],
-            [
+        if($this->action_type == 'create'){
+            $item = Item::firstOrCreate(
+                [
+                    'name' =>  $this->name,
+                ],
+                [
+                    'name' => $this->name,
+                    'image' => $this->image,
+                    'description' => $this->description,
+                ],
+            );
+            $category_wise_item = [];
+            if ($this->category->has_sub_category) {
+                foreach ($this->sub_category_wise_price_array as $sub_category_wise_price) {
+                    if ($sub_category_wise_price['price']) {
+                        array_push($category_wise_item, [
+                            'item_id' => $item->id,
+                            'category_id' => $this->category->id,
+                            'sub_category_id' => $sub_category_wise_price['sub_category_id'],
+                            'price' => $sub_category_wise_price['price'],
+                            'offline_active' => $this->offline_active,
+                            'offline_active' => $this->online_active,
+                            'shortcut_number' => $this->shortcut_number,
+                            'created_at' => Carbon::now(),
+                            'updated_at' => Carbon::now(),
+    
+                        ]);
+                    }
+                }
+            } else {
+                $category_wise_item = [
+                    'item_id' => $item->id,
+                    'category_id' => $this->category->id,
+                    'sub_category_id' => null,
+                    'price' => $this->price,
+                    'offline_active' => $this->offline_active,
+                    'offline_active' => $this->online_active,
+                    'shortcut_number' => $this->shortcut_number,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ];
+            }
+            CategoryWiseItem::insert($category_wise_item);
+            $this->alert('success', 'Item Created');
+        }else if($this->action_type == 'edit'){
+            $this->selected_category_wise_item_model->item->update([
                 'name' => $this->name,
                 'image' => $this->image,
                 'description' => $this->description,
-            ],
-        );
-        $category_wise_item = [];
-        if ($this->category->has_sub_category) {
-            foreach ($this->sub_category_wise_price_array as $sub_category_wise_price) {
-                if ($sub_category_wise_price['price']) {
-                    array_push($category_wise_item, [
-                        'item_id' => $item->id,
-                        'category_id' => $this->category->id,
-                        'sub_category_id' => $sub_category_wise_price['sub_category_id'],
-                        'price' => $sub_category_wise_price['price'],
-                        'offline_active' => $this->offline_active,
-                        'offline_active' => $this->online_active,
-                        'shortcut_number' => $sub_category_wise_price['shortcut_number'],
-                        'created_at' => Carbon::now(),
-                        'updated_at' => Carbon::now(),
+            ]);
 
-                    ]);
+            $category_wise_item = [];
+            if ($this->category->has_sub_category) {
+                foreach ($this->sub_category_wise_price_array as $sub_category_wise_price) {
+                    if ($sub_category_wise_price['price']) {
+                        CategoryWiseItem::where('category_id', $this->category->id)
+                        ->where('sub_category_id', $sub_category_wise_price['sub_category_id'])
+                        ->where('item_id', $this->selected_category_wise_item_model->item->id)
+                        ->update([
+                            'price' => $sub_category_wise_price['price'],
+                            'offline_active' => $this->offline_active,
+                            'offline_active' => $this->online_active,
+                            'shortcut_number' => $this->shortcut_number,
+                        ]);
+                    }else{
+                        CategoryWiseItem::where('category_id', $this->category->id)
+                        ->where('sub_category_id', $sub_category_wise_price['sub_category_id'])
+                        ->where('item_id', $this->selected_category_wise_item_model->item->id)
+                        ->where('price', '!=', null)
+                        ->update([
+                            'offline_active' => $this->offline_active,
+                            'offline_active' => $this->online_active,
+                            'shortcut_number' => $this->shortcut_number,
+                        ]);
+                        $this->alert('info', 'Update without price');
+                    }
                 }
+            } else {
+                CategoryWiseItem::where('category_id', $this->category->id)
+                ->where('sub_category_id', null)
+                ->where('item_id', $this->selected_category_wise_item_model->item->id)
+                ->update([
+                    'price' => $this->price,
+                    'offline_active' => $this->offline_active,
+                    'offline_active' => $this->online_active,
+                    'shortcut_number' => $this->shortcut_number,
+                ]);
             }
-        } else {
-            $category_wise_item = [
-                'item_id' => $item->id,
-                'category_id' => $this->category->id,
-                'sub_category_id' => null,
-                'price' => $this->price,
-                'offline_active' => $this->offline_active,
-                'offline_active' => $this->online_active,
-                'shortcut_number' => $this->shortcut_number,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ];
+            $this->alert('success', 'Item Updated');
         }
-        CategoryWiseItem::insert($category_wise_item);
-        $this->alert('success', 'Item Created');
     }
 
     public function add_or_remove_child($key = null)
@@ -143,7 +196,24 @@ class CategoryDetails extends Component
         }
     }
 
-    public function edit_item($category_wise_item){
-
+    public function edit_item(CategoryWiseItem $category_wise_item){
+        $this->action_type = 'edit';
+        $this->selected_category_wise_item_model = $category_wise_item;
+        $this->offline_active = $category_wise_item->offline_active;
+        $this->online_active = $category_wise_item->online_active;
+        $this->name = $category_wise_item->item->name;
+        $this->shortcut_number = $category_wise_item->shortcut_number;
+        $this->image = $category_wise_item->item->image;
+        $this->sub_category_wise_price_array = [];
+        if ($this->category->has_sub_category) {
+            foreach (SubCategory::where('category_id', $this->category->id)->get() as $sub_category) {
+                array_push($this->sub_category_wise_price_array, [
+                    'sub_category_id' => $sub_category->id,
+                    'price' => price_helper($category_wise_item->item_id, $category_wise_item->category_id, $sub_category->id),
+                ]);
+            }
+        } else {
+            $this->price = $category_wise_item->price;
+        }
     }
 }

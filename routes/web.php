@@ -31,7 +31,6 @@ Route::group(['middleware' => ['manager','auth'], 'as' => 'manager.', 'prefix' =
     Route::get('sale', Manager\Sale::class)->name('sale');
     Route::get('category', Manager\Category::class)->name('category');
     Route::get('category-details/{category}', Manager\CategoryDetails::class)->name('category_details');
-    Route::get('item', Manager\Item::class)->name('item');
     Route::get('offer', Manager\Offer::class)->name('offer');
     Route::get('table', Manager\Table::class)->name('table');
     Route::get('waiter', Manager\Waiter::class)->name('waiter');

@@ -61,7 +61,7 @@
                                     @endif
                                     <td>
                                         <div class="btn-group m-1">
-                                            <button type="button" class="btn btn-warning waves-effect waves-light btn-sm" data-toggle="modal" data-target="#modal" wire:click="edit_item({{ $category_wise_item }})"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-warning waves-effect waves-light btn-sm" data-toggle="modal" data-target="#item_modal" wire:click="edit_item({{ $category_wise_item }})"><i class="fa fa-edit"></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -189,10 +189,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-                            <button type="reset" class="btn btn-secondary"><i class="fa fa-refresh"></i>
-                                Reset</button>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i>
-                                Save</button>
+                            <button type="reset" class="btn btn-secondary"><i class="fa fa-refresh"></i>Reset</button>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i>Save</button>
                         </div>
                     </form>
                 </div>
