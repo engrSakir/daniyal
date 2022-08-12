@@ -175,7 +175,7 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="category_wise_items_modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="category_wise_items_modal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
