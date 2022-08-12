@@ -136,7 +136,7 @@
                                                 <i class="fa fa-asterisk"></i>
                                             </div>
                                         </div>
-                                        <input type="number" class="form-control form-control-sm calculation" placeholder="Fix" title="Discount Fixed Amount" id="discount_fixed_amount">
+                                        <input type="number" class="form-control form-control-sm calculation" placeholder="Fixed" title="Discount Fixed Amount" id="discount_fixed_amount">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
