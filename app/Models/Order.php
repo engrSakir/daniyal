@@ -35,7 +35,7 @@ class Order extends Model
     }
 
     public function price_after_discount(){
-        return $this->price() - $this->discount_amount() - $this->discount_fixed_amount;
+        return round(($this->price() - $this->discount_amount() - $this->discount_fixed_amount), 0);
     }
 
     public function due(){

@@ -90,7 +90,7 @@
             <td style="text-align:left;">{{ $item->name }} <sub>{{ $order_item->category_wise_item->sub_category_name() }}</sub> </td>
             <td style="text-align:right;"> {{ $order_item->selling_price }} </td>
             <td style="text-align:right;"> {{ $order_item->quantity }} </td>
-            <td style="text-align:right;"> {{ round($order_item->selling_price * $order_item->quantity, 2) }} </td>
+            <td style="text-align:right;"> {{ round($order_item->selling_price * $order_item->quantity, 0) }} </td>
         </tr>
         @endforeach
     </table>
