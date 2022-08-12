@@ -106,7 +106,7 @@
         @if($order->discount_percentage > 0)
         <tr>
             <td>
-                Discount percentage {{ $order->discount_percentage }} %
+                Discount {{ $order->discount_percentage }} %
             </td>
             <td class="payment" style="text-align:right;">
                 {{ $order->discount_amount() }}
@@ -116,7 +116,7 @@
         @if($order->discount_fixed_amount > 0)
         <tr>
             <td>
-                Adjustment discount {{ $order->discount_fixed_amount }}
+                Adjustment {{ $order->discount_fixed_amount }}
             </td>
             <td class="payment" style="text-align:right;">
                 {{ $order->discount_fixed_amount }}
