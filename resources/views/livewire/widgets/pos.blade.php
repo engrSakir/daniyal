@@ -107,7 +107,7 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
-                                                <i class="zmdi zmdi-phone"></i>
+                                                <i class="fa fa-phone-square"></i>
                                             </div>
                                         </div>
                                         <input type="text" class="form-control form-control-sm" placeholder="Phone Number" id="phone">
@@ -127,13 +127,13 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
-                                                <i class="zmdi zmdi-favorite-outline"></i>
+                                                <i class="fa fa-percent"></i>
                                             </div>
                                         </div>
                                         <input type="number" class="form-control form-control-sm calculation" placeholder="%" title="Discount Percentage" id="discount_percentage">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
-                                                <i class="zmdi zmdi-favorite-outline"></i>
+                                                <i class="fa fa-asterisk"></i>
                                             </div>
                                         </div>
                                         <input type="number" class="form-control form-control-sm calculation" placeholder="Fix" title="Discount Fixed Amount" id="discount_fixed_amount">
