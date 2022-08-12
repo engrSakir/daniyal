@@ -130,7 +130,13 @@
                                                 <i class="zmdi zmdi-favorite-outline"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm" placeholder="Discount Percentage" id="discount_percentage">
+                                        <input type="number" class="form-control form-control-sm calculation" placeholder="%" title="Discount Percentage" id="discount_percentage">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="zmdi zmdi-favorite-outline"></i>
+                                            </div>
+                                        </div>
+                                        <input type="number" class="form-control form-control-sm calculation" placeholder="Fix" title="Discount Fixed Amount" id="discount_fixed_amount">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
@@ -343,11 +349,27 @@
                 }
             });
 
+            $('.calculation_box').on('keyup change', '.calculation', function() {                
+                total_counter();
+            });
+
             function total_counter(){
-                var total_price = 0;
+                let total_price = 0;
                 $.map(basket, function(item, index) {
                     total_price += item.price * item.quantity;
                 });
+                let percentage = $('#discount_percentage').val();
+                if(!percentage){
+                    percentage = 0;
+                }
+                total_price = total_price - ((total_price / 100) * parseInt(percentage));
+
+                let fixed_amount = $('#discount_fixed_amount').val();
+                if(!fixed_amount){
+                    fixed_amount = 0;
+                }
+
+                total_price = (total_price-fixed_amount).toFixed(0);
                 document.getElementById("total_price").innerHTML = total_price + ' টাকা';
             }
 
@@ -380,6 +402,7 @@
                         parcel: $('#parcel_check').val(),
                         delivery_charge: $('#delivery_charge').val(),
                         discount_percentage: $('#discount_percentage').val(),
+                        discount_fixed_amount: $('#discount_fixed_amount').val(),
                     };
 
                     $.ajax({
@@ -482,6 +505,7 @@
                 $('#phone').val(null);
                 $('#address').val(null);
                 $('#discount_percentage').val(null);
+                $('#discount_fixed_amount').val(null);
                 $('#parcel_check').prop('checked', false);
                 $('#parcel_check').val('0');
                 $('#delivery_charge').val('0').prop('disabled', true);
