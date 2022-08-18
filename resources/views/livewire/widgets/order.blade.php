@@ -17,7 +17,8 @@
                                 @foreach ($orders as $order)
                                     <tr>
                                         <th scope="row">
-                                            {{ $order->serial_number }} <br>
+                                            <a href="{{ route('manager.invoice', $order) }}" target="_blank"> {{ $order->serial_number }} </a>
+                                             <br>
                                             @if ($order->status != 'Complete')
                                                 <small>{{ $order->created_at->diffForHumans() }}</small>
                                             @endif
@@ -81,9 +82,8 @@
                                         </td>
                                         <th class="text-right">
                                             <div class="btn-group m-1">
-                                                <a href="{{ route('manager.invoice', $order) }}"
-                                                    class="btn btn-outline-primary waves-effect waves-light"
-                                                    target="_blank"> <i class="zmdi zmdi-print"></i> </a>
+                                                <button type="button" onclick="printJS(`{{ route('manager.invoice', $order) }}`)"
+                                                    class="btn btn-outline-primary waves-effect waves-light"> <i class="zmdi zmdi-print"></i> </button>
                                                 {{-- <button type="button" class="btn btn-outline-warning waves-effect waves-light" wire:click="print({{ $order->id }})"> <i class="zmdi zmdi-print"></i> </button> --}}
 
                                                 {{-- <button type="button"
