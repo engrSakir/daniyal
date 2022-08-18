@@ -27,6 +27,9 @@
     </div>
     <!-- End Breadcrumb-->
     <div class="row">
+        <div class="col-12">
+            @livewire('widgets.today-hour-wise-report')
+        </div>
         <div class="col-12 col-sm-6 col-lg-6 col-xl-3">
             <div class="card bg-danger shadow-danger">
                 <div class="card-body">

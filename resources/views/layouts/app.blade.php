@@ -22,6 +22,17 @@
     <link href="{{ asset('assets/css/sidebar-menu.css') }}" rel="stylesheet" />
     <!-- Custom Style-->
     <link href="{{ asset('assets/css/app-style.css') }}" rel="stylesheet" />
+
+    {{-- highcharts end --}}
+    <script src="{{ asset('assets/highcharts/highcharts.js') }}"></script>
+    <script src="{{ asset('assets/highcharts/series-label.js') }}"></script>
+    <script src="{{ asset('assets/highcharts/exporting.js') }}"></script>
+    <script src="{{ asset('assets/highcharts/export-data.js') }}"></script>
+    <script src="{{ asset('assets/highcharts/accessibility.js') }}"></script>
+    {{-- <script src="https://code.highcharts.com/maps/modules/map.js"></script> --}}
+    {{-- highcharts end --}}
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+
     @livewireStyles
 
     <style>
