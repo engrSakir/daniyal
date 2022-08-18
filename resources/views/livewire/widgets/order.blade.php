@@ -7,7 +7,7 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">#Invoice</th>
                                     <th scope="col">Waiter/Table</th>
                                     <th scope="col" class="text-center">Status</th>
                                     <th scope="col" class="text-right">Action</th>
