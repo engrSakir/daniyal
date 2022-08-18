@@ -48,6 +48,9 @@ class DayWiseIncomeExpenseChart extends Component
         }
 
         return [
+            'credits'=> [
+                'enabled' => false,
+            ],
             'chart' => [
                 'type' => $this->chart_type,
                 'zoomType'=> 'xy'

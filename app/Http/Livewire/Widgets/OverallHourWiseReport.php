@@ -27,7 +27,7 @@ class OverallHourWiseReport extends Component
 
     public function get_data()
     {
-        $invoices = DB::table('invoices')->select(DB::raw('hour(created_at) as hour'), DB::raw('COUNT(id) as inv_count'))
+        $invoices = DB::table('orders')->select(DB::raw('hour(created_at) as hour'), DB::raw('COUNT(id) as inv_count'))
             ->groupBy(DB::raw('hour(created_at)'))
             ->orderBy('hour')
             ->get();
@@ -41,6 +41,9 @@ class OverallHourWiseReport extends Component
         }
 
         return [
+            'credits'=> [
+                'enabled' => false,
+            ],
             'chart' => [
                 'type' => $this->chart_type,
                 'zoomType'=> 'xy'

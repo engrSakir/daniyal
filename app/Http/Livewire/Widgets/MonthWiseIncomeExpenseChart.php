@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Widgets;
 
 use App\Models\Expense;
 use App\Models\Invoice;
+use App\Models\Order;
 use Carbon\Carbon;
 use DateInterval;
 use DatePeriod;
@@ -40,12 +41,15 @@ class MonthWiseIncomeExpenseChart extends Component
         foreach ($period as $date) {
             array_push($data_set,[
                 'date' => $date->format("F"),
-                'income' => Invoice::whereMonth('created_at',  $date->format("m"))->whereYear('created_at',  $date->format("Y"))->sum('paid_amount'),
+                'income' => Order::whereMonth('created_at',  $date->format("m"))->whereYear('created_at',  $date->format("Y"))->sum('paid_amount'),
                 'expense' => Expense::whereMonth('created_at',  $date->format("m"))->whereYear('created_at',  $date->format("Y"))->sum('amount'),
             ]);
         }
 
         return [
+            'credits'=> [
+                'enabled' => false,
+            ],
             'chart' => [
                 'type' => $this->chart_type,
                 'zoomType'=> 'xy'
