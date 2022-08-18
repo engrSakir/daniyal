@@ -1,7 +1,7 @@
 <div>
     <div class="card">
         <div class="card-header d-flex justify-content-between">
-            <div>Daily Income & Expense of {{ date('M-Y') }}</div>
+            <div>Income & Expense of {{ $month }} month</div>
             <div>
                 <input type="month" wire:model="month" wire:change="chart_update">
                 <select wire:model="chart_type" wire:change="chart_update">

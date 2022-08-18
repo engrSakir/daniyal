@@ -3,7 +3,8 @@
 namespace App\Http\Livewire\Widgets;
 
 use App\Models\Expense;
-use App\Models\Invoice;
+use App\Models\Order;
+use App\Models\Purchase;
 use Carbon\Carbon;
 use DateInterval;
 use DatePeriod;
@@ -40,7 +41,8 @@ class DayWiseIncomeExpenseChart extends Component
         foreach ($period as $date) {
             array_push($data_set,[
                 'date' => $date->format("d-M"),
-                'income' => Invoice::whereDate('created_at',  $date->format("Y-m-d"))->sum('paid_amount'),
+                'income' => Order::whereDate('created_at',  $date->format("Y-m-d"))->sum('paid_amount'),
+                'purchase' => Purchase::whereDate('created_at',  $date->format("Y-m-d"))->sum('amount'),
                 'expense' => Expense::whereDate('created_at',  $date->format("Y-m-d"))->sum('amount'),
             ]);
         }
@@ -51,10 +53,10 @@ class DayWiseIncomeExpenseChart extends Component
                 'zoomType'=> 'xy'
             ],
             'title' => [
-                'text' => ''
+                'text' => ""
             ],
             'subtitle' => [
-                'text' => ''
+                'text' => "Income & Expense of $this->month month"
             ],
             'xAxis' => [
                 'categories' => collect($data_set)->pluck('date')
@@ -89,9 +91,9 @@ class DayWiseIncomeExpenseChart extends Component
                     'y' => 10, // 10 pixels down from the top
                 ]
             ],[
-                'name' => 'Expense',
+                'name' => 'Purchase',
                 'colorByPoint' => true,
-                'data' => collect($data_set)->pluck('expense'),
+                'data' => collect($data_set)->pluck('purchase'),
                 'showInLegend' => true,
                 'dataLabels' => [
                     'enabled' => true,
@@ -100,7 +102,19 @@ class DayWiseIncomeExpenseChart extends Component
                     'format' => '{point.y} TK', // one decimal
                     'y' => 10, // 10 pixels down from the top
                 ]
-            ]]
+                ],[
+                    'name' => 'Expense',
+                    'colorByPoint' => true,
+                    'data' => collect($data_set)->pluck('expense'),
+                    'showInLegend' => true,
+                    'dataLabels' => [
+                        'enabled' => true,
+                        'rotation' => -90,
+                        'align' => 'right',
+                        'format' => '{point.y} TK', // one decimal
+                        'y' => 10, // 10 pixels down from the top
+                    ]
+                ]]
         ];
     }
 
