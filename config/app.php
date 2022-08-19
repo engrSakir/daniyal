@@ -15,6 +15,9 @@ return [
     |
     */
 
+    'bin_number' => env('BIN_NUMBER', null),
+    'vat_percentage' => env('VAT_PERCENTAGE', 0),
+
     'name' => env('APP_NAME', 'Laravel'),
 
     /*

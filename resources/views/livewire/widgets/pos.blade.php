@@ -85,6 +85,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h4 class="form-header text-uppercase text-center mt-1" id="total_price">00.00 টাকা</h4>
+                            <p class="text-center"><small>Price: 100tk + VAT {{ config('app.vat_percentage') }}% or 100tk = Total 100tk</small></p>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <select class="custom-select custom-select-sm" id="waiter">
