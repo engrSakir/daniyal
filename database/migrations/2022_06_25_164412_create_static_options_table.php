@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('static_options', function (Blueprint $table) {
             $table->id();
+            $table->string('option_name');
+            $table->longText('option_value')->nullable();
             $table->timestamps();
         });
     }

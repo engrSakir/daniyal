@@ -12,6 +12,7 @@
                 <li class="sidebar-header">Admin</li>
                 <li><a href="{{ route('admin.dashboard') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Dashboard</span></a></li>
                 <li><a href="{{ route('admin.manager') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Manager</span></a></li>
+                <li><a href="{{ route('admin.setting') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Setting</span></a></li>
                 @endif
 
                 @if(auth()->user()->manager())
@@ -29,8 +30,7 @@
                     </a>
                     <ul class="sidebar-submenu">
                         <li><a href="{{ route('manager.category') }}"><i class="fa fa-circle-o"></i> Menu Setting </a></li>
-                        {{-- <li><a href="{{ route('manager.item') }}"><i class="fa fa-circle-o"></i> Item Shortcut</a>
-                </li> --}}
+                        {{-- <li><a href="{{ route('manager.item') }}"><i class="fa fa-circle-o"></i> Item Shortcut</a> </li> --}}
                 <li><a href="{{ route('manager.table') }}"><i class="fa fa-circle-o"></i> Table Setting</a></li>
                 <li><a href="{{ route('manager.waiter') }}"><i class="fa fa-circle-o"></i> Waiter List</a></li>
                 {{-- <li><a href="{{ route('manager.offer') }}"><i class="fa fa-circle-o"></i> Offer setting</a></li> --}}

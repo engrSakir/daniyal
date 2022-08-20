@@ -21,12 +21,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', Login::class)->name('login')->middleware('guest');
 
-Route::group(['middleware' => ['admin', 'auth'], 'as' => 'admin.', 'prefix' => 'admin/'], function (){
+Route::group(['middleware' => ['admin', 'auth'], 'as' => 'admin.', 'prefix' => 'admin/'], function () {
     Route::get('dashboard', Admin\Dashoard::class)->name('dashboard');
     Route::get('manager', Admin\Manager::class)->name('manager');
+    Route::get('setting', Admin\Setting::class)->name('setting');
 });
 
-Route::group(['middleware' => ['manager','auth'], 'as' => 'manager.', 'prefix' => 'manager/'], function (){
+Route::group(['middleware' => ['manager', 'auth'], 'as' => 'manager.', 'prefix' => 'manager/'], function () {
     Route::get('dashboard', Manager\Dashoard::class)->name('dashboard');
     Route::get('sale', Manager\Sale::class)->name('sale');
     Route::get('category', Manager\Category::class)->name('category');
@@ -44,5 +45,4 @@ Route::group(['middleware' => ['manager','auth'], 'as' => 'manager.', 'prefix' =
 
     Route::get('invoice/{order}', [PrintController::class, 'invoice'])->name('invoice');
     Route::get('report/daily/{date}', [PrintController::class, 'daily_report'])->name('daily_report');
-
 });
