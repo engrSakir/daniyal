@@ -25,9 +25,26 @@ class PosController extends Controller
     }
 
 
-    public function save($order_data){
+    public function save(Request $request){
 
-        $order_data = json_decode($order_data, true);
+        // return $request->all();
+
+        /*
+        basket
+        waiter
+        table
+        phone
+        address
+        parcel
+        delivery_charge
+        discount_percentage
+        discount_fixed_amount
+        */
+        $request->validate([
+            'waiter' => 'required|exists:waiters,id'
+        ]);
+
+        $order_data = 'json_decode($order_data, true)';
 
         $item_list = $order_data['basket'];
 

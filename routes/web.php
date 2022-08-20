@@ -40,7 +40,7 @@ Route::group(['middleware' => ['manager','auth'], 'as' => 'manager.', 'prefix' =
     Route::get('expense', Manager\Expense::class)->name('expense');
     Route::get('purchase', Manager\Purchase::class)->name('purchase');
 
-    Route::get('/pos/save/{item_list}', [PosController::class, 'save']);
+    Route::post('sale', [PosController::class, 'save']);
 
     Route::get('invoice/{order}', [PrintController::class, 'invoice'])->name('invoice');
     Route::get('report/daily/{date}', [PrintController::class, 'daily_report'])->name('daily_report');

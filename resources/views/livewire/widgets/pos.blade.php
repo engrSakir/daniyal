@@ -393,21 +393,33 @@
 
             function save_invoice(){
                 if(basket.length > 0){
-                    let data = {
-                        basket: basket,
-                        waiter: $('#waiter').val(),
-                        table: $('#table').val(),
-                        phone: $('#phone').val(),
-                        address: $('#address').val(),
-                        parcel: $('#parcel_check').val(),
-                        delivery_charge: $('#delivery_charge').val(),
-                        discount_percentage: $('#discount_percentage').val(),
-                        discount_fixed_amount: $('#discount_fixed_amount').val(),
-                    };
+                    // let data = {
+                    //     basket: basket,
+                    //     waiter: $('#waiter').val(),
+                    //     table: $('#table').val(),
+                    //     phone: $('#phone').val(),
+                    //     address: $('#address').val(),
+                    //     parcel: $('#parcel_check').val(),
+                    //     delivery_charge: $('#delivery_charge').val(),
+                    //     discount_percentage: $('#discount_percentage').val(),
+                    //     discount_fixed_amount: $('#discount_fixed_amount').val(),
+                    // };
 
                     $.ajax({
-                        type: 'GET', //THIS NEEDS TO BE GET
-                        url: '/manager/pos/save/'+encodeURIComponent(JSON.stringify(data)),
+                        type: 'POST', //THIS NEEDS TO BE GET
+                        url: '/manager/sale',
+                        data:{
+                            basket:basket,
+                            waiter: $('#waiter').val(),
+                            table: $('#table').val(),
+                            phone: $('#phone').val(),
+                            address: $('#address').val(),
+                            parcel: $('#parcel_check').val(),
+                            delivery_charge: $('#delivery_charge').val(),
+                            discount_percentage: $('#discount_percentage').val(),
+                            discount_fixed_amount: $('#discount_fixed_amount').val(),
+                            _token: "{{ csrf_token()}}"
+                        },
                         beforeSend: function() {
                             $('#save_btn').html('Please wait ---- ');
                             $('#save_btn').prop("disabled", true);
