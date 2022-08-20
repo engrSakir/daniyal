@@ -40,7 +40,7 @@ class ItemSeed2Soup extends Seeder
             'price' => 550,
         ]);
 
-        $i = Item::create(['name' => 'Thai Soup (Thick/Clear])']);
+        $i = Item::create(['name' => 'Thai Soup (Thick/Clear)']);
         CategoryWiseItem::insert([[
             'item_id' => $i->id,
             'category_id' => $c->id,
