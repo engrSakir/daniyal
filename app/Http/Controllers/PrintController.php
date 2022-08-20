@@ -25,7 +25,7 @@ class PrintController extends Controller
     public function daily_report($date)
     {
         $pdf = PDF::loadView('print.daily-report', [
-            'orders' => Order::whereDate('created_at', Carbon::parse($date))->get(),
+            'orders' => Order::whereDate('created_at', Carbon::parse($date))->where('status', 'Complete')->get(),
             'expeses' => Expense::whereDate('created_at', Carbon::parse($date))->get(),
             'purchases' => Purchase::whereDate('created_at', Carbon::parse($date))->get(),
             'file_name' => 'Daily Report of '.Carbon::parse($date)->format('d M Y'),

@@ -125,7 +125,7 @@
         @endif
         <tr>
             <td>
-                <h3>Paid Amount</h3>
+                <h3>Payable Amount</h3>
             </td>
             <td class="payment" style="text-align:right;">
                <h3> {{ money_format_india($order->price_after_discount()) }} Taka</h3>

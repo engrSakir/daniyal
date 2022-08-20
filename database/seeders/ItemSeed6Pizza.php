@@ -25,15 +25,15 @@ class ItemSeed6Pizza extends Seeder
         ]);
         $sc = SubCategory::create([
             'category_id' => $c->id,
-            'name' => '6"'
+            'name' => '6 inch'
         ]);
         $sc2 = SubCategory::create([
             'category_id' => $c->id,
-            'name' => '9"'
+            'name' => '9 inch'
         ]);
         $sc3 = SubCategory::create([
             'category_id' => $c->id,
-            'name' => '13"'
+            'name' => '13 inch'
         ]);
 
         $i = Item::create(['name' => 'Daniyal Special Pizza']);
