@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PosRequest;
 use App\Models\Category;
 use App\Models\CategoryWiseItem;
 use App\Models\Item;
@@ -27,9 +28,34 @@ class PosController extends Controller
 
     public function save(Request $request){
 
-        // return $request->all();
+        // return $request->parcel;
+        $request->validate([
+            'waiter' => 'required|exists:waiters,id',
+            'parcel' => 'required|boolean',
+            'table' => 'required_if:parcel,0',
+            'address' => 'nullable|string',
+            'phone' => 'required_if:parcel,1',
+            'discount_percentage' => 'nullable|numeric|min:0',
+            'discount_fixed_amount' => 'nullable|numeric|min:0',
+            "items"    => "required|array|min:1",
+            "items.*.id"  => "required|exists:category_wise_items,id",
+            "items.*.quantity"  => "required|numeric|min:1",
+        ]);
+        $request->validate([
+            'phone' => 'nullable|min:11|max:11|string',
+            'table' => 'nullable|exists:tables,id',
+        ]);
+
+        return $request->all();
 
         /*
+        id: "4"
+name: "Chicken Lub Gai Salad"
+offer_id: null
+price: "370"
+quantity: "1"
+sub_category: "1:3"
+
         basket
         waiter
         table
@@ -40,68 +66,17 @@ class PosController extends Controller
         discount_percentage
         discount_fixed_amount
         */
-        $request->validate([
-            'waiter' => 'required|exists:waiters,id'
-        ]);
+        // $request->validate([
+        //     'waiter' => 'required|exists:waiters,id',
+        //     'table' => 'required|exists:waiters,id',
+        //     'waiter' => 'required|exists:waiters,id',
+        //     'waiter' => 'required|exists:waiters,id',
 
-        $order_data = 'json_decode($order_data, true)';
+        // ]);
 
-        $item_list = $order_data['basket'];
 
-        $error_messages = [];
+        $item_list = $request['basket'];
 
-        if(!Waiter::find($order_data['waiter'])){
-            array_push($error_messages, 'Select waiter');
-        }
-
-        if($order_data['table'] == '' || $order_data['parcel'] == 1){
-            $order_data['table'] = null;
-        }
-
-        if($order_data['parcel'] == 1 && !is_numeric($order_data['delivery_charge'])){
-            array_push($error_messages, 'Use numeric delivery charge');
-        }
-        
-        if($order_data['parcel'] == 0 && !Table::find($order_data['table'])){
-            array_push($error_messages, 'Select table');
-        }
-   
-        if($order_data['phone'] == ''){
-            $order_data['phone'] = null;
-        }
-
-        if($order_data['discount_percentage'] == ''){
-            $order_data['discount_percentage'] = null;
-        }
-
-        if($order_data['discount_fixed_amount'] == ''){
-            $order_data['discount_fixed_amount'] = null;
-        }
-
-        if($order_data['phone'] && !is_numeric($order_data['phone'])){
-            array_push($error_messages, 'Use numeric phone number');
-        }
-        
-        if($order_data['phone'] && strlen($order_data['phone']) != 11){
-            array_push($error_messages, 'Use 11 digit phone number');
-        }
-
-        if($order_data['discount_percentage'] && !is_numeric($order_data['discount_percentage'])){
-            array_push($error_messages, 'Use numeric discount');
-        }
- 
-        if($order_data['discount_fixed_amount'] && !is_numeric($order_data['discount_fixed_amount'])){
-            array_push($error_messages, 'Use numeric discount');
-        }
-
-        if(count($error_messages) > 0){
-            return [
-                'type' => 'error',
-                'messages' => $error_messages,
-            ];
-        }
-
-        
 
         if (count($item_list) > 0) {
             $total_price = 0;
