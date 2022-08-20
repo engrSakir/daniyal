@@ -393,20 +393,8 @@
 
             function save_invoice(){
                 if(basket.length > 0){
-                    // let data = {
-                    //     basket: basket,
-                    //     waiter: $('#waiter').val(),
-                    //     table: $('#table').val(),
-                    //     phone: $('#phone').val(),
-                    //     address: $('#address').val(),
-                    //     parcel: $('#parcel_check').val(),
-                    //     delivery_charge: $('#delivery_charge').val(),
-                    //     discount_percentage: $('#discount_percentage').val(),
-                    //     discount_fixed_amount: $('#discount_fixed_amount').val(),
-                    // };
-
                     $.ajax({
-                        type: 'POST', //THIS NEEDS TO BE GET
+                        type: 'POST',
                         url: '/manager/sale',
                         data:{
                             items:basket,
@@ -481,10 +469,12 @@
                 if ($('#parcel_check').is(':checked') == true){
                     $('#delivery_charge').val(0).prop('disabled', false);
                     $('#table').val(null).prop('disabled', true);
+                    $('#address').val(null).prop('disabled', true);
                     $('#parcel_check').val('1');
                 } else {
                     $('#delivery_charge').val('0').prop('disabled', true);
                     $('#table').val(null).prop('disabled', false);
+                    $('#address').val(null).prop('disabled', false);
                     $('#parcel_check').val('0');
                 }
             });

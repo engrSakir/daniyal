@@ -48,32 +48,6 @@ class PosController extends Controller
 
         return $request->all();
 
-        /*
-        id: "4"
-name: "Chicken Lub Gai Salad"
-offer_id: null
-price: "370"
-quantity: "1"
-sub_category: "1:3"
-
-        basket
-        waiter
-        table
-        phone
-        address
-        parcel
-        delivery_charge
-        discount_percentage
-        discount_fixed_amount
-        */
-        // $request->validate([
-        //     'waiter' => 'required|exists:waiters,id',
-        //     'table' => 'required|exists:waiters,id',
-        //     'waiter' => 'required|exists:waiters,id',
-        //     'waiter' => 'required|exists:waiters,id',
-
-        // ]);
-
 
         $item_list = $request['basket'];
 
@@ -84,21 +58,24 @@ sub_category: "1:3"
                 $total_price += ($item['price'] * $item['quantity']);
             }
             try {
+
+
+
                 $total_order_count_of_this_month = Order::select('id')->whereYear('created_at', date('Y'))->whereMonth('created_at', date('m'))->count();
                 $order = new Order();
                 $order->creator_id = Auth::user()->id;
                 $order->serial_number = date('ym') . sprintf("%'.05d", $total_order_count_of_this_month + 1); //220700001
                 $order->status = 'Cook'; //Penging, Reject, Cook, Serve, Complete
-                $order->waiter_id = $order_data['waiter'];
-                $order->table_id = $order_data['parcel'] ? null : $order_data['table'];
+                $order->waiter_id = $request->waiter;
+                $order->table_id = $request->parcel ? null : $request->table;
                 $order->is_online = false;
-                $order->is_parcel = $order_data['parcel'] ?? false;
-                $order->customer_phone =  $order_data['phone'];
-                $order->customer_address = $order_data['parcel'] ? $order_data['address'] : null;
+                $order->is_parcel = $request->parcel;
+                $order->customer_phone =  $request->phone;
+                $order->customer_address = $request->parcel ? $request->address : null;
                 $order->paid_amount = round($total_price - ((($order_data['discount_percentage'] ?? 0) / 100) * $total_price) - ($order_data['discount_fixed_amount'] ?? 0), 0);
-                $order->delivery_fee = $order_data['parcel'] ? $order_data['delivery_charge'] : 0;
-                $order->discount_percentage = $order_data['discount_percentage'] ?? 0;
-                $order->discount_fixed_amount = $order_data['discount_fixed_amount'] ?? 0;
+                $order->delivery_fee = $request->parcel ? $request->delivery_charge : 0;
+                $order->discount_percentage = $request->discount_percentage ?? 0;
+                $order->discount_fixed_amount = $request->discount_fixed_amount ?? 0;
                 $order->save();
 
                 //Items
