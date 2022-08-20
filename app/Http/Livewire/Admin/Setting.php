@@ -20,6 +20,7 @@ class Setting extends Component
     {
         $this->bin_number = get_static_option('bin_number');
         $this->vat_percentage = get_static_option('vat_percentage');
+        $this->vat_activation = get_static_option('vat_activation') ?? false;
     }
 
     public function update_bin_number()
@@ -35,7 +36,16 @@ class Setting extends Component
         $this->validate([
             'vat_percentage' => 'required|string'
         ]);
-        $this->set_or_update_static_option('vat_percentage', $this->vat_percentage);
+        $this->set_or_update_static_option('vat_percentage', !$this->vat_percentage);
+    }
+
+
+    public function update_vat_activation()
+    {
+        $this->validate([
+            'vat_activation' => 'required|boolean'
+        ]);
+        $this->set_or_update_static_option('vat_activation', !(get_static_option('vat_activation') ?? true));
     }
 
     public function set_or_update_static_option($key, $value)

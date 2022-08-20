@@ -13,6 +13,15 @@
     <div class="row">
         <div class="col-lg-4">
             <div class="card">
+                <div class="card-header">VAT Activation</div>
+                <div class="card-body pb-5 text-center">
+                    <input type="checkbox" id="vat_activation" class="filled-in chk-col-primary" @if($vat_activation) checked="" @endif wire:change="update_vat_activation">
+                    <label for="vat_activation">Active</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
                 <div class="card-header">BIN Number</div>
                 <div class="card-body">
                     <div class="input-group mb-3">
