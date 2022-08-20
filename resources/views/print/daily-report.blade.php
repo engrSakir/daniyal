@@ -56,6 +56,28 @@
     }
 
 </style>
+<table>
+    <tr>
+        <td>
+            <div style="background: #00ff0025; border-radius:5px; text-align:center; width:215px; padding:7px;">
+                <h3>{{ $orders->sum('paid_amount') }} TAKA</h3>
+                <h5>Total Sale</h5>
+            </div>
+        </td>
+        <td>
+            <div style="background: #00ff0025; border-radius:5px; text-align:center; width:215px; padding:7px;">
+                <h3>{{ $expeses->sum('amount') }} TAKA</h3>
+                <h5>Total Expense</h5>
+            </div>
+        </td>
+        <td>
+            <div style="background: #00ff0025; border-radius:5px; text-align:center; width:215px; padding:7px;">
+                <h3>{{ $purchases->sum('amount') }} TAKA</h3>
+                <h5>Total Buy</h5>
+            </div>
+        </td>
+    </tr>
+</table>
 
 <div id="data" class="row">
     <div class="invoice">

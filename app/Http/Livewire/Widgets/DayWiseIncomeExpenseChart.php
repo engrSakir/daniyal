@@ -41,7 +41,7 @@ class DayWiseIncomeExpenseChart extends Component
         foreach ($period as $date) {
             array_push($data_set,[
                 'date' => $date->format("d-M"),
-                'income' => Order::whereDate('created_at',  $date->format("Y-m-d"))->sum('paid_amount'),
+                'income' => Order::whereDate('created_at',  $date->format("Y-m-d"))->where('status', 'Complete')->sum('paid_amount'),
                 'purchase' => Purchase::whereDate('created_at',  $date->format("Y-m-d"))->sum('amount'),
                 'expense' => Expense::whereDate('created_at',  $date->format("Y-m-d"))->sum('amount'),
             ]);
