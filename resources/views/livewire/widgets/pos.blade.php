@@ -481,16 +481,17 @@
             }
 
             $('#delivery_charge').val('0').prop('disabled', true);
+            $('#address').val('').prop('disabled', true);
             $('#parcel_check').change(function(){
                 if ($('#parcel_check').is(':checked') == true){
                     $('#delivery_charge').val(0).prop('disabled', false);
                     $('#table').val(null).prop('disabled', true);
-                    $('#address').val(null).prop('disabled', true);
+                    $('#address').val(null).prop('disabled', false);
                     $('#parcel_check').val('1');
                 } else {
                     $('#delivery_charge').val('0').prop('disabled', true);
                     $('#table').val(null).prop('disabled', false);
-                    $('#address').val(null).prop('disabled', false);
+                    $('#address').val(null).prop('disabled', true);
                     $('#parcel_check').val('0');
                 }
             });
