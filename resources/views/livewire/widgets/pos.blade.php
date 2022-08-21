@@ -451,9 +451,24 @@
                                 });
                             }
                         },
-                        error: function() {
-                            console.log(data);
-                        }
+                        error: function (xhr) {
+                            var errorMessage = '<div class="card bg-danger">\n' +
+                                '                        <div class="card-body text-center p-5">\n' +
+                                '                            <span class="text-white">';
+                            $.each(xhr.responseJSON.errors, function (key, value) {
+                                errorMessage += ('' + value + '<br>');
+                            });
+                            errorMessage += '</span>\n' +
+                                '                        </div>\n' +
+                                '                    </div>';
+                            Swal.fire({
+                                icon: '',
+                                title: '',
+                                showConfirmButton: false,
+                                footer: errorMessage
+                            });
+                        },
+
                     });
                 }else{
                     Swal.fire({
