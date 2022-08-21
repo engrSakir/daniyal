@@ -37,6 +37,7 @@ class PosController extends Controller
             'phone' => 'required_if:parcel,1',
             'discount_percentage' => 'nullable|numeric|min:0',
             'discount_fixed_amount' => 'nullable|numeric|min:0',
+            'paid_amount' => 'required|numeric|min:0',
             "items"    => "required|array|min:1",
             "items.*.id"  => "required|exists:category_wise_items,id",
             "items.*.quantity"  => "required|numeric|min:1",
@@ -46,17 +47,7 @@ class PosController extends Controller
             'table' => 'nullable|exists:tables,id',
         ]);
 
-        return $request->all();
 
-
-        $item_list = $request['basket'];
-
-
-        if (count($item_list) > 0) {
-            $total_price = 0;
-            foreach ($item_list as $item) {
-                $total_price += ($item['price'] * $item['quantity']);
-            }
             try {
 
 
@@ -72,25 +63,23 @@ class PosController extends Controller
                 $order->is_parcel = $request->parcel;
                 $order->customer_phone =  $request->phone;
                 $order->customer_address = $request->parcel ? $request->address : null;
-                $order->paid_amount = round($total_price - ((($order_data['discount_percentage'] ?? 0) / 100) * $total_price) - ($order_data['discount_fixed_amount'] ?? 0), 0);
+                $order->paid_amount = round($request->paid_amount, 0);
                 $order->delivery_fee = $request->parcel ? $request->delivery_charge : 0;
                 $order->discount_percentage = $request->discount_percentage ?? 0;
                 $order->discount_fixed_amount = $request->discount_fixed_amount ?? 0;
                 $order->save();
 
                 //Items
-                foreach ($item_list as $item) {
-                    if($item['quantity'] > 0){
-                        $category_wise_item = CategoryWiseItem::find($item['id']);
-                        $order_item = new OrderItem();
-                        $order_item->order_id = $order->id;
-                        $order_item->category_wise_item_id = $category_wise_item->id;
-                        $order_item->original_price = $category_wise_item->price;
-                        $order_item->offer_id = $item['offer_id'];
-                        $order_item->selling_price = $item['offer_id'] ? $item['item_single_price'] : $category_wise_item->price;
-                        $order_item->quantity = $item['quantity'];
-                        $order_item->save();
-                    }
+                foreach ($request->items as $item) {
+                    $category_wise_item = CategoryWiseItem::find($item['id']);
+                    $order_item = new OrderItem();
+                    $order_item->order_id = $order->id;
+                    $order_item->category_wise_item_id = $category_wise_item->id;
+                    $order_item->original_price = $category_wise_item->price;
+                    $order_item->offer_id = $item['offer_id'];
+                    $order_item->selling_price = $item['offer_id'] ? $item['item_single_price'] : $category_wise_item->price;
+                    $order_item->quantity = $item['quantity'];
+                    $order_item->save();
                 }
 
                 $response = [
@@ -104,12 +93,7 @@ class PosController extends Controller
                     'message' => $e->getMessage()
                 ];
             }
-        } else {
-            $response = [
-                'type' => 'error',
-                'message' => 'Sales item not found'
-            ];
-        }
+        
         return $response;
     }
 

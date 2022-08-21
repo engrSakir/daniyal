@@ -84,7 +84,7 @@
                 <div class="card-body calculation_box">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="form-header text-uppercase text-center mt-1" id="total_price">00.00 টাকা</h4>
+                            <h4 class="form-header text-uppercase text-center mt-1" id="total_price">00.00</h4>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <select class="custom-select custom-select-sm" id="waiter">
@@ -370,7 +370,7 @@
                 }
 
                 total_price = (total_price-fixed_amount).toFixed(0);
-                document.getElementById("total_price").innerHTML = total_price + ' টাকা';
+                document.getElementById("total_price").innerHTML = total_price;
             }
 
             $('.item_search_by_id_field').on('input', function() {
@@ -398,6 +398,7 @@
                         url: '/manager/sale',
                         data:{
                             items:basket,
+                            paid_amount: parseInt($('#total_price').text()),
                             waiter: $('#waiter').val(),
                             table: $('#table').val(),
                             phone: $('#phone').val(),
