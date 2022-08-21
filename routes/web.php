@@ -6,6 +6,7 @@ use App\Http\Livewire\Login;
 use App\Http\Livewire\SuperAdmin;
 use App\Http\Livewire\Admin;
 use App\Http\Livewire\Manager;
+use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,3 +47,12 @@ Route::group(['middleware' => ['manager', 'auth'], 'as' => 'manager.', 'prefix' 
     Route::get('invoice/{order}', [PrintController::class, 'invoice'])->name('invoice');
     Route::get('report/daily/{date}', [PrintController::class, 'daily_report'])->name('daily_report');
 });
+
+if(config('app.debug') == true){
+    Route::get('/all-payable_amount-fill-by-paid_amount', function(){
+        foreach(Order::withTrashed()->get() as $order){
+            $order->update(['payable_amount' => $order->paid_amount]);
+        }
+        return Order::withTrashed()->select('id', 'paid_amount', 'payable_amount')->get();
+    });
+}
