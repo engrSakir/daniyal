@@ -146,7 +146,7 @@
                                                 <input type="checkbox" value="0" id="parcel_check">
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm" id="delivery_charge" placeholder="Delivery Charge">
+                                        <input type="text" class="form-control form-control-sm calculation" id="delivery_charge" placeholder="Delivery Charge">
                                     </div>
                                 </div>
                             </div>
@@ -352,7 +352,6 @@
             $('.calculation_box').on('keyup change', '.calculation', function() {                
                 total_counter();
             });
-
             function total_counter(){
                 let total_price = 0;
                 $.map(basket, function(item, index) {
@@ -370,6 +369,11 @@
                 }
 
                 total_price = (total_price-fixed_amount).toFixed(0);
+
+                if({{ get_static_option('delivery_charge_in_business') }} === 1 && $('#parcel_check').val() == 1){
+                    total_price = parseInt(total_price) + parseInt($('#delivery_charge').val());
+                }
+
                 document.getElementById("total_price").innerHTML = total_price;
             }
 
@@ -398,6 +402,7 @@
                         url: '/manager/sale',
                         data:{
                             items:basket,
+                            payable_amount: parseInt($('#total_price').text()),
                             paid_amount: parseInt($('#total_price').text()),
                             waiter: $('#waiter').val(),
                             table: $('#table').val(),
@@ -507,6 +512,7 @@
 
             document.addEventListener("keypress", function(event) {
                 console.log(event.keyCode);
+                // total_counter();
                 if (event.keyCode == 13) { // 13 means enter
                     save_invoice();
                 }

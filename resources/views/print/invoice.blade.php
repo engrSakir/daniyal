@@ -100,7 +100,7 @@
                 Total price
             </td>
             <td class="payment" style="text-align:right;">
-                {{ $order->price() }}
+                {{ $order->regular_price() }}
             </td>
         </tr>
         @if($order->discount_percentage > 0)
@@ -109,7 +109,7 @@
                 Discount {{ $order->discount_percentage }} %
             </td>
             <td class="payment" style="text-align:right;">
-                {{ $order->discount_amount() }}
+                {{ $order->discount_amount_by_percentage() }}
             </td>
         </tr>
         @endif
@@ -128,7 +128,7 @@
                 <h3>Payable Amount</h3>
             </td>
             <td class="payment" style="text-align:right;">
-               <h3> {{ money_format_india($order->price_after_discount()) }} Taka</h3>
+               <h3> {{ get_static_option('delivery_charge_in_business') ? money_format_india($order->payable_amount) : money_format_india($order->payable_amount+$order->delivery_fee)  }} Taka</h3>
             </td>
         </tr>
         {{-- <tr class="">
@@ -136,7 +136,7 @@
                 <h3> Discount price:</h3>
             </td>
             <td class="payment" style="text-align:right;">
-                {{ $order->total_price_after_discount() }}
+                {{ $order->total_payable_amount }}
             </td>
         </tr>
         <tr class="">
@@ -152,7 +152,7 @@
                 <h3> Return amount:</h3>
             </td>
             <td class="payment" style="text-align:right;">
-                {{ $order->paid_amount - $order->total_price_after_discount() }}
+                {{ $order->paid_amount - $order->total_payable_amount }}
             </td>
         </tr> --}}
     </table>

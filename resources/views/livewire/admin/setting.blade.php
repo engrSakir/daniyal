@@ -13,6 +13,15 @@
     <div class="row">
         <div class="col-lg-4">
             <div class="card">
+                <div class="card-header">Delivery charge in business</div>
+                <div class="card-body pb-5 text-center">
+                    <input type="checkbox" id="delivery_charge_in_business" class="filled-in chk-col-primary" @if($delivery_charge_in_business) checked="" @endif wire:change="update_delivery_charge_in_business">
+                    <label for="delivery_charge_in_business">Active</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
                 <div class="card-header">Membership Activation</div>
                 <div class="card-body pb-5 text-center">
                     <input type="checkbox" id="membership_activation" class="filled-in chk-col-primary" @if($membership_activation) checked="" @endif wire:change="update_membership_activation">

@@ -24,22 +24,24 @@ class Order extends Model
         return $this->hasMany(OrderItem::class, 'order_id', 'id');
     }
 
-    public function discount_amount(){
-        return (($this->discount_percentage / 100) * $this->price());
+    public function total_discount_amount(){
+        // percentage and fixed amount discount
+        return ((($this->discount_percentage / 100) * $this->regular_price()) + $this->discount_fixed_amount);
     }
 
-    public function price(){
+    public function discount_amount_by_percentage(){
+        // percentage and fixed amount discount
+        return ((($this->discount_percentage / 100) * $this->regular_price()));
+    }
+
+    public function regular_price(){
         return $this->order_items->sum(function($item){
             return $item->selling_price * $item->quantity;
         });
     }
 
-    public function price_after_discount(){
-        return round(($this->price() - $this->discount_amount() - $this->discount_fixed_amount), 0);
-    }
-
     public function due(){
-        return ($this->price_after_discount() - $this->paid_amount);
+        return ($this->payable_amount - $this->paid_amount);
     }
     
     public function is_due(){

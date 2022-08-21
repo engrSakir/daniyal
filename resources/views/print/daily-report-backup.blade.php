@@ -18,7 +18,7 @@
                 <br> <br>
                 @if($order->status == 'Complete')
                 <img src="{{ asset('assets/images/complete.png') }}" alt="" width="20px;">
-                @if($order->price() - $order->paid_amount > 0)
+                @if($order->regular_price() - $order->paid_amount > 0)
                 <img src="{{ asset('assets/images/taka-red.png') }}" alt="" width="20px;">
                 @endif
                 @else
@@ -35,7 +35,7 @@
                 </ol>
             </td>
             <td style="text-align: right;">{{ number_format($order->paid_amount) }} &nbsp;</td>
-            <td style="text-align: right;">{{ number_format($order->price() - $order->paid_amount) }} &nbsp;</td>
+            <td style="text-align: right;">{{ number_format($order->regular_price() - $order->paid_amount) }} &nbsp;</td>
         </tr>
         @endforeach
     </tbody>

@@ -40,7 +40,7 @@
                                             <br> <span
                                                 class="badge @if ($order->is_due()) badge-danger @else badge-success @endif mt-2"
                                                 style="font-size:20px;">Bill:
-                                                {{ money_format_india($order->price_after_discount()) }}</span>
+                                                {{ money_format_india($order->payable_amount) }}</span>
                                         </td>
                                         <td class="text-center">
                                             @if ($order->is_online && $order->status == 'Pending')
