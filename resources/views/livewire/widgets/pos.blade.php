@@ -409,14 +409,14 @@
                             discount_fixed_amount: $('#discount_fixed_amount').val(),
                             _token: "{{ csrf_token()}}"
                         },
-                        // beforeSend: function() {
-                        //     $('#save_btn').html('Please wait ---- ');
-                        //     $('#save_btn').prop("disabled", true);
-                        // },
-                        // complete: function() {
-                        //     $('#save_btn').html('SAVE');
-                        //     $('#save_btn').prop("disabled", false);
-                        // },
+                        beforeSend: function() {
+                            $('#save_btn').html('Please wait ---- ');
+                            $('#save_btn').prop("disabled", true);
+                        },
+                        complete: function() {
+                            $('#save_btn').html('SAVE');
+                            $('#save_btn').prop("disabled", false);
+                        },
 
                         success: function (data) {
                             console.log(data);
