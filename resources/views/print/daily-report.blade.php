@@ -101,7 +101,7 @@
                     @endif
                 </td>
                 <td style="text-align: right;">{{ number_format($order->paid_amount) }} &nbsp;</td>
-                <td style="text-align: right;">{{ number_format($order->discount_amount()) }} &nbsp;</td>
+                <td style="text-align: right;">{{ number_format($order->total_discount_amount()) }} &nbsp;</td>
             </tr>
             @endforeach
             <tr>
