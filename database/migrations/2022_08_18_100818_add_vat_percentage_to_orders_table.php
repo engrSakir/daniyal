@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('static_options', function (Blueprint $table) {
-            $table->id();
-            $table->string('option_name');
-            $table->longText('option_value')->nullable();
-            $table->timestamps();
+        Schema::table('orders', function (Blueprint $table) {
+            $table->double('vat_percentage')->default(0);
         });
     }
 
@@ -28,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('static_options');
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropColumn('vat_percentage');
+        });
     }
 };
