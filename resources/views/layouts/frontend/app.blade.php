@@ -423,5 +423,6 @@
 <!-- add to  setting bar  end-->
 
 @include('layouts.frontend.partials.foot')
+@livewire('widgets.item-details-modal')
 </body>
 </html>

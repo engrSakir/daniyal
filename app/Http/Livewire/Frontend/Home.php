@@ -14,9 +14,4 @@ class Home extends Component
         ])->extends('layouts.frontend.app', ['title' => 'Home'])
             ->section('content');
     }
-
-    public function select_product_for_quick_view(CategoryWiseItem $categoryWiseItem)
-    {
-        $this->dispatchBrowserEvent('quick_view_data_event', ['quick_view_data' => $categoryWiseItem]);
-    }
 }

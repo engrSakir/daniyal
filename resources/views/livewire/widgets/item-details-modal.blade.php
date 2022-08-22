@@ -6,29 +6,25 @@
             <div class="modal-content quick-view-modal">
                 <div class="modal-body">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    @if($product)
+                    @if($category_wise_item)
                     <div class="row">
                         <div class="col-lg-6 col-xs-12">
                             <div class="quick-view-img">
-                                <img src=" {{ asset($product->image ?? 'assets/images/layout-1/product/3.jpg') }}" alt="" class="img-fluid bg-img">
+                                <img src=" {{ asset($category_wise_item->image ?? 'assets/images/layout-1/product/3.jpg') }}" alt="" class="img-fluid bg-img">
                             </div>
                         </div>
                         <div class="col-lg-6 rtl-text">
                             <div class="product-right">
                                 <div class="pro-group">
-                                    <h2 id="product_name"> {{ $product->name }} </h2>
+                                    <h2 id="product_name"> {{ $category_wise_item->name }} </h2>
                                     <ul class="pro-price">
-                                        <li>{{ $product->price }} BDT</li>
+                                        <li>{{ $category_wise_item->price }} BDT</li>
                                     </ul>
                                 </div>
                                 <div class="pro-group">
                                     <h6 class="product-title">Shop infomation</h6>
                                     <p>
-                                        Shop #{{ $product->shop->number ?? '-' }},
-                                        Block #{{ $product->shop->block ?? '-' }},
-                                        Level #{{ $product->shop->level ?? '-' }} <br>
-                                        <b>{{ $product->shop->shopping_mall->name ?? 'Shopping mall not found' }},</b> 
-                                        {{ $product->shop->shopping_mall->address ?? 'Shopping mall address not found' }}
+                                        
                                     </p>
                                 </div>
                                 <div class="pro-group pb-0">
@@ -62,8 +58,7 @@
     <!-- Quick-view modal popup end-->
     <script>
         $(document).ready(function() {
-            window.addEventListener('quick_view_data_event', event => {
-                livewire.emit('product', event.detail.quick_view_data.id); // push product for show in quick view
+            window.addEventListener('showItemDetailsModalJsFunction', event => {
                 $('#quick-view').modal('show');
             });
         });
