@@ -37,6 +37,11 @@ class PosController extends Controller
             "items"    => "required|array|min:1",
             "items.*.id"  => "required|exists:category_wise_items,id",
             "items.*.quantity"  => "required|numeric|min:1",
+        ],[
+            'waiter.required' => 'Select Waiter',
+            'table.required_if' => 'Select Table',
+            'delivery_charge.required_if' => 'Set Delivery Charge',
+            'phone.*' => 'Use 11 digit mobile number or empty',
         ]);
         $request->validate([
             'table' => 'nullable|exists:tables,id',
