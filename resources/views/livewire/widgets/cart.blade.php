@@ -30,13 +30,13 @@
                                         <div class="input-group">
                                             <button class="qty-minus"></button>
                                             <input class="qty-adj form-control" type="number" readonly value="{{ $item->quantity }}" />
-                                            <button class="qty-plus"></button>
+                                            <button class="qty-plus" wire:click="remove_item({{ $item->id }})"></button>
                                         </div>
                                     </div>
                                     <div class="pro-add">
-                                        <button type="button" wire:click="remove_item({{ $item->id }})">
-                                            <i data-feather="trash-2"></i>
-                                        </button>
+                                        <a href="javascript:void(0)" class="text-danger" wire:click="remove_item({{ $item->id }})">
+                                            <i data-feather="trash"></i> Delete
+                                        </a>
                                     </div>
                                 </div>
                             </div>
