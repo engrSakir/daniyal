@@ -10,13 +10,13 @@
                     <div class="row">
                         <div class="col-lg-6 col-xs-12">
                             <div class="quick-view-img">
-                                <img src=" {{ asset($category_wise_item->image ?? 'assets/images/layout-1/product/3.jpg') }}" alt="" class="img-fluid bg-img">
+                                <img src=" {{ asset($category_wise_item->item->image ?? 'assets/images/no-image.png') }}" alt="" class="img-fluid bg-img">
                             </div>
                         </div>
                         <div class="col-lg-6 rtl-text">
                             <div class="product-right">
                                 <div class="pro-group">
-                                    <h2 id="product_name"> {{ $category_wise_item->name }} </h2>
+                                    <h2 id="product_name"> {{ $category_wise_item->item->name ?? 'N/A' }} </h2>
                                     <ul class="pro-price">
                                         <li>{{ $category_wise_item->price }} BDT</li>
                                     </ul>

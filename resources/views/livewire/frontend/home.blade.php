@@ -223,25 +223,22 @@
                                                     <div class="product-box">
                                                         <div class="product-imgbox">
                                                             <div class="product-front">
-                                                                <a href="{{ route('details', $category_wise_item->slug ?? '') }}"> <img src="{{ asset($category_wise_item->image) }}" class="img-fluid" alt=""> </a>
+                                                                <a href="{{ route('details', $category_wise_item->slug ?? '') }}"> <img src="{{ asset($category_wise_item->item->image ?? 'assets/images/no-image.png') }}" class="img-fluid" alt=""> </a>
                                                             </div>
                                                             <div class="product-back">
-                                                                <a href="{{ route('details', $category_wise_item->slug ?? '') }}"> <img src="{{ asset($category_wise_item->image) }}" class="img-fluid" alt=""> </a>
+                                                                <a href="{{ route('details', $category_wise_item->slug ?? '') }}"> <img src="{{ asset($category_wise_item->item->image ?? 'assets/images/no-image.png') }}" class="img-fluid" alt=""> </a>
                                                             </div>
                                                         </div>
                                                         <div class="product-detail detail-center detail-inverse">
                                                             <div class="detail-title">
                                                                 <div class="detail-left">
                                                                     <p>
-                                                                        Shop #{{ $category_wise_item->shop->number ?? '-' }},
-                                                                        Block #{{ $category_wise_item->shop->block ?? '-' }},
-                                                                        Level #{{ $category_wise_item->shop->level ?? '-' }} <br>
-                                                                        <b>{{ $category_wise_item->shop->shopping_mall->name ?? 'Shopping mall not found' }},</b> 
-                                                                        {{ $category_wise_item->shop->shopping_mall->address ?? 'Shopping mall address not found' }}
+                                                                        <b>{{ $category_wise_item->item->name ?? 'N/A' }},</b> 
+                                                                        {{ $category_wise_item->shop->shopping_mall->address ?? 'N/A' }}
                                                                     </p>
                                                                     <a href="{{ route('details', $category_wise_item->slug ?? '') }}">
                                                                         <h6 class="price-title">
-                                                                            {{ $category_wise_item->name }}
+                                                                            {{ $category_wise_item->item->name ?? 'N/A' }}
                                                                         </h6>
                                                                     </a>
                                                                 </div>
