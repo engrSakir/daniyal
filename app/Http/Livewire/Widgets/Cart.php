@@ -4,9 +4,12 @@ namespace App\Http\Livewire\Widgets;
 
 use App\Models\CategoryWiseItem;
 use Livewire\Component;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class Cart extends Component
 {
+    use LivewireAlert;
+
     public function render()
     {
 
@@ -25,9 +28,13 @@ class Cart extends Component
             'price' => $category_wise_item->price,
             'quantity' => 1
         ]);
-
+        $this->alert('success', 'Add');
         // $this->category_wise_item = $category_wise_item;
-        $this->dispatchBrowserEvent('addToCardJsFunction');
-        $this->render();
+        // $this->dispatchBrowserEvent('addToCardJsFunction');
+    }
+
+    public function remove_item($id){
+        \ShopCart::remove($id);
+        $this->alert('success', 'Remove');
     }
 }

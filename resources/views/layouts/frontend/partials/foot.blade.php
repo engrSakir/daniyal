@@ -32,7 +32,8 @@
 @livewireScripts
 @stack('scripts')
 {{-- toster alert code --}}
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<x-livewire-alert::scripts />
 <script>
     window.addEventListener('alert',({detail:{type,message}})=>{
         Toast.fire({

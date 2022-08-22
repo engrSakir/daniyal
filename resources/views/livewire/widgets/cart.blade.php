@@ -23,23 +23,20 @@
                                     <h4>{{ $item->name }}</h4>
                                 </a>
                                 <h6>
-                                    {{ $item->price }}
+                                    {{ $item->price }} TK
                                 </h6>
                                 <div class="addit-box">
                                     <div class="qty-box">
                                         <div class="input-group">
                                             <button class="qty-minus"></button>
-                                            <input class="qty-adj form-control" type="number" value="1" />
+                                            <input class="qty-adj form-control" type="number" readonly value="{{ $item->quantity }}" />
                                             <button class="qty-plus"></button>
                                         </div>
                                     </div>
                                     <div class="pro-add">
-                                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#edit-product">
-                                            <i data-feather="edit"></i>
-                                        </a>
-                                        <a href="javascript:void(0)">
+                                        <button type="button" wire:click="remove_item({{ $item->id }})">
                                             <i data-feather="trash-2"></i>
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
