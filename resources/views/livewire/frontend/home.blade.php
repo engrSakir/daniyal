@@ -248,9 +248,9 @@
                                                             </div>
                                                             <div class="icon-detail">
                                                                 <button class="tooltip-top add-cartnoty" data-tippy-content="Add to cart"> <i data-feather="shopping-cart"></i> </button>
-                                                                <a href="javascript:void(0)" class="add-to-wish tooltip-top" data-tippy-content="Add to Wishlist"> <i data-feather="heart"></i> </a>
+                                                                {{-- <a href="javascript:void(0)" class="add-to-wish tooltip-top" data-tippy-content="Add to Wishlist"> <i data-feather="heart"></i> </a> --}}
                                                                 <a href="javascript:void(0)" wire:click="$emit('showItemDetailsModal', '{{ $category_wise_item->id }}')"> <i data-feather="eye"></i></a>
-                                                                <a href="compare.html" class="tooltip-top" data-tippy-content="Compare"> <i data-feather="refresh-cw"></i> </a>
+                                                                {{-- <a href="compare.html" class="tooltip-top" data-tippy-content="Compare"> <i data-feather="refresh-cw"></i> </a> --}}
                                                             </div>
                                                         </div>
                                                     </div>
