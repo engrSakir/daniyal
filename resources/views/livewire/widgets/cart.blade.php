@@ -16,7 +16,7 @@
                     <li>
                         <div class="media">
                             <a href="product-page(left-sidebar).html">
-                                <img alt="megastore1" class="me-3" src="../assets/frontend/images/layout-2/product/1.jpg">
+                                <img alt="megastore1" class="me-3" src="{{ asset($item->image ?? 'assets/images/no-image.png') }}">
                             </a>
                             <div class="media-body">
                                 <a href="product-page(left-sidebar).html">

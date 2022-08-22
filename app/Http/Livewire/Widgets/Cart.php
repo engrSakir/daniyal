@@ -26,7 +26,8 @@ class Cart extends Component
             'id' => $category_wise_item->id,
             'name' => $category_wise_item->item->name ?? 'N/A',
             'price' => $category_wise_item->price,
-            'quantity' => 1
+            'quantity' => 1,
+            'image' => $category_wise_item->item->image ?? null
         ]);
         $this->alert('success', 'Add');
         // $this->category_wise_item = $category_wise_item;
