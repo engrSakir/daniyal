@@ -9,7 +9,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="top-banner-wrapper">
-                                        <a href="javascript:void(0)"><img src="http://themes.pixelstrap.com/bigdeal/assets/images/category/1.jpg" class="img-fluid  w-100" alt=""></a>
+                                        <a href="javascript:void(0)"><img src="{{ asset('assets/images/home-cover.png') }}" class="img-fluid  w-100" alt=""></a>
                                     </div>
                                     <div class="collection-product-wrapper">
                                         <div class="product-top-filter">
