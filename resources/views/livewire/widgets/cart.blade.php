@@ -28,9 +28,9 @@
                                 <div class="addit-box">
                                     <div class="qty-box">
                                         <div class="input-group">
-                                            <button class="qty-minus"></button>
-                                            <input class="qty-adj form-control" type="number" readonly value="{{ $item->quantity }}" />
-                                            <button class="qty-plus" wire:click="remove_item({{ $item->id }})"></button>
+                                            <button class="qty-minus" wire:click="updateQuantity({{ $item->id }}, '-')"></button>
+                                            <input class="form-control" style="font-size: 8px;" type="number" readonly value="{{ $item->quantity }}" />
+                                            <button class="qty-plus" wire:click="updateQuantity({{ $item->id }}, '+')"></button>
                                         </div>
                                     </div>
                                     <div class="pro-add">

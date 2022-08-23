@@ -148,19 +148,19 @@
                                             <h6 class="product-title">quantity</h6>
                                             <div class="qty-box">
                                                 <div class="input-group">
-                                                    <button class="qty-minus"></button>
-                                                    <input class="qty-adj form-control" type="number" value="1" />
-                                                    <button class="qty-plus"></button>
+                                                    <button class="qty-minus" wire:click="$emit('updateQuantity', {{ $category_wise_item->id }}, '-')"></button>
+                                                    <input class="form-control" readonly type="number" value="{{ $quantity }}" />
+                                                    <button class="qty-plus" wire:click="$emit('updateQuantity', {{ $category_wise_item->id }}, '+')"></button>
                                                 </div>
                                             </div>
                                             <div class="product-buttons">
-                                                <a href="javascript:void(0)" id="cartEffect" class="btn cart-btn btn-normal tooltip-top" data-tippy-content="Add to cart">
+                                                <a href="javascript:void(0)" id="cartEffect" class="btn cart-btn btn-normal tooltip-top" wire:click="$emit('addToCard', '{{ $category_wise_item->id }}')">
                                                     <i class="fa fa-shopping-cart"></i>
                                                     add to cart
                                                 </a>
-                                                <a href="javascript:void(0)" class="btn btn-normal add-to-wish tooltip-top" data-tippy-content="Add to wishlist">
+                                                {{-- <a href="javascript:void(0)" class="btn btn-normal add-to-wish tooltip-top" data-tippy-content="Add to wishlist">
                                                     <i class="fa fa-heart" aria-hidden="true"></i>
-                                                </a>
+                                                </a> --}}
                                             </div>
                                         </div>
                                         <div class="pro-group">

@@ -1643,46 +1643,6 @@
     }
   });
 
-
-  /*=====================
-   10. Product page Quantity Counter
-   ==========================*/
-  // $('.qty-box .quantity-right-plus').on('click', function () {
-  //   var $qty = $('.qty-box .input-number');
-  //   var currentVal = parseInt($qty.val(), 10);
-  //   if (!isNaN(currentVal)) {
-  //     $qty.val(currentVal + 1);
-  //   }
-  // });
-  // $('.qty-box .quantity-left-minus').on('click', function () {
-  //   var $qty = $('.qty-box .input-number');
-  //   var currentVal = parseInt($qty.val(), 10);
-  //   if (!isNaN(currentVal) && currentVal > 1) {
-  //     $qty.val(currentVal - 1);
-  //   }
-  // });
-
-
-  // var qtyHolders = document.querySelectorAll(".qty-holder");
-  var qtyDecs = document.querySelectorAll(".qty-minus");
-  var qtyIncs = document.querySelectorAll(".qty-plus");
-  qtyDecs.forEach((qtyDec) => {
-    qtyDec.addEventListener("click", function (e) {
-      if (e.target.nextElementSibling.value > 0) {
-        e.target.nextElementSibling.value--;
-      } else {
-        // delete the item, etc
-      }
-    })
-  })
-  qtyIncs.forEach((qtyDec) => {
-    qtyDec.addEventListener("click", function (e) {
-      e.target.previousElementSibling.value++;
-    })
-  })
-
-
-
   /*=====================
    11. filter sidebar js
    ==========================*/

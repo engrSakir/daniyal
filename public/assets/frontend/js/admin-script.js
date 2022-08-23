@@ -116,21 +116,3 @@ jQuery('.bg-img').each(function() {
     $(this).addClass("active");
     $(this).parent().addClass('selected');
 });
-
- var qtyDecs = document.querySelectorAll(".qty-minus");
-  var qtyIncs = document.querySelectorAll(".qty-plus");
-  qtyDecs.forEach((qtyDec) => {
-    qtyDec.addEventListener("click",function(e){
-      if(e.target.nextElementSibling.value > 0){
-        e.target.nextElementSibling.value--;
-      } else {
-        // delete the item, etc
-      }
-    })
-  })
-  qtyIncs.forEach((qtyDec) => {
-    qtyDec.addEventListener("click",function(e){
-      e.target.previousElementSibling.value++;
-    })
-  })
-

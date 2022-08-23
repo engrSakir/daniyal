@@ -12,13 +12,14 @@ class Cart extends Component
 
     public function render()
     {
+        $this->emit('cart_refresh');
 
         return view('livewire.widgets.cart',[
             'items' => \ShopCart::getContent()
         ]);
     }
 
-    protected $listeners = ['addToCard'];
+    protected $listeners = ['addToCard', 'updateQuantity'];
 
     public function addToCard(CategoryWiseItem $category_wise_item)
     {
@@ -32,6 +33,17 @@ class Cart extends Component
         $this->alert('success', 'Add');
         // $this->category_wise_item = $category_wise_item;
         // $this->dispatchBrowserEvent('addToCardJsFunction');
+    }
+
+    public function updateQuantity($id, $type){
+        if($type == '+'){
+            $qty = 1;
+        }else{
+            $qty = -1;
+        }
+        \ShopCart::update($id, [
+            'quantity' => $qty,
+        ]);
     }
 
     public function remove_item($id){
