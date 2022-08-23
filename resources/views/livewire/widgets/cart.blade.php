@@ -1,5 +1,5 @@
 <div>
-    <div id="cart_side" class="add_to_cart right ">
+    <div wire:ignore.self id="cart_side" class="add_to_cart right ">
         <a href="javascript:void(0)" class="overlay" onclick="closeCart()"></a>
         <div class="cart-inner">
             <div class="cart_top">
