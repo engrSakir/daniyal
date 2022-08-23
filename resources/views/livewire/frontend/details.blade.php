@@ -125,26 +125,22 @@
                             <div class="row ">
                                 <div class="col-lg-5">
                                     <div class="product-slick ">
-                                        <div><img src="{{ asset($product->image ?? 'assets/images/product-sidebar/001.jpg') }}" alt="" class="img-fluid  image_zoom_cls-1"></div>
+                                        <div><img src="{{ asset($category_wise_item->item->image ?? 'assets/images/no-image.png') }}" alt="" class="img-fluid  image_zoom_cls-1"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-7 rtl-text">
                                     <div class="product-right ">
                                         <div class="pro-group">
-                                            <h2>{{ $product->name }}</h2>
+                                            <h2>{{ $category_wise_item->item->name }}</h2>
                                             <ul class="pro-price">
-                                                <li>{{ $product->price }} BDT</li>
+                                                <li>{{ $category_wise_item->price }} TK</li>
                                             </ul>
                                         </div>
                                         <div class="pro-group">
                                             <h6 class="product-title">Shop information :</h6>
                                             <div class="timer">
                                                 <p>
-                                                    Shop #{{ $product->shop->number ?? '-' }},
-                                                    Block #{{ $product->shop->block ?? '-' }},
-                                                    Level #{{ $product->shop->level ?? '-' }} <br>
-                                                    <b>{{ $product->shop->shopping_mall->name ?? 'Shopping mall not found' }},</b>
-                                                    {{ $product->shop->shopping_mall->address ?? 'Shopping mall address not found' }}
+                                                   Phone
                                                 </p>
                                             </div>
                                         </div>
@@ -257,7 +253,7 @@
                                     </ul>
                                     <div class="tab-content nav-material" id="top-tabContent">
                                         <div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
-                                            {!! $product->description !!}
+                                            {!! $category_wise_item->product->description ?? '' !!}
                                         </div>
                                     </div>
                                 </div>

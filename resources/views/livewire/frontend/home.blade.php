@@ -224,12 +224,12 @@
                                                         <div class="product-box">
                                                             <div class="product-imgbox">
                                                                 <div class="product-front">
-                                                                    <a href="{{ route('details', $category_wise_item->slug ?? '') }}">
+                                                                    <a href="{{ route('details', $category_wise_item->id) }}">
                                                                         <img src="{{ asset($category_wise_item->item->image ?? 'assets/images/no-image.png') }}" class="img-fluid" alt="">
                                                                     </a>
                                                                 </div>
                                                                 <div class="product-back">
-                                                                    <a href="{{ route('details', $category_wise_item->slug ?? '') }}">
+                                                                    <a href="{{ route('details', $category_wise_item->id) }}">
                                                                         <img src="{{ asset($category_wise_item->item->image ?? 'assets/images/no-image.png') }}" class="img-fluid" alt="">
                                                                     </a>
                                                                 </div>
@@ -266,7 +266,7 @@
                                                                   <i class="fa fa-star"></i>
                                                                   <i class="fa fa-star"></i>
                                                                 </div> --}}
-                                                                        <a href="{{ route('details', $category_wise_item->slug ?? '') }}">
+                                                                        <a href="{{ route('details', $category_wise_item->id) }}">
                                                                             <h6 class="price-title">
                                                                                 {{ $category_wise_item->item->name ?? 'N/A' }}
                                                                             </h6>
