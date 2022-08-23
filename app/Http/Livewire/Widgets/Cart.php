@@ -41,9 +41,13 @@ class Cart extends Component
         }else{
             $qty = -1;
         }
-        \ShopCart::update($id, [
-            'quantity' => $qty,
-        ]);
+        if (\ShopCart::get($id)) {
+            \ShopCart::update($id, [
+                'quantity' => $qty,
+            ]);
+        }else{
+            $this->addToCard(CategoryWiseItem::find($id));
+        }
     }
 
     public function remove_item($id){
