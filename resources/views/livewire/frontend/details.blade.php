@@ -6,11 +6,11 @@
                 <div class="col">
                     <div class="breadcrumb-contain">
                         <div>
-                            <h2>product</h2>
+                            <h2>{{ $category_wise_item->category->name ?? '' }}</h2>
                             <ul>
                                 <li><a href="{{ route('home') }}">home</a></li>
                                 <li><i class="fa fa-angle-double-right"></i></li>
-                                <li><a href="javascript:void(0)">product</a></li>
+                                <li><a href="javascript:void(0)">{{ $category_wise_item->item->name ?? '' }}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                                 <div class="col-lg-7 rtl-text">
                                     <div class="product-right ">
                                         <div class="pro-group">
-                                            <h2>{{ $category_wise_item->item->name }}</h2>
+                                            <h2>{{ $category_wise_item->item->name  ?? ''}}</h2>
                                             <ul class="pro-price">
                                                 <li>{{ $category_wise_item->price }} TK</li>
                                             </ul>
