@@ -220,37 +220,69 @@
                                             <div class="row">
                                                 @foreach ($category_wise_items as $category_wise_item)
                                                 <div class="col-xl-2 col-lg-3 col-md-4 col-6 col-grid-box">
-                                                    <div class="product-box">
-                                                        <div class="product-imgbox">
-                                                            <div class="product-front">
-                                                                <a href="{{ route('details', $category_wise_item->slug ?? '') }}"> <img src="{{ asset($category_wise_item->item->image ?? 'assets/images/no-image.png') }}" class="img-fluid" alt=""> </a>
-                                                            </div>
-                                                            <div class="product-back">
-                                                                <a href="{{ route('details', $category_wise_item->slug ?? '') }}"> <img src="{{ asset($category_wise_item->item->image ?? 'assets/images/no-image.png') }}" class="img-fluid" alt=""> </a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-detail detail-center detail-inverse">
-                                                            <div class="detail-title">
-                                                                <div class="detail-left">
-                                                                    <p>
-                                                                        <b>{{ $category_wise_item->item->name ?? 'N/A' }},</b> 
-                                                                        {{ $category_wise_item->shop->shopping_mall->address ?? 'N/A' }}
-                                                                    </p>
+                                                    <div>
+                                                        <div class="product-box">
+                                                            <div class="product-imgbox">
+                                                                <div class="product-front">
                                                                     <a href="{{ route('details', $category_wise_item->slug ?? '') }}">
-                                                                        <h6 class="price-title">
-                                                                            {{ $category_wise_item->item->name ?? 'N/A' }}
-                                                                        </h6>
+                                                                        <img src="{{ asset($category_wise_item->item->image ?? 'assets/images/no-image.png') }}" class="img-fluid" alt="">
                                                                     </a>
                                                                 </div>
-                                                                <div class="">
-                                                                    <div class="price"> {{ $category_wise_item->price }} BDT </div>
+                                                                <div class="product-back">
+                                                                    <a href="{{ route('details', $category_wise_item->slug ?? '') }}">
+                                                                        <img src="{{ asset($category_wise_item->item->image ?? 'assets/images/no-image.png') }}" class="img-fluid" alt="">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="product-icon icon-inline">
+                                                                    <button onclick="openCart()" class="tooltip-top" wire:click="$emit('addToCard', '{{ $category_wise_item->id }}')">
+                                                                        <i data-feather="shopping-cart"></i>
+                                                                    </button>
+                                                                    {{-- <a href="javascript:void(0)"  class="add-to-wish tooltip-top"  data-tippy-content="Add to Wishlist" >
+                                                                <i  data-feather="heart"></i>
+                                                              </a> --}}
+                                                                    <a href="javascript:void(0)" wire:click="$emit('showItemDetailsModal', '{{ $category_wise_item->id }}')">
+                                                                        <i data-feather="eye"></i>
+                                                                    </a>
+                                                                    {{-- <a href="compare.html" class="tooltip-top" data-tippy-content="Compare">
+                                                                <i  data-feather="refresh-cw"></i>
+                                                              </a> --}}
+                                                                </div>
+                                                                @if($category_wise_item->sub_category_name())
+                                                                <div class="new-label1">
+                                                                    <div>{{ $category_wise_item->sub_category_name() }}</div>
+                                                                </div>
+                                                                @endif
+                                                                <div class="on-sale1 bg-danger text-white p-1">
+                                                                    {{-- 10 % off --}}
                                                                 </div>
                                                             </div>
-                                                            <div class="icon-detail">
-                                                                <button class="tooltip-top" wire:click="$emit('addToCard', '{{ $category_wise_item->id }}')"> <i data-feather="shopping-cart"></i> </button>
-                                                                {{-- <a href="javascript:void(0)" class="add-to-wish tooltip-top" data-tippy-content="Add to Wishlist"> <i data-feather="heart"></i> </a> --}}
-                                                                <a href="javascript:void(0)" wire:click="$emit('showItemDetailsModal', '{{ $category_wise_item->id }}')"> <i data-feather="eye"></i></a>
-                                                                {{-- <a href="compare.html" class="tooltip-top" data-tippy-content="Compare"> <i data-feather="refresh-cw"></i> </a> --}}
+                                                            <div class="product-detail detail-inline ">
+                                                                <div class="detail-title">
+                                                                    <div class="detail-left">
+                                                                        {{-- <div class="rating-star">
+                                                                  <i class="fa fa-star"></i>
+                                                                  <i class="fa fa-star"></i>
+                                                                  <i class="fa fa-star"></i>
+                                                                  <i class="fa fa-star"></i>
+                                                                  <i class="fa fa-star"></i>
+                                                                </div> --}}
+                                                                        <a href="{{ route('details', $category_wise_item->slug ?? '') }}">
+                                                                            <h6 class="price-title">
+                                                                                {{ $category_wise_item->item->name ?? 'N/A' }}
+                                                                            </h6>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="detail-right">
+                                                                        <div class="check-price">
+                                                                            {{-- $ 56.21 --}}
+                                                                        </div>
+                                                                        <div class="price">
+                                                                            <div class="price">
+                                                                                {{ $category_wise_item->price }} TK
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
