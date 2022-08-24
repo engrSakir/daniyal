@@ -15,11 +15,11 @@
                     @foreach ($items as $item)
                     <li>
                         <div class="media">
-                            <a href="product-page(left-sidebar).html">
+                            <a href="{{ route('details', $item->id) }}">
                                 <img alt="megastore1" class="me-3" src="{{ asset($item->image ?? 'assets/images/no-image.png') }}">
                             </a>
                             <div class="media-body">
-                                <a href="product-page(left-sidebar).html">
+                                <a href="{{ route('details', $item->id) }}">
                                     <h4>{{ $item->name }}</h4>
                                 </a>
                                 <h6>
@@ -29,7 +29,7 @@
                                     <div class="qty-box">
                                         <div class="input-group">
                                             <button class="qty-minus" wire:click="updateQuantity({{ $item->id }}, '-')"></button>
-                                            <input class="form-control" style="font-size: 8px;" type="number" readonly value="{{ $item->quantity }}" />
+                                            <input class="form-control" type="number" readonly value="{{ $item->quantity }}" />
                                             <button class="qty-plus" wire:click="updateQuantity({{ $item->id }}, '+')"></button>
                                         </div>
                                     </div>
@@ -62,8 +62,8 @@
                     </li>
                     <li>
                         <div class="buttons">
-                            <a href="cart.html" class="btn btn-solid btn-sm">view cart</a>
-                            <a href="checkout.html" class="btn btn-solid btn-sm ">checkout</a>
+                            <a href="{{ route('cart') }}" class="btn btn-solid btn-sm">view cart</a>
+                            {{-- <a href="#" class="btn btn-solid btn-sm ">checkout</a> --}}
                         </div>
                     </li>
                 </ul>

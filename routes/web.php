@@ -5,6 +5,7 @@ use App\Http\Controllers\PrintController;
 use App\Http\Livewire\Login;
 use App\Http\Livewire\SuperAdmin;
 use App\Http\Livewire\Admin;
+use App\Http\Livewire\Frontend\Cart;
 use App\Http\Livewire\Frontend\Details;
 use App\Http\Livewire\Frontend\Home;
 use App\Http\Livewire\Manager;
@@ -23,8 +24,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', Home::class)->name('home');
-Route::get('/details/{category_wise_item}', Details::class)->name('details');
-Route::get('/authentication', Login::class)->name('login')->middleware('guest');
+Route::get('details/{category_wise_item}', Details::class)->name('details');
+Route::get('cart', Cart::class)->name('cart');
+Route::get('authentication', Login::class)->name('login')->middleware('guest');
 
 Route::group(['middleware' => ['admin', 'auth'], 'as' => 'admin.', 'prefix' => 'admin/'], function () {
     Route::get('dashboard', Admin\Dashoard::class)->name('dashboard');

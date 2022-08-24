@@ -15,7 +15,7 @@ class Cart extends Component
         $this->emit('cart_refresh');
 
         return view('livewire.widgets.cart',[
-            'items' => \ShopCart::getContent()
+            'items' => \ShopCart::getContent()->sort()
         ]);
     }
 
