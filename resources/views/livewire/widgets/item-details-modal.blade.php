@@ -33,7 +33,7 @@
                                             <i class="fa fa-shopping-cart"></i>
                                             add to cart
                                         </a>
-                                        <a href="product-page(left-sidebar).html" class="btn btn-normal tooltip-top" data-tippy-content="view detail">
+                                        <a href="{{ route('details', $category_wise_item->id) }}" class="btn btn-normal tooltip-top" data-tippy-content="view detail">
                                             view detail
                                         </a>
                                     </div>
