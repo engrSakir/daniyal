@@ -31,6 +31,7 @@
                                 <th scope="col">image</th>
                                 <th scope="col">product name</th>
                                 <th scope="col">price</th>
+                                <th scope="col">QTY</th>
                                 <th scope="col">sub total</th>
                                 <th scope="col">action</th>
                             </tr>
@@ -46,6 +47,9 @@
                                 </td>
                                 <td>
                                     {{ $item->price }} TK
+                                </td>
+                                <td>
+                                    {{ $item->quantity }}
                                 </td>
                                 <td>
                                     <h2>{{ $item->getPriceSum() }} TK</h2>
@@ -67,7 +71,27 @@
                 </div>
             </div>
             <div class="row wishlist-buttons">
-                <div class="col-12"><a href="javascript:void(0)" class="btn btn-normal">continue shopping</a> <a href="javascript:void(0)" class="btn btn-normal">Submit</a></div>
+               <div class="col-12">
+                <div class="footer-contant">
+                    <div class="newsletter-second">
+                      <div class="form-group">
+                        <div class="input-group">
+                          <input type="text" class="form-control" placeholder="enter full name">
+                          <span class="input-group-text"><i class="ti-user"></i></span>
+                        </div>
+                      </div>
+                      <div class="form-group ">
+                        <div class="input-group">
+                          <input type="text" class="form-control" placeholder="enter email address">
+                          <span class="input-group-text"><i class="ti-email"></i></span>
+                        </div>
+                      </div>
+                      <div class="form-group mb-0">
+                        <a href="javascript:void(0)" class="btn btn-solid btn-sm">submit now</a>
+                      </div>
+                    </div>
+                  </div>
+               </div>
             </div>
         </div>
     </section>
