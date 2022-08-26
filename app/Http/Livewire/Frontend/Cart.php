@@ -42,7 +42,7 @@ class Cart extends Component
                 $total_order_count_of_this_month = Order::select('id')->whereYear('created_at', date('Y'))->whereMonth('created_at', date('m'))->count();
                 $order = new Order();
                 $order->serial_number = date('ym') . sprintf("%'.05d", $total_order_count_of_this_month + 1); //220700001
-                $order->status = 'Penging'; //Penging, Reject, Cook, Serve, Complete
+                $order->status = 'Pending'; //Pending, Reject, Cook, Serve, Complete
                 $order->is_online = true;
                 $order->is_parcel = true;
                 $order->customer_name =  $this->full_name;
