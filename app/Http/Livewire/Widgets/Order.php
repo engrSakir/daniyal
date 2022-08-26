@@ -23,6 +23,7 @@ class Order extends Component
 
     public function change_status(ModelsOrder $order, $status)
     {
+        if($order->status != 'Complete')
         $order->update(['status' => $status]);
         $this->alert('success', 'Status Update', [
             'position' => 'bottom-start'
@@ -35,6 +36,11 @@ class Order extends Component
         $this->alert('success', 'Successfully deleted', [
             'position' => 'bottom-start'
         ]);
+    }
+
+    public ModelsOrder $selected_online_order;
+    public function select_online_order(ModelsOrder $order){
+        $this->selected_online_order = $order;
     }
 
 }

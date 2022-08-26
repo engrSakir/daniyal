@@ -28,7 +28,7 @@
                                         <span class="badge badge-info">Waiter: {{ $order->waiter->name ?? '' }}</span>
                                         @endif
                                         @if ($order->is_parcel)
-                                            <img src="{{ asset('assets/images/deliveryman.png') }}" alt="" style="width:30px;">
+                                        <img src="{{ asset('assets/images/deliveryman.png') }}" alt="" style="width:30px;">
                                         @else
                                         <span class="badge badge-info">Table: {{ $order->table->name ?? '' }}</span>
                                         @endif
@@ -37,7 +37,8 @@
                                     </td>
                                     <td class="text-center">
                                         @if ($order->is_online && $order->status == 'Pending')
-                                        <img src="{{ asset('assets/images/gif/notification-icon.gif') }}" alt="" width="40px;"> <button type="button" class="btn btn-sm btn-success">show</button>
+                                        <img src="{{ asset('assets/images/gif/notification-icon.gif') }}" alt="" width="40px;">
+                                        <button type="button" class="btn btn-sm btn-success" wire:click="select_online_order({{ $order->id }})" data-toggle="modal" data-target="#online_order_modal">show</button>
                                         @elseif($order->status == 'Reject')
                                         <img src="{{ asset('assets/images/gif/reject.svg') }}" alt="" width="40px;">
                                         @elseif($order->status == 'Cook')
@@ -54,7 +55,7 @@
                                             <button type="button" class="btn @if ($order->status == 'Cook') btn-success @else btn-secondary @endif btn-sm" wire:click="change_status({{ $order->id }}, 'Cook')">Cook</button>
                                             <button type="button" class="btn @if ($order->status == 'Serve') btn-success @else btn-secondary @endif btn-sm" wire:click="change_status({{ $order->id }}, 'Serve')">Serve</button>
                                             <button type="button" class="btn @if ($order->status == 'Complete') btn-success @else btn-secondary @endif btn-sm" wire:click="change_status({{ $order->id }}, 'Complete')">Complete</button>
-                                          </div>
+                                        </div>
                                         @endif
                                     </td>
                                     <th class="text-right">
@@ -80,19 +81,42 @@
             </div>
         </div>
     </div>
+
+    <!-- selected_online_orderModal -->
+    <div wire:ignore.self class="modal fade" id="online_order_modal" tabindex="-1" role="dialog" aria-labelledby="online_order_modal_title" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="online_order_modal_title">Online Order</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @if($selected_online_order)
+                        <h1>Online order</h1>
+                    @endif
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
     <script>
-    
-      // Enable pusher logging - don't include this in production
-      Pusher.logToConsole = true;
-    
-      var pusher = new Pusher("{{ config('broadcasting.connections.pusher.key') }}", {
-        cluster: 'ap1'
-      });
-    
-      var channel = pusher.subscribe('website');
-      channel.bind('order', function(data) {
-        alert(JSON.stringify(data));
-      });
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher("{{ config('broadcasting.connections.pusher.key') }}", {
+            cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('website');
+        channel.bind('order', function(data) {
+            alert(JSON.stringify(data));
+        });
+
     </script>
 </div>

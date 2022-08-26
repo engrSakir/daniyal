@@ -32,7 +32,9 @@ class Cart extends Component
             'quantity' => 1,
             'image' => $category_wise_item->item->image ?? null
         ]);
-        $this->alert('success', 'Add');
+        $this->alert('success', 'Add', [
+            'position' => 'bottom-start'
+        ]);
     }
 
     public function updateQuantity($id, $type){
@@ -52,12 +54,16 @@ class Cart extends Component
 
     public function remove_item($id){
         \ShopCart::remove($id);
-        $this->alert('success', 'Remove');
+        $this->alert('success', 'Remove', [
+            'position' => 'bottom-start'
+        ]);
     }
 
     public function clearCart(){
         \ShopCart::clear();
         sleep(2);
-        $this->alert('success', 'Cart Clear');
+        $this->alert('success', 'Cart Clear', [
+            'position' => 'bottom-start'
+        ]);
     }
 }
