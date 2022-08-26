@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.10",
         "pavel-mironchik/laravel-backup-panel": "^2.2",
+        "pusher/pusher-php-server": "^7.0",
         "spatie/laravel-backup": "^8.1"
     },
     "require-dev": {
