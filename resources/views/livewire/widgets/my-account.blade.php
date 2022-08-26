@@ -45,7 +45,7 @@
             </div>
         </form>
         @else
-        <a href="{{ route('dashboard') }}" class="d-block">
+        <a href="{{ route('login') }}" class="d-block">
             <h5>Dashboard</h5>
         </a>
         @endguest
