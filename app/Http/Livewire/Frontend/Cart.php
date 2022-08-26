@@ -12,7 +12,8 @@ class Cart extends Component
     public function render()
     {
         return view('livewire.frontend.cart',[
-            'items' => \ShopCart::getContent()->sort()
+            'items' => \ShopCart::getContent()->sort(),
+            'total' => \ShopCart::getTotal(),
         ])
         ->extends('layouts.frontend.app', ['title' => 'Details'])
         ->section('content');
