@@ -84,21 +84,41 @@
                                     <div class="row check-out">
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                             <label>Full Name</label>
-                                            <input type="text" name="field-name" value="" placeholder="">
+                                            <input type="text" name="field-name" wire:model="full_name" placeholder="">
+                                            @error('full_name')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
                                         </div>
                                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                             <label class="field-label">Phone</label>
-                                            <input type="text" name="field-name" value="" placeholder="">
+                                            <input type="text" name="field-name" wire:model="phone_number" placeholder="">
+                                            @error('phone_number')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
                                         </div>
                                         <div class="form-group col-md-12 col-sm-12 col-xs-12">
                                             <label class="field-label">address</label>
-                                            <input type="text" name="field-name" value="" placeholder="">
+                                            <input type="text" name="field-name" wire:model="full_address" placeholder="">
+                                            @error('full_address')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
                                         </div>
                                         <div class="form-group col-md-12 col-sm-12 col-xs-12">
                                             <label class="field-label">Special Note</label>
-                                            <textarea name="" id="" cols="30" rows="20" class="form-control" style="height: 100px;"></textarea>
+                                            <textarea name="" id="" cols="30" rows="20" class="form-control" wire:model="special_note" style="height: 100px;"></textarea>
+                                            @error('special_note')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
                                         </div>
-                                        <button class="w-100 btn btn-success text-white">Order Submit</button>
+                                        <button type="button" class="w-100 btn btn-success text-white" wire:click="order_submit">Order Submit</button>
                                     </div>
                                 </div>
                             </div>
