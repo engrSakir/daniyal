@@ -42,17 +42,11 @@
                                 <td>
                                     <a href="{{ route('details', $item->id) }}"><img src="{{ asset($item->image ?? 'assets/images/no-image.png') }}" alt="" class="img-fluid"></a>
                                 </td>
-                                <td>
+                                <td style="text-align: left;">
                                     <a href="{{ route('details', $item->id) }}">{{ $item->name }}</a>
                                 </td>
                                 <td>
                                     {{ $item->price }} TK
-                                </td>
-                                <td>
-                                    {{ $item->quantity }}
-                                </td>
-                                <td>
-                                    <h2>{{ $item->getPriceSum() }} TK</h2>
                                 </td>
                                 <td>
                                     <div class="qty-box">
@@ -62,7 +56,14 @@
                                             <button class="qty-plus" wire:click="$emit('updateQuantity', {{ $item->id }}, '+')"></button>
                                         </div>
                                     </div>
-                                    {{-- <a href="javascript:void(0)" class="icon me-3"><i class="ti-close"></i> </a><a href="javascript:void(0)" class="cart"><i class="ti-shopping-cart"></i></a> --}}
+                                </td>
+                                <td>
+                                    <h2>{{ $item->getPriceSum() }} TK</h2>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-danger text-white">
+                                        Delete
+                                    </button>
                                 </td>
                             </tr>
                             @endforeach
@@ -70,28 +71,39 @@
                     </table>
                 </div>
             </div>
-            <div class="row wishlist-buttons">
-               <div class="col-12">
-                <div class="footer-contant">
-                    <div class="newsletter-second">
-                      <div class="form-group">
-                        <div class="input-group">
-                          <input type="text" class="form-control" placeholder="enter full name">
-                          <span class="input-group-text"><i class="ti-user"></i></span>
+        </div>
+    </section>
+    <section class="section-big-py-space b-g-light">
+        <div class="custom-container">
+            <div class="checkout-page contact-page">
+                <div class="checkout-form">
+                    <form>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="theme-form">
+                                    <div class="row check-out">
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                            <label>Full Name</label>
+                                            <input type="text" name="field-name" value="" placeholder="">
+                                        </div>
+                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                            <label class="field-label">Phone</label>
+                                            <input type="text" name="field-name" value="" placeholder="">
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                            <label class="field-label">address</label>
+                                            <input type="text" name="field-name" value="" placeholder="">
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                            <label class="field-label">Special Note</label>
+                                            <textarea name="" id="" cols="30" rows="20" class="form-control" style="height: 100px;"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                      <div class="form-group ">
-                        <div class="input-group">
-                          <input type="text" class="form-control" placeholder="enter email address">
-                          <span class="input-group-text"><i class="ti-email"></i></span>
-                        </div>
-                      </div>
-                      <div class="form-group mb-0">
-                        <a href="javascript:void(0)" class="btn btn-solid btn-sm">submit now</a>
-                      </div>
-                    </div>
-                  </div>
-               </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
