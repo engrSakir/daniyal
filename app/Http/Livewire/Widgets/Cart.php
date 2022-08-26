@@ -10,16 +10,18 @@ class Cart extends Component
 {
     use LivewireAlert;
 
+    
     public function render()
     {
         $this->emit('cart_refresh');
 
         return view('livewire.widgets.cart',[
-            'items' => \ShopCart::getContent()->sort()
+            'items' => \ShopCart::getContent()->sort(),
+            'total' => \ShopCart::getTotal(),
         ]);
     }
 
-    protected $listeners = ['addToCard', 'updateQuantity'];
+    protected $listeners = ['addToCard', 'updateQuantity', 'clearCart'];
 
     public function addToCard(CategoryWiseItem $category_wise_item)
     {
@@ -31,8 +33,6 @@ class Cart extends Component
             'image' => $category_wise_item->item->image ?? null
         ]);
         $this->alert('success', 'Add');
-        // $this->category_wise_item = $category_wise_item;
-        // $this->dispatchBrowserEvent('addToCardJsFunction');
     }
 
     public function updateQuantity($id, $type){
@@ -53,5 +53,11 @@ class Cart extends Component
     public function remove_item($id){
         \ShopCart::remove($id);
         $this->alert('success', 'Remove');
+    }
+
+    public function clearCart(){
+        \ShopCart::clear();
+        sleep(2);
+        $this->alert('success', 'Cart Clear');
     }
 }

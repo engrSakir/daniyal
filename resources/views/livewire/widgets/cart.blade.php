@@ -47,22 +47,19 @@
                 </ul>
                 <ul class="cart_total">
                     <li>
-                        subtotal : <span>$1050.00</span>
+                        subtotal : <span>{{ $total }} TK</span>
                     </li>
                     <li>
-                        shpping <span>free</span>
-                    </li>
-                    <li>
-                        taxes <span>$0.00</span>
+                        shpping <span>{{  get_static_option('online_delivery_charge') }} TK</span>
                     </li>
                     <li>
                         <div class="total">
-                            total<span>$1050.00</span>
+                            total<span>{{ $total + get_static_option('online_delivery_charge') }} TK</span>
                         </div>
                     </li>
                     <li>
                         <div class="buttons">
-                            <a href="{{ route('cart') }}" class="btn btn-solid btn-sm">view cart</a>
+                            <a href="{{ route('cart') }}" class="btn btn-solid btn-sm w-100">view cart</a>
                             {{-- <a href="#" class="btn btn-solid btn-sm ">checkout</a> --}}
                         </div>
                     </li>

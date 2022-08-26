@@ -67,7 +67,7 @@ class Cart extends Component
                     $order_item->quantity = $item->quantity;
                     $order_item->save();
                 }
-                \ShopCart::clear();
+                $this->emit('clearCart');
                 $this->full_name = $this->phone_number = $this->full_address = $this->special_note = null;            
                 $this->alert('success', 'Successfully order submited');
             } catch (\Exception $e) {
