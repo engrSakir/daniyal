@@ -98,6 +98,7 @@
                                             <label class="field-label">Special Note</label>
                                             <textarea name="" id="" cols="30" rows="20" class="form-control" style="height: 100px;"></textarea>
                                         </div>
+                                        <button class="w-100 btn btn-success text-white">Order Submit</button>
                                     </div>
                                 </div>
                             </div>
