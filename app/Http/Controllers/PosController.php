@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PosRequest;
-use App\Models\Category;
 use App\Models\CategoryWiseItem;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\SubCategory;
-use App\Models\Table;
-use App\Models\Waiter;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -32,7 +28,7 @@ class PosController extends Controller
             'parcel' => 'required|boolean',
             'table' => 'required_if:parcel,0',
             'address' => 'nullable|string',
-            'phone' => 'required_if:parcel,1',
+            'phone' => 'nullable|min:11|max:11|string',
             'delivery_charge' => 'required_if:parcel,1|numeric:min:0',
             'discount_percentage' => 'nullable|numeric|min:0',
             'discount_fixed_amount' => 'nullable|numeric|min:0',
@@ -41,9 +37,13 @@ class PosController extends Controller
             "items"    => "required|array|min:1",
             "items.*.id"  => "required|exists:category_wise_items,id",
             "items.*.quantity"  => "required|numeric|min:1",
+        ],[
+            'waiter.required' => 'Select Waiter',
+            'table.required_if' => 'Select Table',
+            'delivery_charge.required_if' => 'Set Delivery Charge',
+            'phone.*' => 'Use 11 digit mobile number or empty',
         ]);
         $request->validate([
-            'phone' => 'nullable|min:11|max:11|string',
             'table' => 'nullable|exists:tables,id',
         ]);
 
