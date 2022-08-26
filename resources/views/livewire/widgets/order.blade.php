@@ -94,7 +94,28 @@
                 </div>
                 <div class="modal-body">
                     @if($selected_online_order)
-                        <h1>Online order</h1>
+                    Name: {{ $selected_online_order->customer_name }} <br>
+                    Phone: <b>{{ $selected_online_order->customer_phone }}</b> <br>
+                    Address: {{ $selected_online_order->customer_address }} <br>
+                    <br>
+                    <table>
+                        <tr>
+                            <th>Item</th>
+                            <th>Category</th>
+                            <th>QTY & Price</th>
+                            <th>Action</th>
+                        </tr>
+                        @foreach ($selected_online_order->order_items as $item)
+                        <tr>
+                            <td>Name</td>
+                            <td>Category</td>
+                            <td>QTY & Price</td>
+                            <td>Action</td>
+                        </tr>
+                        @endforeach
+                    </table>
+
+
                     @endif
                 </div>
                 <div class="modal-footer">
