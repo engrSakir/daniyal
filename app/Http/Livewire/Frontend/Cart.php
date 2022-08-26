@@ -68,16 +68,9 @@ class Cart extends Component
                     $order_item->quantity = $item->quantity;
                     $order_item->save();
                 }
-                // $this->emit('clearCart');
-                // $this->full_name = $this->phone_number = $this->full_address = $this->special_note = null;
-
-                try{
-                    event(new EventsOrder('New order'));
-
-                }catch(\Exception $e){
-                        dd(config("broadcasting.connections.pusher.key"), $e->getMessage());
-                }
-            
+                $this->emit('clearCart');
+                $this->full_name = $this->phone_number = $this->full_address = $this->special_note = null;
+                event(new EventsOrder('New order'));
                 $this->alert('success', 'Successfully order submited');
             } catch (\Exception $e) {
                 $this->alert('error', $e->getMessage());

@@ -47,22 +47,6 @@
         }
 
     </style>
-
-<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
-<script>
-
-  // Enable pusher logging - don't include this in production
-  Pusher.logToConsole = true;
-
-  var pusher = new Pusher('1b4e3a20b4b71af4a0a9', {
-    cluster: 'ap1'
-  });
-
-  var channel = pusher.subscribe('website');
-  channel.bind('order', function(data) {
-    alert(JSON.stringify(data));
-  });
-</script>
 </head>
 
 <body>
