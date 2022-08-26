@@ -48,18 +48,13 @@
                                         <img src="{{ asset('assets/images/complete.png') }}" alt="" width="60px;">
                                         @endif
                                         @if ($order->status != 'Complete')
-                                        <select class="form-control form-control-sm" wire:change="change_status({{ $order->id }}, $event.target.value)">
-                                            <option value="Pending" @if ($order->status == 'Pending') selected @endif> Pending
-                                            </option>
-                                            <option value="Reject" @if ($order->status == 'Reject') selected @endif> Reject
-                                            </option>
-                                            <option value="Cook" @if ($order->status == 'Cook') selected @endif> Cook
-                                            </option>
-                                            <option value="Serve" @if ($order->status == 'Serve') selected @endif> Serve
-                                            </option>
-                                            <option value="Complete" @if ($order->status == 'Complete') selected @endif> Complete
-                                            </option>
-                                        </select>
+                                        <br>
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <button type="button" class="btn @if ($order->status == 'Reject') btn-success @else btn-secondary @endif btn-sm" wire:click="change_status({{ $order->id }}, 'Reject')">Reject</button>
+                                            <button type="button" class="btn @if ($order->status == 'Cook') btn-success @else btn-secondary @endif btn-sm" wire:click="change_status({{ $order->id }}, 'Cook')">Cook</button>
+                                            <button type="button" class="btn @if ($order->status == 'Serve') btn-success @else btn-secondary @endif btn-sm" wire:click="change_status({{ $order->id }}, 'Serve')">Serve</button>
+                                            <button type="button" class="btn @if ($order->status == 'Complete') btn-success @else btn-secondary @endif btn-sm" wire:click="change_status({{ $order->id }}, 'Complete')">Complete</button>
+                                          </div>
                                         @endif
                                     </td>
                                     <th class="text-right">
