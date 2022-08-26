@@ -125,7 +125,8 @@
         @endif
         <tr>
             <td>
-                <h3>Payable Amount</h3>
+                Payable Amount <br>
+                @if($order->is_parcel) <small>include delivery charge</small> @endif
             </td>
             <td class="payment" style="text-align:right;">
                <h3> {{ get_static_option('delivery_charge_in_business') ? money_format_india($order->payable_amount) : money_format_india($order->payable_amount+$order->delivery_fee)  }} Taka</h3>
@@ -160,6 +161,7 @@
     <div class="parcel" style="margin-top: 10px;">
         <p style="font-size: 10px;">
             Phone: <b>{{ $order->customer_phone ?? 'N/A' }}</b> <br>
+            Name: {{ $order->customer_name ?? 'N/A' }}<br>
             Address: {{ $order->customer_address ?? 'N/A' }} <br>
             Delivery Charge: {{ $order->delivery_fee ?? 'N/A' }} <br>
         </p>
