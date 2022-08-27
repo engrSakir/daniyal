@@ -21,7 +21,7 @@ class Cart extends Component
         ]);
     }
 
-    protected $listeners = ['addToCard', 'updateQuantity', 'clearCart'];
+    protected $listeners = ['addToCard', 'updateQuantity', 'clearCart', 'remove_item'];
 
     public function addToCard(CategoryWiseItem $category_wise_item)
     {

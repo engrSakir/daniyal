@@ -1,4 +1,4 @@
-<div>
+<div class="noselect">
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -81,51 +81,72 @@
             </div>
         </div>
     </div>
-
-    <!-- selected_online_orderModal -->
-    <div wire:ignore.self class="modal fade" id="online_order_modal" tabindex="-1" role="dialog" aria-labelledby="online_order_modal_title" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div wire:ignore.self class="modal fade modal-fullscreen" id="online_order_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="online_order_modal_title">Online Order</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    @if($selected_online_order)
-                    Name: {{ $selected_online_order->customer_name }} <br>
-                    Phone: <b>{{ $selected_online_order->customer_phone }}</b> <br>
-                    Address: {{ $selected_online_order->customer_address }} <br>
-                    <br>
-                    <table class="table">
-                        <tr>
-                            <th>#</th>
-                            <th>Item</th>
-                            <th>QTY & Price</th>
-                            <th>Action</th>
-                        </tr>
-                        @foreach ($order->order_items as $order_item)
-                        @php
-                        $item = $order_item->category_wise_item->item
-                        @endphp
-                        <tr class="item @if ($loop->last) last @endif">
-                            <td style="text-align:left;">{{ $loop->iteration }}</td>
-                            <td style="text-align:left;">{{ $item->name }} <sub>{{ $order_item->category_wise_item->sub_category_name() }}</sub> </td>
-                            <td style="text-align:right;"> 
-                                Price: {{ $order_item->selling_price }} <br>
-                                QTY: {{ $order_item->quantity }} <br>
-                                Total: {{ round($order_item->selling_price * $order_item->quantity, 0) }} 
-                            </td>
-                            <td>
-                                <button class="btn btn-sm btn-danger">D</button>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </table>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <select class="" wire:model="category">
+                                <option value="">All item</option>
+                                @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option> 
+                                @endforeach
+                            </select>
+                            <div class="row">
+                                @foreach ($category_wise_items as $category_wise_item)
+                                <div class="col-md-4" wire:click="addToCard({{ $category_wise_item->id }})">
+                                    <div class="m-1 card pointer btn-outline-success">
+                                        <div class="p-3">
+                                            {{ $category_wise_item->item->name ?? '' }}
+                                        </div>
+                                    </div>
+                                </div>   
+                                @endforeach
+                            </div>
+
+                        </div>
+                        <div class="col-md-4 card">
+                            @if($selected_online_order)
+                            Name: {{ $selected_online_order->customer_name }} <br>
+                            Phone: <b>{{ $selected_online_order->customer_phone }}</b> <br>
+                            Address: {{ $selected_online_order->customer_address }} <br>
+                            <br>
+                            <table class="table">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Item</th>
+                                    <th>QTY & Price</th>
+                                    <th>Action</th>
+                                </tr>
+                                @foreach ($items as $item)
+                                <tr class="item">
+                                    <td style="text-align:left;">{{ $loop->iteration }}</td>
+                                    <td style="text-align:left;">{{ $item->name }} 
+                                        <sub>{{ $item->sub_category_name }}</sub> 
+                                    </td>
+                                    <td style="text-align:right;">
+                                        Price: {{ $item->price }} <br>
+                                        QTY: {{ $item->quantity }} <br>
+                                        Total: {{ round($item->getPriceSum(), 0) }}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-danger" wire:click="remove_item({{ $item->id }})">D</button>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </table>
 
 
-                    @endif
+                            @endif
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -79,7 +79,7 @@
                                 <h2 class="td-color">{{ $item->getPriceSum() }} TK</h2>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-danger text-white">
+                                <button type="button" class="btn btn-sm btn-danger text-white" wire:click="$emit('remove_item', {{ $item->id }})">
                                     Remove
                                 </button>  
                             </td>
