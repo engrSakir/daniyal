@@ -98,19 +98,28 @@
                     Phone: <b>{{ $selected_online_order->customer_phone }}</b> <br>
                     Address: {{ $selected_online_order->customer_address }} <br>
                     <br>
-                    <table>
+                    <table class="table">
                         <tr>
+                            <th>#</th>
                             <th>Item</th>
-                            <th>Category</th>
                             <th>QTY & Price</th>
                             <th>Action</th>
                         </tr>
-                        @foreach ($selected_online_order->order_items as $item)
-                        <tr>
-                            <td>Name</td>
-                            <td>Category</td>
-                            <td>QTY & Price</td>
-                            <td>Action</td>
+                        @foreach ($order->order_items as $order_item)
+                        @php
+                        $item = $order_item->category_wise_item->item
+                        @endphp
+                        <tr class="item @if ($loop->last) last @endif">
+                            <td style="text-align:left;">{{ $loop->iteration }}</td>
+                            <td style="text-align:left;">{{ $item->name }} <sub>{{ $order_item->category_wise_item->sub_category_name() }}</sub> </td>
+                            <td style="text-align:right;"> 
+                                Price: {{ $order_item->selling_price }} <br>
+                                QTY: {{ $order_item->quantity }} <br>
+                                Total: {{ round($order_item->selling_price * $order_item->quantity, 0) }} 
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-danger">D</button>
+                            </td>
                         </tr>
                         @endforeach
                     </table>
