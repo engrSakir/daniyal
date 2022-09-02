@@ -26,6 +26,14 @@ class Order extends Component
 
     public function render()
     {
+        $total_price = \ShopCart::getTotal();
+        if(is_numeric($this->discount_percentage))
+        $total_price = $total_price - (($total_price / 100) * $this->discount_percentage);
+        if(is_numeric($this->discount_fixed_amount))
+        $total_price = $total_price - $this->discount_fixed_amount;
+        if(is_numeric($this->delivery_charge))
+        $total_price = $total_price + $this->delivery_charge;
+
         return view('livewire.widgets.order',[
             'category_wise_items' => CategoryWiseItem::where(function($query){
                 if($this->category){
@@ -34,7 +42,7 @@ class Order extends Component
             })->get(),
             'orders' => ModelsOrder::whereDate('created_at', Carbon::today())->latest()->get(),
             'items' => \ShopCart::getContent()->sort(),
-            'total' => \ShopCart::getTotal(),
+            'total' => $total_price,
             'waiters' => Waiter::all()
         ]);
     }
