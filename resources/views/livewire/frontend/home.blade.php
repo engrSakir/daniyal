@@ -234,7 +234,7 @@
                                                                     </a>
                                                                 </div>
                                                                 <div class="product-icon icon-inline">
-                                                                    <button onclick="openCart()" class="tooltip-top" wire:click="$emit('addToCard', '{{ $category_wise_item->id }}')">
+                                                                    <button class="tooltip-top" wire:click="$emit('addToCard', '{{ $category_wise_item->id }}')">
                                                                         <i data-feather="shopping-cart"></i>
                                                                     </button>
                                                                     {{-- <a href="javascript:void(0)"  class="add-to-wish tooltip-top"  data-tippy-content="Add to Wishlist" >

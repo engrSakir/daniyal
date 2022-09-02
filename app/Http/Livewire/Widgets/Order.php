@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Widgets;
 use App\Models\Category;
 use App\Models\CategoryWiseItem;
 use App\Models\Order as ModelsOrder;
+use App\Models\Waiter;
 use Carbon\Carbon;
 use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -15,6 +16,7 @@ class Order extends Component
     use LivewireAlert, WithFileUploads;
 
     public $category;
+    public $waiter, $phone, $name, $address, $discount_percentage, $discount_fixed_amount, $delivery_charge;
 
     protected $listeners = ['updateOrder' => 'render'];
 
@@ -33,6 +35,7 @@ class Order extends Component
             'orders' => ModelsOrder::whereDate('created_at', Carbon::today())->latest()->get(),
             'items' => \ShopCart::getContent()->sort(),
             'total' => \ShopCart::getTotal(),
+            'waiters' => Waiter::all()
         ]);
     }
 
@@ -60,6 +63,12 @@ class Order extends Component
     public function select_online_order(ModelsOrder $order){
         \ShopCart::clear();
 
+        $this->phone = $order->customer_phone;
+        $this->name = $order->customer_name;
+        $this->address = $order->customer_address;
+        $this->discount_percentage = $order->discount_percentage;
+        $this->discount_fixed_amount = $order->discount_fixed_amount;
+        $this->delivery_charge = $order->delivery_fee;
         foreach($order->order_items as $order_item){
             \ShopCart::add([
                 'id' => $order_item->category_wise_item->id,

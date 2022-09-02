@@ -93,13 +93,13 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-8">
-                            <select class="" wire:model="category">
+                            <select class="form-control form-control-sm" wire:model="category">
                                 <option value="">All item</option>
                                 @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option> 
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
-                            <div class="row">
+                            <div class="row" style="height: 440px; overflow: auto;">
                                 @foreach ($category_wise_items as $category_wise_item)
                                 <div class="col-md-4" wire:click="addToCard({{ $category_wise_item->id }})">
                                     <div class="m-1 card pointer btn-outline-success">
@@ -107,49 +107,116 @@
                                             {{ $category_wise_item->item->name ?? '' }}
                                         </div>
                                     </div>
-                                </div>   
+                                </div>
                                 @endforeach
                             </div>
-
                         </div>
                         <div class="col-md-4 card">
-                            @if($selected_online_order)
-                            Name: {{ $selected_online_order->customer_name }} <br>
-                            Phone: <b>{{ $selected_online_order->customer_phone }}</b> <br>
-                            Address: {{ $selected_online_order->customer_address }} <br>
-                            <br>
-                            <table class="table">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Item</th>
-                                    <th>QTY & Price</th>
-                                    <th>Action</th>
-                                </tr>
-                                @foreach ($items as $item)
-                                <tr class="item">
-                                    <td style="text-align:left;">{{ $loop->iteration }}</td>
-                                    <td style="text-align:left;">{{ $item->name }} 
-                                        <sub>{{ $item->sub_category_name }}</sub> 
-                                    </td>
-                                    <td style="text-align:right;">
-                                        Price: {{ $item->price }} <br>
-                                        QTY: {{ $item->quantity }} <br>
-                                        Total: {{ round($item->getPriceSum(), 0) }}
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-sm btn-danger" wire:click="remove_item({{ $item->id }})">D</button>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </table>
-
-
-                            @endif
+                            <h1 class="text-center">{{ $total }} TK</h1>
+                            <div style="height: 440px; overflow: auto;">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <select class="custom-select custom-select-sm" wire:model="waiter">
+                                                    <option value="">Select Waiter</option>
+                                                    @foreach ($waiters as $waiter)
+                                                    <option value="{{ $waiter->id }}">{{ $waiter->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fa fa-phone-square"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" class="form-control form-control-sm" placeholder="Phone Number" wire:model="phone">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="zmdi zmdi-account"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" class="form-control form-control-sm" placeholder="Customer Name" wire:model="name">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="zmdi zmdi-pin-drop"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" class="form-control form-control-sm" placeholder="Delivery Address" wire:model="address">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fa fa-percent"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="number" class="form-control form-control-sm calculation" placeholder="%" title="Discount Percentage" wire:model="discount_percentage">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fa fa-asterisk"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="number" class="form-control form-control-sm calculation" placeholder="Fixed" title="Discount Fixed Amount" wire:model="discount_fixed_amount">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="zmdi zmdi-directions-bike"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" class="form-control form-control-sm calculation" placeholder="Delivery Charge" wire:model="delivery_charge">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-group mt-2 w-100">
+                                    <button type="button" class="btn btn-outline-success waves-effect waves-light btn-sm w-50">Save & Cook</button>
+                                    <button type="button" class="btn btn-outline-danger waves-danger waves-light btn-sm w-50">Reject</button>
+                                </div>
+                                <table class="table table-striped table-hover mt-1 table-sm">
+                                    <thead class="bg-info text-white">
+                                        <tr>
+                                            <td>#</td>
+                                            <td>Name</td>
+                                            <td style="text-align: right;">Price</td>
+                                            <td style="text-align: center;">QT</td>
+                                            <td style="text-align: right;">Total</td>
+                                            <td style="text-align: right; min-width:70px;">Action</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($items as $item)
+                                        <tr class="">
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td style="font-size:12px;">{{ $item->name }}<sub>{{ $item->sub_category_name }}</sub></td>
+                                            <td style="text-align: right;" class="">{{ $item->price }}</td>
+                                            <td style="text-align: right;">
+                                                <input type="number" style="width: 50px;" class="form-control form-control-sm" minimum="1" readonly value="{{ $item->quantity }}">
+                                            </td>
+                                            <td style="text-align: right;" class="">{{ round($item->getPriceSum(), 0) }}</td>
+                                            <td style="text-align: right;">
+                                                <i class="fa fa-plus-square fa-lg text-success hoverable" wire:click="updateQuantity({{ $item->id }}, '+')"></i>
+                                                <i class="fa fa-minus-square fa-lg text-warning hoverable" wire:click="updateQuantity({{ $item->id }}, '-')"></i>
+                                                <i class="fa fa-trash fa-lg text-danger hoverable" wire:click="remove_item({{ $item->id }})"></i>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
