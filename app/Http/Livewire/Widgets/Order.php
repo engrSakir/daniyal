@@ -135,4 +135,8 @@ class Order extends Component
         ]);
     }
 
+    public function save_and_cook(ModelsOrder $order){
+
+    }
+
 }
