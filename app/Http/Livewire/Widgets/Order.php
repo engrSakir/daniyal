@@ -135,8 +135,32 @@ class Order extends Component
         ]);
     }
 
-    public function save_and_cook(ModelsOrder $order){
+    public function save_and_cook(){
+        if ($this->selected_online_order) {
+            // $this->selected_online_order->update();
+            $this->alert('success', 'Order updated', [
+                'position' => 'bottom-start'
+            ]);
+        }else{
+            $this->alert('error', 'Order not found', [
+                'position' => 'bottom-start'
+            ]);
+        }
+    }
 
+    public function reject_order(){
+        if ($this->selected_online_order) {
+            $this->selected_online_order->update([
+                'status' => 'Reject'
+            ]);
+            $this->alert('success', 'Order rejected', [
+                'position' => 'bottom-start'
+            ]);
+        }else{
+            $this->alert('error', 'Order not found', [
+                'position' => 'bottom-start'
+            ]);
+        }
     }
 
 }

@@ -181,8 +181,8 @@
                                     </div>
                                 </div>
                                 <div class="btn-group mt-2 w-100">
-                                    <button type="button" class="btn btn-outline-success waves-effect waves-light btn-sm w-50">Save & Cook</button>
-                                    <button type="button" class="btn btn-outline-danger waves-danger waves-light btn-sm w-50">Reject</button>
+                                    <button type="button" class="btn btn-outline-success waves-effect waves-light btn-sm w-50" wire:click="save_and_cook">Save & Cook</button>
+                                    <button type="button" class="btn btn-outline-danger waves-danger waves-light btn-sm w-50" wire:click="reject_order">Reject</button>
                                 </div>
                                 <table class="table table-striped table-hover mt-1 table-sm">
                                     <thead class="bg-info text-white">
