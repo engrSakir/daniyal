@@ -126,7 +126,7 @@
         <tr>
             <td>
                 Payable Amount <br>
-                @if($order->is_parcel) <small>include delivery charge</small> @endif
+                @if($order->is_parcel && $order->delivery_fee > 0) <small>include delivery charge</small> @endif
             </td>
             <td class="payment" style="text-align:right;">
                <h3> {{ get_static_option('delivery_charge_in_business') ? money_format_india($order->payable_amount) : money_format_india($order->payable_amount+$order->delivery_fee)  }} Taka</h3>
