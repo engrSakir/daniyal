@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('creator_id');
+            $table->foreignId('creator_id')->nullable();
             $table->foreignId('waiter_id')->nullable();
             $table->foreignId('table_id')->nullable();
             $table->string('serial_number');

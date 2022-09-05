@@ -23,6 +23,8 @@ class Setting extends Component
         $this->vat_activation = get_static_option('vat_activation') ?? false;
         $this->membership_activation = get_static_option('membership_activation') ?? false;
         $this->delivery_charge_in_business = get_static_option('delivery_charge_in_business') ?? false;
+        $this->online_delivery_charge = get_static_option('online_delivery_charge');
+
     }
 
     public function update_bin_number()
@@ -38,7 +40,7 @@ class Setting extends Component
         $this->validate([
             'vat_percentage' => 'required|string'
         ]);
-        $this->set_or_update_static_option('vat_percentage', !$this->vat_percentage);
+        $this->set_or_update_static_option('vat_percentage', $this->vat_percentage);
     }
 
 
@@ -64,6 +66,14 @@ class Setting extends Component
             'delivery_charge_in_business' => 'required|boolean'
         ]);
         $this->set_or_update_static_option('delivery_charge_in_business', !(get_static_option('delivery_charge_in_business') ?? true));
+    }
+
+    public function update_online_delivery_charge()
+    {
+        $this->validate([
+            'online_delivery_charge' => 'required|string'
+        ]);
+        $this->set_or_update_static_option('online_delivery_charge', $this->online_delivery_charge);
     }
 
     public function set_or_update_static_option($key, $value)

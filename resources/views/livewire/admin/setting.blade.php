@@ -64,6 +64,19 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">Online delivery charge</div>
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control @error('online_delivery_charge') border-danger @enderror" placeholder="xxx-xxx-xxx" wire:model="online_delivery_charge">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" type="button" wire:click="update_online_delivery_charge"><i class="zmdi zmdi-check-circle"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!-- End container-fluid-->

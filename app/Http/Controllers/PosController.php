@@ -59,7 +59,7 @@ class PosController extends Controller
                 $order = new Order();
                 $order->creator_id = Auth::user()->id;
                 $order->serial_number = date('ym') . sprintf("%'.05d", $total_order_count_of_this_month + 1); //220700001
-                $order->status = 'Cook'; //Penging, Reject, Cook, Serve, Complete
+                $order->status = 'Cook'; //Pending, Reject, Cook, Serve, Complete
                 $order->waiter_id = $request->waiter;
                 $order->table_id = $request->table;
                 $order->is_online = false;
