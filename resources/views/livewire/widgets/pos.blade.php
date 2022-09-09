@@ -84,7 +84,11 @@
                 <div class="card-body calculation_box">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 class="form-header text-uppercase text-center mt-1" id="total_price">00.00</h4>
+                            <h4 class="form-header text-uppercase text-center mt-1">
+                                <b id="total_price" class="">0</b>
+                                <b id="paid" class="text-success">0</b>
+                                <b id="due" class="text-danger">0</b>
+                            </h4>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <select class="custom-select custom-select-sm" id="waiter">
@@ -149,6 +153,19 @@
                                         <input type="text" class="form-control form-control-sm calculation" id="delivery_charge" placeholder="Delivery Charge">
                                     </div>
                                 </div>
+                                @foreach ($payment_methods as $payment_method)
+                                <div class="form-group col-md-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                {{ $payment_method->name }}
+                                            </div>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm payments" id="payment_method_{{ $payment_method->id }}" placeholder="">
+                                        <input type="hidden" class="payment-method-id" value="{{ $payment_method->id }}">
+                                    </div>
+                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

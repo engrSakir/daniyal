@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('payment_methods', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('is_active')->default(true);
+            $table->boolean('active_to_outlet')->default(true);
+            $table->boolean('active_to_online')->default(false);
             $table->timestamps();
             $table->softDeletes();
 
