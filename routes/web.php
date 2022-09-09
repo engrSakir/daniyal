@@ -32,6 +32,8 @@ Route::group(['middleware' => ['admin', 'auth'], 'as' => 'admin.', 'prefix' => '
     Route::get('dashboard', Admin\Dashoard::class)->name('dashboard');
     Route::get('manager', Admin\Manager::class)->name('manager');
     Route::get('setting', Admin\Setting::class)->name('setting');
+    Route::get('payment-method', Admin\PaymentMethod::class)->name('payment_method');
+    
 });
 
 Route::group(['middleware' => ['manager', 'auth'], 'as' => 'manager.', 'prefix' => 'manager/'], function () {

@@ -12,6 +12,7 @@
                 <li class="sidebar-header">Admin</li>
                 <li><a href="{{ route('admin.dashboard') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Dashboard</span></a></li>
                 <li><a href="{{ route('admin.manager') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Manager</span></a></li>
+                <li><a href="{{ route('admin.payment_method') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Payment method</span></a></li>
                 <li><a href="{{ route('admin.setting') }}" class="waves-effect"><i class="fa fa-circle-o text-aqua"></i> <span>Setting</span></a></li>
                 @endif
 
