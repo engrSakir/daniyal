@@ -2,7 +2,7 @@
         <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
             <div class="brand-logo" style="height:100px;">
                 <a href="{{ route('login') }}">
-                    <img src="{{ asset('assets/images/logo.png') }}" alt="" width="200px;">
+                    <img src="{{ asset(get_static_option('logo')) }}" alt="" width="200px;">
                     {{-- <img src="{{ asset('assets/images/fav.png') }}" class="logo-icon" alt="">
                     <h5 class="logo-text">{{ config('app.name', 'Laravel') }}</h5> --}}
                 </a>
