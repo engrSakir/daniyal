@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/products', [PosController::class, 'get_products']);
+Route::get('/products2', [PosController::class, 'get_products2']);

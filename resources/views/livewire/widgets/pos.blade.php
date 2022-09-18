@@ -64,7 +64,8 @@
                     <div class="row">
                         @foreach ($items as $item)
                         <div class="col-3 food_item item item_id_{{ $item->id }} @foreach ($item->category_wise_items as $category_wise_item) category_id_{{ $category_wise_item->category_id }} @endforeach"
-                            @if($item->category_wise_items_count == 1) onclick="add_to_basket({{ $item->category_wise_items()->first()->id }})"
+                                @if($item->category_wise_items_count == 1) 
+                                onclick="add_to_basket({{ $item->category_wise_items()->first()->id }})"
                                 @else
                                 data-toggle="modal" data-target="#category_wise_items_modal"
                                 onclick="category_wise_items_modal_open({{ $item->id }}, '{{ $item->name }}')"
