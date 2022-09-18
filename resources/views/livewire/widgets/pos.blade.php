@@ -213,6 +213,7 @@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="{{ asset('assets/printjs/print.min.js') }}"></script>
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/printjs/print.min.css') }}">
+
         <script>
             var items = {!! $items !!};
             var category_wise_items = {!! $category_wise_items !!};
@@ -394,6 +395,14 @@
                 document.getElementById("total_price").innerHTML = total_price;
             }
 
+            $('.payments').on('input', function() {
+                let total_paid = 0;
+                $.map(basket, function(item, index) {
+                    total_paid += item.price * item.quantity;
+                });
+                $('#paid').text(total_paid);
+            });
+           
             $('.item_search_by_id_field').on('input', function() {
                 $(".item").hide();
                 $(".item_id_"+$(this).val()).show();

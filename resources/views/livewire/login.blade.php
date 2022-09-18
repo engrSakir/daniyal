@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <div class="card-content p-3">
                         <div class="text-center pb-3">
-                            <img src="{{ asset('assets/images/logo.png') }}" style="width: 50%;" />
+                            <img src="{{ asset(get_static_option('logo')) }}" style="width: 50%;" />
                         </div>
                         <form wire:submit.prevent="login">
                             <div class="form-group">

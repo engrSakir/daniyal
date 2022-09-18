@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        $this->call(StaticOptionSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(ItemSeed1Salad::class);
         $this->call(ItemSeed2Soup::class);

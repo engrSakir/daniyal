@@ -6,12 +6,7 @@
             <div class="row">
                 <div class="col-xl-12 col-md-12 col-sm-12">
                     <div class="shpping-order">
-                        <marquee direction="left" onmouseover="this.stop();" onmouseout="this.start();" class="top_marquee_notice">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-                            molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-                            numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-                            optio, eaque rerum!
-                        </marquee>
+                        <marquee direction="left" onmouseover="this.stop();" onmouseout="this.start();" class="top_marquee_notice"> {{ get_static_option('website notice') }} </marquee>
                     </div>
                 </div>
             </div>
@@ -24,7 +19,7 @@
                     <div class="header-left">
                         <div class="brand-logo logo-sm-center">
                             <a href="{{ route('home') }}">
-                                <img src="{{ asset('assets/images/logo.png') }}" width="100px;" class="img-fluid" alt="logo">
+                                <img src="{{ asset(get_static_option('logo')) }}" width="100px;" class="img-fluid" alt="logo">
                             </a>
                         </div>
                     </div>
@@ -157,7 +152,7 @@
                         <div class="logo-block">
                             <div class="brand-logo logo-sm-center">
                                 <a href="{{ route('home') }}">
-                                    <img src="{{ asset('assets/images/logo.png') }}" class="img-fluid  " alt="logo">
+                                    <img src="{{ asset(get_static_option('logo')) }}" class="img-fluid  " alt="logo">
                                 </a>
                             </div>
                         </div>
