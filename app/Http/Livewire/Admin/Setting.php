@@ -20,7 +20,7 @@ class Setting extends Component
     {
         $this->bin_number = get_static_option('bin_number');
         $this->vat_percentage = get_static_option('vat_percentage');
-        $this->vat_activation = get_static_option('vat_activation') ?? false;
+        $this->vat_inclusive = get_static_option('vat_inclusive') ?? false;
         $this->membership_activation = get_static_option('membership_activation') ?? false;
         $this->delivery_charge_in_business = get_static_option('delivery_charge_in_business') ?? false;
         $this->online_delivery_charge = get_static_option('online_delivery_charge');
@@ -44,12 +44,12 @@ class Setting extends Component
     }
 
 
-    public function update_vat_activation()
+    public function update_vat_inclusive()
     {
         $this->validate([
-            'vat_activation' => 'required|boolean'
+            'vat_inclusive' => 'required|boolean'
         ]);
-        $this->set_or_update_static_option('vat_activation', !(get_static_option('vat_activation') ?? true));
+        $this->set_or_update_static_option('vat_inclusive', !(get_static_option('vat_inclusive') ?? true));
     }
 
     public function update_membership_activation()

@@ -33,8 +33,8 @@
             <div class="card">
                 <div class="card-header">VAT Activation</div>
                 <div class="card-body pb-5 text-center">
-                    <input type="checkbox" id="vat_activation" class="filled-in chk-col-primary" @if($vat_activation) checked="" @endif wire:change="update_vat_activation">
-                    <label for="vat_activation">Active</label>
+                    <input type="checkbox" id="vat_inclusive" class="filled-in chk-col-primary" @if($vat_inclusive) checked="" @endif wire:change="update_vat_inclusive">
+                    <label for="vat_inclusive">Active</label>
                 </div>
             </div>
         </div>
@@ -53,7 +53,7 @@
         </div>
         <div class="col-lg-4">
             <div class="card">
-                <div class="card-header">VAT Percentage</div>
+                <div class="card-header">VAT Inclusive</div>
                 <div class="card-body">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control @error('vat_percentage') border-danger @enderror" placeholder="xxx-xxx-xxx" wire:model="vat_percentage">
