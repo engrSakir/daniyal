@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('transaction_numbr')->nullable();
             $table->timestamps();
             $table->softDeletes();
-
         });
     }
 
