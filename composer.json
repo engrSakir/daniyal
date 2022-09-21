@@ -13,7 +13,7 @@
         "jantinnerezo/livewire-alert": "^2.2",
         "laravel/framework": "^9.11",
         "laravel/helpers": "^1.5",
-        "laravel/sanctum": "^2.14.1",
+        "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.10",
         "pavel-mironchik/laravel-backup-panel": "^2.2",
