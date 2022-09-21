@@ -23,7 +23,7 @@ Route::get('/products', [PosController::class, 'get_products']);
 Route::get('/products2', [PosController::class, 'get_products2']);
 
 Route::post('login', function (Request $request) {
-    $this->validate([
+    $request->validate([
         'phone' => 'required|string',
         'password' => 'required|string'
     ]);
